@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
+
+import Login from './components/Login';
+
 import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  componentDidMount = () => {
+    const headers = localStorage.getItem('headers');
+    console.log('headers', JSON.stringify(headers, null, 2));
+  };
+
   render() {
     return (
       <div className="App">
@@ -10,9 +18,8 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to React</h1>
         </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
+        <Login />
       </div>
     );
   }
