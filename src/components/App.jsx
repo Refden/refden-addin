@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import * as refden from '../api/refden';
 
+import Lists from './Lists';
 import Login from './Login';
 
 import logo from '../logo.svg';
@@ -29,7 +30,7 @@ class App extends Component {
         localStorage.setItem('headers', JSON.stringify(response.headers));
         this.setState({isLogged: true});
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -49,7 +50,7 @@ class App extends Component {
 
         {
           this.state.isLogged
-            ? <button onClick={this.logout}>Log out</button>
+            ? <Lists logout={this.logout} />
             : <Login handleLogin={this.handleLogin} />
         }
       </div>
