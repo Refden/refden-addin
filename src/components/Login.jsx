@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import * as refden from '../api/refden';
-
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -18,14 +16,7 @@ class Login extends Component {
   };
 
   handleSubmit = event => {
-    refden.login(this.state.email, this.state.password)
-      .then(response => {
-        localStorage.setItem('headers', JSON.stringify(response.headers));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-
+    this.props.handleLogin(this.state.email, this.state.password);
     event.preventDefault();
   };
 
