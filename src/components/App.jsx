@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import toastr from 'toastr';
 
 import * as refden from '../api/refden';
 
@@ -8,21 +9,21 @@ import Login from './Login';
 import logo from '../logo.svg';
 import './App.css';
 
+const isLogged = () => {
+  const headers = JSON.parse(localStorage.getItem('headers'));
+  if(headers === null) return false;
+
+  const expiryInMs = parseInt(headers.expiry, 10) * 1000;
+  return expiryInMs && expiryInMs > Date.now();
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogged: false,
+      isLogged: isLogged(),
     };
   }
-
-  componentDidMount = () => {
-    const headers = JSON.parse(localStorage.getItem('headers'));
-    const expiryInMs = parseInt(headers.expiry, 10) * 1000;
-    const isLogged = expiryInMs && expiryInMs > Date.now();
-
-    this.setState({ isLogged });
-  };
 
   handleLogin = (email, password) => {
     refden.login(email, password)
@@ -30,8 +31,9 @@ class App extends Component {
         localStorage.setItem('headers', JSON.stringify(response.headers));
         this.setState({isLogged: true});
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(error => {
+        const errorMsg = error.response.data.errors[0];
+        toastr.error(errorMsg);
       });
   };
 

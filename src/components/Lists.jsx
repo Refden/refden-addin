@@ -12,14 +12,8 @@ class Lists extends Component {
 
   componentDidMount = () => {
     refden.getLists()
-      .then(response => {
-        this.setState({
-          lists: response.data,
-        })
-      })
-      .catch(error => {
-        console.log('error', error);
-      })
+      .then(response => this.setState({ lists: response.data }))
+      .catch(() => this.props.logout())
   };
 
   render = () => (
