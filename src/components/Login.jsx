@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './Login.css';
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -22,29 +24,29 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <p>
-          <input type="email"
-                 name="email"
-                 value={this.state.email}
-                 placeholder="Email"
-                 onChange={this.handleChange}
-          />
-        </p>
+      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
+        <input
+          type="email"
+          name="email"
 
-        <p>
-          <input type="password"
-                 name="password"
-                 value={this.state.password}
-                 placeholder="Password"
-                 onChange={this.handleChange}
-          />
-        </p>
+          value={this.state.email}
+          placeholder="Email"
+          onChange={this.handleChange}
+        />
 
-        <p>
-          <input type="submit" value="Submit" />
-        </p>
+        <input
+          type="password"
+          name="password"
+          value={this.state.password}
+          placeholder="Password"
+          onChange={this.handleChange}
+        />
 
+        <input
+          className="pure-button pure-button-primary"
+          type="submit"
+          value="Submit"
+        />
       </form>
     );
   }

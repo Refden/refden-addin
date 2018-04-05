@@ -22,7 +22,7 @@ class Lists extends Component {
       <h1>Lists</h1>
       {
         this.state.lists.map(list => (
-          <div>{list.name}</div>
+          <div key={list.id}>{list.name}</div>
         ))
       }
     </div>

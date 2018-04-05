@@ -6,6 +6,7 @@ import registerServiceWorker from './registerServiceWorker';
 
 import './index.css';
 import 'toastr/build/toastr.min.css';
+import 'purecss/build/pure-min.css';
 
 window.Office.initialize = () => {
   ReactDOM.render(<App />, document.getElementById('root'));
