@@ -18,6 +18,20 @@ class List extends Component {
       .catch(() => this.props.logout())
   };
 
+  insertCitation = reference => () => {
+    const { Word } = window;
+
+    Word.run(context => {
+      const thisDocument = context.document;
+      const range = thisDocument.getSelection();
+
+      range.insertText(reference.citation, Word.InsertLocation.end);
+      thisDocument.body.insertText(`\n${reference.reference}`, Word.InsertLocation.end);
+
+      return context.sync();
+    })
+  };
+
   render = () => (
     <div className="pure-u-1">
       <h1 className="pure-u-1">{this.props.list.name}</h1>
@@ -29,8 +43,7 @@ class List extends Component {
             key={reference.id}
             href="#"
             className="pure-u-1 list"
-            onClick={() => {
-            }}
+            onClick={this.insertCitation(reference)}
           >
             {reference.title}
           </a>
