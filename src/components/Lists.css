@@ -1,0 +1,16 @@
+.lists-container {
+  justify-content: flex-end;
+  padding: 0 1em 1em;
+}
+
+.list {
+  padding: 0.25em 0;
+}
+
+.go-back {
+  margin-right: 0.25em;
+}
+
+.logout {
+  margin-top: 1em;
+}
