@@ -127,14 +127,16 @@
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
-        <bt:String id="Contoso.TaskpaneButton.Label" DefaultValue="Show Taskpane" />
-        <bt:String id="Contoso.Group1Label" DefaultValue="Commands Group" />
-        <bt:String id="Contoso.GetStarted.Title" DefaultValue="Get started with your sample add-in!" />
+        <bt:String id="Contoso.TaskpaneButton.Label" DefaultValue="Refden" />
+        <bt:String id="Contoso.Group1Label" DefaultValue="Refden" />
+        <bt:String id="Contoso.GetStarted.Title" DefaultValue="Add your references from Refden!" />
       </bt:ShortStrings>
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
-        <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show a Taskpane" />
-        <bt:String id="Contoso.GetStarted.Description" DefaultValue="Your sample add-in loaded succesfully. Go to the HOME tab and click the 'Show Taskpane' button to get started." />
+        <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show Refden Taskpane" />
+        <bt:String id="Contoso.GetStarted.Description"
+                   DefaultValue="Your Refden add-in loaded succesfully. Go to the HOME tab and click the 'Refden' button to get started."
+        />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>

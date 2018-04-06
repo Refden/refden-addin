@@ -34,8 +34,9 @@ class Lists extends Component {
   );
 
   renderLists = () => (
-    <div>
+    <div className="pure-u-1">
       <h1 className="pure-u-1">Lists</h1>
+      { this.state.lists.length === 0 ? 'Loading...' : '' }
       {
         this.state.lists.map(list => (
           // eslint-disable-next-line jsx-a11y/href-no-hash
