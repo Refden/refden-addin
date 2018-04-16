@@ -2,6 +2,7 @@
   "name": "refden-addin",
   "version": "1.0.0",
   "private": true,
+  "homepage": "https://refden.github.io/refden-addin",
   "dependencies": {
     "axios": "^0.18.0",
     "purecss": "^1.0.0",
