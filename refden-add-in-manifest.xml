@@ -6,24 +6,16 @@
           xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
           xsi:type="TaskPaneApp">
 
-  <!-- Begin Basic Settings: Add-in metadata, used for all versions of Office unless override provided. -->
-
-  <!-- IMPORTANT! Id must be unique for your add-in, if you reuse this manifest ensure that you change this id to a new GUID. -->
-  <Id>d3f7644e-0bc5-4873-986d-d4cef6942851</Id>
-
-  <!--Version. Updates from the store only get triggered if there is a version change. -->
+  <Id>d3f7644e-0bc5-4873-986d-d4cef6942851</Id>  <!-- NOTE: should be unique -->
   <Version>1.0.0</Version>
   <ProviderName>Mario Perez-Alarcon</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <!-- The display name of your add-in. Used on the store and various places of the Office UI such as the add-ins dialog. -->
   <DisplayName DefaultValue="Refden Add-in" />
   <Description DefaultValue="Add-in for Refden. Bring your references from www.refden.co"/>
+  <Permissions>ReadWriteDocument</Permissions>
 
-  <!-- Icon for your add-in. Used on installation screens and the add-ins dialog. -->
   <IconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
   <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png"/>
-
-  <!--If you plan to submit this add-in to the Office Store, uncomment the SupportUrl element below-->
   <SupportUrl DefaultValue="https://www.refden.co" />
 
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
@@ -31,21 +23,21 @@
   <!--</AppDomains>-->
   <!--End Basic Settings. -->
 
-  <!--Begin TaskPane Mode integration. This section is used if there are no VersionOverrides or if the Office client version does not support add-in commands. -->
+  <Requirements>
+    <Methods>
+      <Method Name="Document.getSelection"/>
+      <Method Name="Range.insertText"/>
+    </Methods>
+  </Requirements>
+
   <Hosts>
     <Host Name="Document" />
   </Hosts>
   <DefaultSettings>
     <SourceLocation DefaultValue="https://refden.github.io/refden-addin/index.html" />
   </DefaultSettings>
-  <!-- End TaskPane Mode integration.  -->
 
-  <Permissions>ReadWriteDocument</Permissions>
-
-  <!-- Begin Add-in Commands Mode integration. -->
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
-
-    <!-- The Hosts node is required. -->
     <Hosts>
       <!-- Each host can have a different set of commands. -->
       <!-- Excel host is Workbook, Word host is Document, and PowerPoint host is Presentation. -->
@@ -135,11 +127,9 @@
       <bt:LongStrings>
         <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show Refden Taskpane" />
         <bt:String id="Contoso.GetStarted.Description"
-                   DefaultValue="Your Refden add-in loaded succesfully. Go to the HOME tab and click the 'Refden' button to get started."
+                   DefaultValue="Your Refden add-in loaded successfully. Go to the HOME tab and click the 'Refden' button to get started."
         />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
-  <!-- End Add-in Commands Mode integration. -->
-
 </OfficeApp>
