@@ -25,7 +25,6 @@
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
   <!--<AppDomains>-->
   <!--</AppDomains>-->
-  <!--End Basic Settings. -->
 
   <Requirements>
     <Methods>
@@ -39,6 +38,8 @@
   </Hosts>
   <DefaultSettings>
     <SourceLocation DefaultValue="https://refden.github.io/refden-addin/index.html" />
+    <!--INFO: Uncomment this line below for trying changes on local-->
+    <!--<SourceLocation DefaultValue="https://localhost:3000/index.html" />-->
   </DefaultSettings>
 
   <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
