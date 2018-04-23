@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <OfficeApp
-          xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
-          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-          xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
-          xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
-          xsi:type="TaskPaneApp">
+    xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+    xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+    xsi:type="TaskPaneApp">
 
-  <Id>d3f7644e-0bc5-4873-986d-d4cef6942851</Id>  <!-- NOTE: should be unique -->
+  <Id>d3f7644e-0bc5-4873-986d-d4cef6942851</Id>
   <Version>1.0.0</Version>
   <ProviderName>Mario Perez-Alarcon</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Refden Add-in" />
-  <Description DefaultValue="Add-in for Refden. Bring your references from www.refden.co"/>
+  <Description
+      DefaultValue="Add-in for Refden. Bring your references from your account at www.refden.co. If you don't have an account you'll need to create one first." />
   <Permissions>ReadWriteDocument</Permissions>
 
   <IconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png"/>
+  <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png" />
   <SupportUrl DefaultValue="https://www.refden.co" />
 
   <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
@@ -25,8 +26,8 @@
 
   <Requirements>
     <Methods>
-      <Method Name="Document.getSelection"/>
-      <Method Name="Range.insertText"/>
+      <Method Name="Document.getSelection" />
+      <Method Name="Range.insertText" />
     </Methods>
   </Requirements>
 
@@ -37,7 +38,8 @@
     <SourceLocation DefaultValue="https://refden.github.io/refden-addin/index.html" />
   </DefaultSettings>
 
-  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="VersionOverridesV1_0">
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+                    xsi:type="VersionOverridesV1_0">
     <Hosts>
       <!-- Each host can have a different set of commands. -->
       <!-- Excel host is Workbook, Word host is Document, and PowerPoint host is Presentation. -->
@@ -48,13 +50,13 @@
           <!--"This code enables a customizable message to be displayed when the add-in is loaded successfully upon individual install."-->
           <GetStarted>
             <!-- Title of the Getting Started callout. resid points to a ShortString resource -->
-            <Title resid="Contoso.GetStarted.Title"/>
+            <Title resid="Contoso.GetStarted.Title" />
 
             <!-- Description of the Getting Started callout. resid points to a LongString resource -->
-            <Description resid="Contoso.GetStarted.Description"/>
+            <Description resid="Contoso.GetStarted.Description" />
 
             <!-- Point to a url resource which details how the add-in should be used. -->
-            <LearnMoreUrl resid="Contoso.GetStarted.LearnMoreUrl"/>
+            <LearnMoreUrl resid="Contoso.GetStarted.LearnMoreUrl" />
           </GetStarted>
           <!-- Function file is a HTML page that includes the JavaScript where functions for ExecuteAction will be called.
             Think of the FunctionFile as the code behind ExecuteFunction. -->
@@ -108,14 +110,20 @@
     <!-- You can use resources across hosts and form factors. -->
     <Resources>
       <bt:Images>
-        <bt:Image id="Contoso.tpicon_16x16" DefaultValue="https://refden.github.io/refden-addin/assets/icon-16.png" />
-        <bt:Image id="Contoso.tpicon_32x32" DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
-        <bt:Image id="Contoso.tpicon_80x80" DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png" />
+        <bt:Image id="Contoso.tpicon_16x16"
+                  DefaultValue="https://refden.github.io/refden-addin/assets/icon-16.png" />
+        <bt:Image id="Contoso.tpicon_32x32"
+                  DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
+        <bt:Image id="Contoso.tpicon_80x80"
+                  DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png" />
       </bt:Images>
       <bt:Urls>
-        <bt:Url id="Contoso.Taskpane.Url" DefaultValue="https://refden.github.io/refden-addin/index.html" />
-        <bt:Url id="Contoso.GetStarted.LearnMoreUrl" DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
-        <bt:Url id="Contoso.DesktopFunctionFile.Url" DefaultValue="https://refden.github.io/refden-addin/function-file/function-file.html" />
+        <bt:Url id="Contoso.Taskpane.Url"
+                DefaultValue="https://refden.github.io/refden-addin/index.html" />
+        <bt:Url id="Contoso.GetStarted.LearnMoreUrl"
+                DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+        <bt:Url id="Contoso.DesktopFunctionFile.Url"
+                DefaultValue="https://refden.github.io/refden-addin/function-file/function-file.html" />
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
@@ -125,7 +133,8 @@
       </bt:ShortStrings>
       <!-- LongStrings max characters==250. -->
       <bt:LongStrings>
-        <bt:String id="Contoso.TaskpaneButton.Tooltip" DefaultValue="Click to Show Refden Taskpane" />
+        <bt:String id="Contoso.TaskpaneButton.Tooltip"
+                   DefaultValue="Click to Show Refden Taskpane" />
         <bt:String id="Contoso.GetStarted.Description"
                    DefaultValue="Your Refden add-in loaded successfully. Go to the HOME tab and click the 'Refden' button to get started."
         />
