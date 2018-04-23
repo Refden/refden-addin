@@ -10,9 +10,12 @@
   <Version>1.0.0</Version>
   <ProviderName>Mario Perez-Alarcon</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
-  <DisplayName DefaultValue="Refden Add-in" />
+  <DisplayName DefaultValue="Refden" />
   <Description
-      DefaultValue="Add-in for Refden. Bring your references from your account at www.refden.co. If you don't have an account you'll need to create one first." />
+      DefaultValue="Add-in for Refden. Bring your references from your account at www.refden.co. Choose a reference
+      from one of your lists. We'll take care of inserting both the citation and the reference. Currently
+      we support APA style (more to come in the future) If you don't have an account you'll need to create one first."
+  />
   <Permissions>ReadWriteDocument</Permissions>
 
   <IconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
