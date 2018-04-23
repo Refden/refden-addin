@@ -22,9 +22,9 @@
   <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png" />
   <SupportUrl DefaultValue="https://www.refden.co" />
 
-  <!-- Domains that will be allowed when navigating. For example, if you use ShowTaskpane and then have an href link, navigation will only be allowed if the domain is on this list. -->
-  <!--<AppDomains>-->
-  <!--</AppDomains>-->
+  <AppDomains>
+    <AppDomain>https://www.refden.co</AppDomain>
+  </AppDomains>
 
   <Requirements>
     <Methods>

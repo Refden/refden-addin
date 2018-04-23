@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './Login.css';
 
@@ -24,33 +25,51 @@ class Login extends Component {
 
   render() {
     return (
-      <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
-        <input
-          type="email"
-          name="email"
-          required
-          value={this.state.email}
-          placeholder="Email"
-          onChange={this.handleChange}
-        />
+      <div id="loginContainer">
+        <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            required
+            value={this.state.email}
+            placeholder="Email"
+            onChange={this.handleChange}
+          />
 
-        <input
-          type="password"
-          name="password"
-          required
-          value={this.state.password}
-          placeholder="Password"
-          onChange={this.handleChange}
-        />
+          <input
+            type="password"
+            name="password"
+            required
+            value={this.state.password}
+            placeholder="Password"
+            onChange={this.handleChange}
+          />
 
-        <input
-          className="pure-button pure-button-primary"
-          type="submit"
-          value="Submit"
-        />
-      </form>
+          <input
+            className="pure-button pure-button-primary"
+            type="submit"
+            value="Submit"
+          />
+        </form>
+        <br/>
+        <div className="pure-g">
+          <div className="pure-u-1">
+            <p>
+              Don't have a Refden account? Sign up or learn more about our services&nbsp;
+              <a href="https://www.refden.co/" target="_blank">
+                here
+              </a>
+              .
+            </p>
+          </div>
+        </div>
+      </div>
     );
   }
 }
+
+Login.propTypes = {
+  handleLogin: PropTypes.func.isRequired,
+};
 
 export default Login;
