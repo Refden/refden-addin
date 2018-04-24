@@ -26,10 +26,19 @@ class Login extends Component {
   render() {
     return (
       <div id="loginContainer">
-        <form className="pure-form pure-form-stacked" onSubmit={this.handleSubmit}>
+        <div className="pure-g">
+          <p className="pure-u-1">
+            Login and bring your references from your account at&nbsp;
+            <a href="https://www.refden.co/" target="_blank" rel="noopener noreferrer">www.refden.co</a>
+          </p>
+        </div>
+        <form className="pure-form pure-form-stacked text-center" onSubmit={this.handleSubmit}>
+          <h2>Log in</h2>
+
           <input
             type="email"
             name="email"
+            className="align-center"
             required
             value={this.state.email}
             placeholder="Email"
@@ -39,6 +48,7 @@ class Login extends Component {
           <input
             type="password"
             name="password"
+            className="align-center"
             required
             value={this.state.password}
             placeholder="Password"
@@ -46,22 +56,20 @@ class Login extends Component {
           />
 
           <input
-            className="pure-button pure-button-primary"
+            className="pure-button pure-button-primary mt-1"
             type="submit"
             value="Submit"
           />
         </form>
         <br/>
         <div className="pure-g">
-          <div className="pure-u-1">
-            <p>
-              Don't have a Refden account? Sign up or learn more about our services&nbsp;
-              <a href="https://www.refden.co/" target="_blank">
-                here
-              </a>
-              .
-            </p>
-          </div>
+          <p className="pure-u-1">
+            Don't have a Refden account? Sign up or learn more about our services&nbsp;
+            <a href="https://www.refden.co/" target="_blank" rel="noopener noreferrer">
+              here
+            </a>
+            .
+          </p>
         </div>
       </div>
     );
