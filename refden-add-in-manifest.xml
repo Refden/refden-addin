@@ -24,6 +24,7 @@
 
   <AppDomains>
     <AppDomain>https://www.refden.co</AppDomain>
+    <AppDomain>https://www.youtube.com</AppDomain>
   </AppDomains>
 
   <Requirements>
