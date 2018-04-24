@@ -30,11 +30,13 @@ class Login extends Component {
           <p className="pure-u-1">
             Login and bring your references from your account at&nbsp;
             <a href="https://www.refden.co/" target="_blank" rel="noopener noreferrer">www.refden.co</a>
+            . See a video example&nbsp;
+            <a href="https://www.youtube.com/watch?v=0-fXMe0zd8Y" target="_blank" rel="noopener noreferrer">here</a>
+            .
           </p>
         </div>
         <form className="pure-form pure-form-stacked text-center" onSubmit={this.handleSubmit}>
           <h2>Log in</h2>
-
           <input
             type="email"
             name="email"
@@ -44,7 +46,6 @@ class Login extends Component {
             placeholder="Email"
             onChange={this.handleChange}
           />
-
           <input
             type="password"
             name="password"
@@ -54,7 +55,6 @@ class Login extends Component {
             placeholder="Password"
             onChange={this.handleChange}
           />
-
           <input
             className="pure-button pure-button-primary mt-1"
             type="submit"
