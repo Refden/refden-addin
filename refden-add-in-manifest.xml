@@ -11,10 +11,8 @@
   <ProviderName>Mario Perez-Alarcon</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Refden" />
-  <Description
-      DefaultValue="Add-in for Refden. Bring your references from your account at www.refden.co. Choose a reference
-      from one of your lists. We'll take care of inserting both the citation and the reference. Currently
-      we support APA style (more to come in the future) If you don't have an account you'll need to create one first."
+  <Description DefaultValue="Add-in for Refden. Bring your references from your account at www.refden.co.
+    We'll take care of inserting both the citation and the reference. If you don't have an account you'll need to create one first."
   />
   <Permissions>ReadWriteDocument</Permissions>
 
