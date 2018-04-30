@@ -26,12 +26,11 @@
     <Host Name="Document" />
   </Hosts>
 
-  <!--<Requirements>-->
-    <!--<Methods>-->
-      <!--<Method Name="Document.getSelection" />-->
-      <!--<Method Name="Range.insertText" />-->
-    <!--</Methods>-->
-  <!--</Requirements>-->
+  <Requirements>
+    <Sets>
+      <Set Name="WordApi" />
+    </Sets>
+  </Requirements>
 
   <DefaultSettings>
     <SourceLocation DefaultValue="https://refden.github.io/refden-addin/index.html" />
