@@ -12,6 +12,15 @@ export const getLists = () =>
 export const getReferences = list =>
   axios.get(buildUrl(`lists/${list.id}/references`), { headers: headers() });
 
+export const getReference = reference =>
+  axios.get(buildUrl(`references/${reference.id}`), {
+    params: {
+      style: localStorage.getItem('style'),
+      locale: localStorage.getItem('locale'),
+    },
+    headers: headers(),
+  });
+
 export const login = (email, password) =>
   axios.post(buildUrl('auth/sign_in'), {
     email,

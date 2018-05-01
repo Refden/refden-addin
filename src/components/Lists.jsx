@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import * as refden from '../api/refden';
 
 import List from './List';
+import Settings from './Settings/Settings';
 
 import './List.css';
 
@@ -55,6 +56,7 @@ class Lists extends Component {
 
   render = () => (
     <div className="pure-g lists-container">
+      <Settings />
       {this.state.selectedList === null ? this.renderLists() : this.renderList()}
       <br/>
       {this.state.selectedList !== null

@@ -35,7 +35,7 @@ class Settings extends Component {
   };
 
   render = () => (
-    <div className="pure-g">
+    [
       <div className="pure-u-1">
         <Dropdown
           label='Style:'
@@ -44,7 +44,7 @@ class Settings extends Component {
           placeHolder='Select an Style'
           options={STYLES}
         />
-      </div>
+      </div>,
       <div className="pure-u-1">
         <Dropdown
           label='Locale:'
@@ -54,7 +54,7 @@ class Settings extends Component {
           options={LOCALES}
         />
       </div>
-    </div>
+    ]
   );
 }
 

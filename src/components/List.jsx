@@ -19,17 +19,21 @@ class List extends Component {
   };
 
   insertCitation = reference => () => {
-    const { Word } = window;
+    refden.getReference(reference)
+      .then(response => {
+        const data = response.data;
+        const { Word } = window;
 
-    Word.run(context => {
-      const thisDocument = context.document;
-      const range = thisDocument.getSelection();
+        Word.run(context => {
+          const thisDocument = context.document;
+          const range = thisDocument.getSelection();
 
-      range.insertText(reference.citation, Word.InsertLocation.end);
-      thisDocument.body.insertText(`\n${reference.reference}`, Word.InsertLocation.end);
-
-      return context.sync();
-    })
+          range.insertText(data.citation, Word.InsertLocation.end);
+          thisDocument.body.insertText(`\n${data.reference}`, Word.InsertLocation.end);
+          return context.sync();
+        });
+      })
+      .catch(() => this.props.logout())
   };
 
   render = () => (
