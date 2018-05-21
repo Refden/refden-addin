@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import _ from 'lodash/fp';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
