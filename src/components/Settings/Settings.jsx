@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 
+import Bibliography from '../Bibliography/Bibliography';
+
 const STYLE = 'style';
 const STYLES = [
   { key: 'apa', text: 'APA' },
@@ -36,6 +38,7 @@ class Settings extends Component {
 
   render = () => (
     [
+      <Bibliography />,
       <div className="pure-u-1">
         <Dropdown
           label='Style:'
@@ -53,7 +56,7 @@ class Settings extends Component {
           placeHolder='Select a Locale'
           options={LOCALES}
         />
-      </div>
+      </div>,
     ]
   );
 }

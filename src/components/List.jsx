@@ -28,8 +28,11 @@ class List extends Component {
           const thisDocument = context.document;
           const range = thisDocument.getSelection();
 
-          range.insertText(data.citation, Word.InsertLocation.end);
-          thisDocument.body.insertText(`\n${data.reference}`, Word.InsertLocation.end);
+          const contentControl = range.insertContentControl();
+          contentControl.tag = data.id.toString();
+          contentControl.title = data.reference;
+          contentControl.insertText(data.citation, Word.InsertLocation.end);
+
           return context.sync();
         });
       })
