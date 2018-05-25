@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import _ from 'lodash/fp';
 
 import * as refden from '../api/refden';
+import { REFERENCE_TAG_PREFIX } from '../constants';
 
 import './Lists.css';
 
@@ -29,9 +31,15 @@ class List extends Component {
           const range = thisDocument.getSelection();
 
           const contentControl = range.insertContentControl();
-          contentControl.tag = data.id.toString();
+
+          contentControl.tag = `${REFERENCE_TAG_PREFIX}${data.id.toString()}`;
           contentControl.title = data.reference;
-          contentControl.insertText(data.citation, Word.InsertLocation.end);
+
+          if (_.isEmpty(data.citation)) {
+            contentControl.insertHtml("x".sup(), Word.InsertLocation.end);
+          } else {
+            contentControl.insertText(data.citation, Word.InsertLocation.end);
+          }
 
           return context.sync();
         });
