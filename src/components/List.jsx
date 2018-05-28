@@ -3,6 +3,7 @@ import _ from 'lodash/fp';
 
 import * as refden from '../api/refden';
 import { REFERENCE_TAG_PREFIX } from '../constants';
+import generateBibliography from '../lib/generateBibliography';
 
 import './Lists.css';
 
@@ -20,7 +21,9 @@ class List extends Component {
       .catch(() => this.props.logout())
   };
 
-  insertCitation = reference => () => {
+  insertCitation = reference => event => {
+    event.preventDefault();
+
     refden.getReference(reference)
       .then(response => {
         const data = response.data;
@@ -40,6 +43,7 @@ class List extends Component {
           } else {
             contentControl.insertText(data.citation, Word.InsertLocation.end);
           }
+          generateBibliography();
 
           return context.sync();
         });
