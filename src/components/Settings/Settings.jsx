@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 
 import Bibliography from '../Bibliography/Bibliography';
+import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE } from "../../constants";
 
-const STYLE = 'style';
 const STYLES = [
+  { key: 'american-medical-association', text: 'American Medical Association' },
   { key: 'apa', text: 'APA' },
   { key: 'apa-no-ampersand', text: 'APA without &' },
 ];
 
-const LOCALE = 'locale';
 const LOCALES = [
   { key: 'en-US', text: 'en-US' },
   { key: 'en-GB', text: 'en-GB' },
@@ -21,18 +21,18 @@ class Settings extends Component {
     super(props);
 
     this.state = {
-      selectedStyleKey: localStorage.getItem(STYLE) || 'apa',
-      selectedLocaleKey: localStorage.getItem(LOCALE) || 'en-US',
+      selectedStyleKey: localStorage.getItem(LOCAL_STORAGE__STYLE) || 'apa',
+      selectedLocaleKey: localStorage.getItem(LOCAL_STORAGE__LOCALE) || 'en-US',
     };
   }
 
   changeStyle = item => {
-    localStorage.setItem(STYLE, item.key);
+    localStorage.setItem(LOCAL_STORAGE__STYLE, item.key);
     this.setState({ selectedStyleKey: item.key });
   };
 
   changeLocale = item => {
-    localStorage.setItem(LOCALE, item.key);
+    localStorage.setItem(LOCAL_STORAGE__LOCALE, item.key);
     this.setState({ selectedLocaleKey: item.key });
   };
 
