@@ -1,12 +1,8 @@
 import _ from 'lodash/fp';
 
-import { REFERENCE_TAG_PREFIX } from '../constants';
+import getReferencesControlItems from "./getReferencesControlItems";
 
 const buildReferenceIndex = index => (index + 1).toString().sup();
-const onlyReferences = _.flow(
-  _.get('tag'),
-  _.startsWith(REFERENCE_TAG_PREFIX)
-);
 
 const updateIndex = (item, referenceIndex) => {
   item.clear();
@@ -16,7 +12,7 @@ const updateIndex = (item, referenceIndex) => {
 export const updateIndexes = contentControls => {
   const referenceTagIndexes = {};
 
-  const referenceItems = contentControls.items.filter(onlyReferences);
+  const referenceItems = getReferencesControlItems(contentControls);
   const uniqueReferenceItems = _.uniqBy('tag', referenceItems);
 
   uniqueReferenceItems.forEach((item, index) =>
