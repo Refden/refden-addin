@@ -1,6 +1,5 @@
 import _ from "lodash/fp";
 
-import { LOCAL_STORAGE__STYLE } from "../../constants";
 import { updateIndexes } from "../contentControls";
 import getReferencesControlItems from "../getReferencesControlItems";
 
@@ -40,6 +39,12 @@ const getBibliographyControl = (bibliographyControls, document) => {
   return contentControl;
 };
 
+// TODO: extract into file. Using export for testing
+export const isCitationFormatWithNumbers = referenceItems => {
+  const citationText = referenceItems[0].text;
+  return citationText === 'x' || _.isInteger(parseInt(citationText));
+};
+
 const generateBibliography = () => {
   const { Word } = window;
 
@@ -54,12 +59,13 @@ const generateBibliography = () => {
 
     return context.sync().then(() => {
       const contentControl = getBibliographyControl(bibliographyControls, document);
-      const cslStyle = localStorage.getItem(LOCAL_STORAGE__STYLE);
+
       const referenceItems = getReferencesControlItems(contentControls);
+      if (_.isEmpty(referenceItems)) return;
 
       let references;
 
-      if (cslStyle === 'american-medical-association') {
+      if (isCitationFormatWithNumbers(referenceItems)) {
         updateIndexes(contentControls);
         references = getReferencesFromControlsAMAStyle(referenceItems);
 

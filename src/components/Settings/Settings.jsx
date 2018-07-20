@@ -8,6 +8,7 @@ const STYLES = [
   { key: 'american-medical-association', text: 'American Medical Association' },
   { key: 'apa', text: 'APA' },
   { key: 'apa-no-ampersand', text: 'APA without &' },
+  { key: 'ieee', text: 'IEEE' },
 ];
 
 const LOCALES = [
