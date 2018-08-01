@@ -63,7 +63,7 @@ describe('updateIndexes()', () => {
     expect(secondItem.insertHtml).toHaveBeenCalledWith('1'.sup(), 'end');
   });
 
-  it('reuses the index for repeats', () => {
+  it('uses new index for non-repeat', () => {
     mockWord();
     const firstItem = {
       tag: 'refden-ref-12',
@@ -91,5 +91,23 @@ describe('updateIndexes()', () => {
     updateIndexes(contentControls);
 
     expect(thirdItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
+  });
+
+  describe('IEEE', () => {
+    it('index is with []', () => {
+      mockWord();
+      const item = {
+        tag: 'refden-ref-12',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const contentControls = {
+        items: [item],
+      };
+
+      updateIndexes(contentControls, 'ieee');
+
+      expect(item.insertHtml).toHaveBeenCalledWith('[1]', 'end');
+    });
   });
 });

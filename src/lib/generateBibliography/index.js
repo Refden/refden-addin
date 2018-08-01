@@ -1,7 +1,11 @@
 import _ from "lodash/fp";
 
+import { LOCAL_STORAGE__STYLE } from "../../constants";
 import { updateIndexes } from "../contentControls";
 import getReferencesControlItems from "../getReferencesControlItems";
+
+import getReferenceIndex from "./getReferenceIndex";
+import isCitationFormatWithNumbers from "./isCitationFormatWithNumbers";
 
 const BIBLIOGRAPHY_TAG = 'refden_bibliography';
 
@@ -23,8 +27,6 @@ const getReferencesFromControls = _.flow(
   _.sortBy(_.identity),
 );
 
-const getReferencesFromControlsAMAStyle = getUniqueReferences;
-
 const getBibliographyControl = (bibliographyControls, document) => {
   let contentControl;
 
@@ -37,12 +39,6 @@ const getBibliographyControl = (bibliographyControls, document) => {
     contentControl.clear();
   }
   return contentControl;
-};
-
-// TODO: extract into file. Using export for testing
-export const isCitationFormatWithNumbers = referenceItems => {
-  const citationText = referenceItems[0].text;
-  return citationText === 'x' || _.isInteger(parseInt(citationText));
 };
 
 const generateBibliography = () => {
@@ -66,12 +62,13 @@ const generateBibliography = () => {
       let references;
 
       if (isCitationFormatWithNumbers(referenceItems)) {
-        updateIndexes(contentControls);
-        references = getReferencesFromControlsAMAStyle(referenceItems);
+        const cslStyle = localStorage.getItem(LOCAL_STORAGE__STYLE);
+        updateIndexes(contentControls, cslStyle);
+        references = getUniqueReferences(referenceItems);
 
         references.forEach((reference, index) => {
-          const refIndex = (index + 1).toString();
-          contentControl.insertText(`${refIndex}. `, Word.InsertLocation.end);
+          const referenceIndex = getReferenceIndex(index, cslStyle);
+          contentControl.insertText(referenceIndex, Word.InsertLocation.end);
           contentControl.insertText(reference, Word.InsertLocation.end);
           contentControl.insertText("\n", Word.InsertLocation.end);
         });
