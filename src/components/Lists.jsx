@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { Link } from 'office-ui-fabric-react/lib/Link';
+import { MessageBar } from 'office-ui-fabric-react/lib/MessageBar';
+import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
 import * as refden from '../api/refden';
+import { REFDEN_URL } from '../constants';
 
 import List from './List';
 import Settings from './Settings/Settings';
@@ -13,13 +17,15 @@ class Lists extends Component {
     super(props);
     this.state = {
       lists: [],
+      loading: false,
       selectedList: null,
     };
   }
 
   componentDidMount = () => {
+    this.setState({ loading: true });
     refden.getLists()
-      .then(response => this.setState({ lists: response.data }))
+      .then(response => this.setState({ lists: response.data, loading: false }))
       .catch(() => this.props.logout())
   };
 
@@ -35,23 +41,35 @@ class Lists extends Component {
     <List list={this.state.selectedList} logout={this.props.logout} />
   );
 
-  renderLists = () => (
+  renderLists = () => {
+    if (this.state.loading) return <Spinner size={SpinnerSize.large} />;
+    if (this.state.lists.length === 0) {
+      return (
+        <MessageBar>
+          You need to create a list first at
+          <Link href={REFDEN_URL} target="_blank">our website.</Link>
+        </MessageBar>
+      );
+    }
+
+    return (
+      this.state.lists.map(list => (
+        <Link
+          key={list.id}
+          className="pure-u-1 list"
+          onClick={this.handleListClick(list)}
+        >
+          {list.name}
+        </Link>
+        )
+      )
+    );
+  };
+
+  renderListsContainer = () => (
     <div className="pure-u-1">
       <h1 className="pure-u-1">Lists</h1>
-      { this.state.lists.length === 0 ? 'Loading...' : '' }
-      {
-        this.state.lists.map(list => (
-          // eslint-disable-next-line jsx-a11y/href-no-hash
-          <a
-            key={list.id}
-            href="#"
-            className="pure-u-1 list"
-            onClick={this.handleListClick(list)}
-          >
-            {list.name}
-          </a>
-        ))
-      }
+      {this.renderLists()}
     </div>
   );
 
@@ -59,7 +77,7 @@ class Lists extends Component {
     <div className="pure-g lists-container">
       <Settings />
       {
-        this.state.selectedList === null ? this.renderLists() : this.renderList()
+        this.state.selectedList === null ? this.renderListsContainer() : this.renderList()
       }
       {
         this.state.selectedList !== null &&

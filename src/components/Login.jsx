@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import './Login.css';
+import { REFDEN_URL } from '../constants';
 
-const REFDEN_URL = 'https://www.refden.co?utm_source=word';
+import './Login.css';
 
 class Login extends Component {
   constructor(props) {
