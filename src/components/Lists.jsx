@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
 import * as refden from '../api/refden';
 
 import List from './List';
 import Settings from './Settings/Settings';
 
-import './List.css';
+import './Lists.css';
 
 class Lists extends Component {
   constructor(props) {
@@ -57,13 +58,19 @@ class Lists extends Component {
   render = () => (
     <div className="pure-g lists-container">
       <Settings />
-      {this.state.selectedList === null ? this.renderLists() : this.renderList()}
-      <br/>
-      {this.state.selectedList !== null
-        ? <button className="pure-u-1-3 go-back" onClick={this.unSelectList}>Go back</button>
-        : ''
+      {
+        this.state.selectedList === null ? this.renderLists() : this.renderList()
       }
-      <button className="pure-u-1-3" onClick={this.props.logout}>Log out</button>
+      {
+        this.state.selectedList !== null &&
+          <DefaultButton
+            className="pure-u-1-3 mt-1 go-back"
+            onClick={this.unSelectList}
+          >
+            Go back
+          </DefaultButton>
+      }
+      <DefaultButton className="pure-u-1-3 mt-1" onClick={this.props.logout}>Log out</DefaultButton>
     </div>
   )
 }
