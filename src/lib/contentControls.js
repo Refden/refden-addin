@@ -1,11 +1,13 @@
 import _ from 'lodash/fp';
 
+import { STYLES_WITH_BRACKETS } from '../constants';
+
 import getReferencesControlItems from './getReferencesControlItems';
 
 const buildCitationIndex = (index, cslStyle) => {
   const referenceIndex = (index + 1).toString();
 
-  if (cslStyle === 'ieee') {
+  if (STYLES_WITH_BRACKETS.includes(cslStyle)) {
     return `[${referenceIndex}]`;
   } else {
     return referenceIndex.sup();

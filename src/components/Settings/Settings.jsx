@@ -6,6 +6,7 @@ import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE } from "../../constants";
 
 const STYLES = [
   { key: 'american-medical-association', text: 'American Medical Association' },
+  { key: 'american-society-of-mechanical-engineers', text: 'ASME' },
   { key: 'apa', text: 'APA' },
   { key: 'apa-no-ampersand', text: 'APA without &' },
   { key: 'ieee', text: 'IEEE' },

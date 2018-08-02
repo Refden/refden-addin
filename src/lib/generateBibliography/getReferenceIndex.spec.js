@@ -19,5 +19,16 @@ describe('getReferenceIndex()', () => {
 
       expect(actual).toEqual(expected);
     });
+  });
+
+  describe('ASME', () => {
+    it('returns [X] format', () => {
+      const index = 0;
+
+      const actual = getReferenceIndex(index, 'american-society-of-mechanical-engineers');
+      const expected = '[1] ';
+
+      expect(actual).toEqual(expected);
+    });
   })
 });
