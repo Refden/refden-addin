@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE } from '../constants';
+
 const BASE_URL = 'https://www.refden.co/api/';
 
 const buildUrl = path => `${BASE_URL}${path}`;
@@ -12,11 +14,13 @@ export const getLists = () =>
 export const getReferences = list =>
   axios.get(buildUrl(`lists/${list.id}/references`), { headers: headers() });
 
-export const getReference = reference =>
-  axios.get(buildUrl(`references/${reference.id}`), {
+export const getReference = reference => getReferenceFromId(reference.id);
+
+export const getReferenceFromId = id =>
+  axios.get(buildUrl(`references/${id}`), {
     params: {
-      style: localStorage.getItem('style'),
-      locale: localStorage.getItem('locale'),
+      style: localStorage.getItem(LOCAL_STORAGE__STYLE),
+      locale: localStorage.getItem(LOCAL_STORAGE__LOCALE),
     },
     headers: headers(),
   });

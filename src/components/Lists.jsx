@@ -38,7 +38,11 @@ class Lists extends Component {
   };
 
   renderList = () => (
-    <List list={this.state.selectedList} logout={this.props.logout} />
+    <List
+      key={this.state.selectedList.id}
+      list={this.state.selectedList}
+      logout={this.props.logout}
+    />
   );
 
   renderLists = () => {

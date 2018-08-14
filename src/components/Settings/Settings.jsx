@@ -4,6 +4,8 @@ import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import Bibliography from '../Bibliography/Bibliography';
 import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE } from "../../constants";
 
+import { updateBibliography } from '../../lib/generateBibliography/index';
+
 const STYLES = [
   { key: 'american-medical-association', text: 'American Medical Association' },
   { key: 'american-society-of-mechanical-engineers', text: 'ASME' },
@@ -31,11 +33,13 @@ class Settings extends Component {
   changeStyle = item => {
     localStorage.setItem(LOCAL_STORAGE__STYLE, item.key);
     this.setState({ selectedStyleKey: item.key });
+    updateBibliography();
   };
 
   changeLocale = item => {
     localStorage.setItem(LOCAL_STORAGE__LOCALE, item.key);
     this.setState({ selectedLocaleKey: item.key });
+    updateBibliography();
   };
 
   render = () => (
