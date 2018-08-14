@@ -65,6 +65,7 @@ export const updateBibliography = () => {
 
             context.sync().then(generateBibliography);
           })
+          .catch(() => localStorage.removeItem('headers'))
       });
     });
   });
