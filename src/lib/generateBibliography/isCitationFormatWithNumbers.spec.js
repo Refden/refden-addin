@@ -13,6 +13,18 @@ describe('isCitationFormatWithNumbers()', () => {
     expect(actual).toEqual(true);
   });
 
+  it('returns false when text contains "x"',  () => {
+    const referenceItems = [
+      {
+        text: 'Caxi',
+      },
+    ];
+
+    const actual = isCitationFormatWithNumbers(referenceItems);
+
+    expect(actual).toEqual(false);
+  });
+
   it('returns true when text is a number', () => {
     const referenceItems = [
       {
