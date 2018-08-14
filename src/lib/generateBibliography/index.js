@@ -1,11 +1,14 @@
 import _ from "lodash/fp";
 
-import { LOCAL_STORAGE__STYLE } from "../../constants";
+import * as refden from '../../api/refden';
+import { LOCAL_STORAGE__STYLE } from '../../constants';
 import { updateIndexes } from "../contentControls";
 import getReferencesControlItems from "../getReferencesControlItems";
+import getReferenceIdFromControlItem from '../getReferenceIdFromControlItem';
 
 import getReferenceIndex from "./getReferenceIndex";
 import isCitationFormatWithNumbers from "./isCitationFormatWithNumbers";
+import insertCitationText from './insertCitationText';
 
 const BIBLIOGRAPHY_TAG = 'refden_bibliography';
 
@@ -39,6 +42,32 @@ const getBibliographyControl = (bibliographyControls, document) => {
     contentControl.clear();
   }
   return contentControl;
+};
+
+export const updateBibliography = () => {
+  window.Word.run(context => {
+    const { contentControls } = context.document;
+    context.load(contentControls, PARAMS_TO_LOAD);
+
+    return context.sync().then(() => {
+      const referenceItems = getReferencesControlItems(contentControls);
+      if (_.isEmpty(referenceItems)) return;
+
+      referenceItems.forEach(referenceItem => {
+        const id = getReferenceIdFromControlItem(referenceItem);
+
+        refden.getReferenceFromId(id)
+          .then(response => {
+            const { data } = response;
+
+            referenceItem.title = data.reference;
+            insertCitationText(referenceItem, data.citation);
+
+            context.sync().then(generateBibliography);
+          })
+      });
+    });
+  });
 };
 
 const generateBibliography = () => {

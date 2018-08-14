@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import _ from 'lodash/fp';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { MessageBar } from 'office-ui-fabric-react/lib/MessageBar';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
@@ -7,6 +6,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as refden from '../api/refden';
 import { REFDEN_URL, REFERENCE_TAG_PREFIX } from '../constants';
 import generateBibliography from '../lib/generateBibliography';
+import insertCitationText from '../lib/generateBibliography/insertCitationText';
 
 import './Lists.css';
 
@@ -39,15 +39,10 @@ class List extends Component {
           const range = thisDocument.getSelection();
 
           const contentControl = range.insertContentControl();
-
           contentControl.tag = `${REFERENCE_TAG_PREFIX}${data.id.toString()}`;
           contentControl.title = data.reference;
+          insertCitationText(contentControl, data.citation);
 
-          if (_.isEmpty(data.citation)) {
-            contentControl.insertHtml("x".sup(), Word.InsertLocation.end);
-          } else {
-            contentControl.insertText(data.citation, Word.InsertLocation.end);
-          }
           generateBibliography();
 
           return context.sync();
