@@ -44,8 +44,8 @@ class Settings extends Component {
 
   render = () => (
     [
-      <Bibliography />,
-      <div className="pure-u-1">
+      <Bibliography key="bibliography" />,
+      <div key="styles" className="pure-u-1">
         <Dropdown
           label='Style:'
           selectedKey={this.state.selectedStyleKey}
@@ -54,7 +54,7 @@ class Settings extends Component {
           options={STYLES}
         />
       </div>,
-      <div className="pure-u-1">
+      <div key="locales" className="pure-u-1">
         <Dropdown
           label='Locale:'
           selectedKey={this.state.selectedLocaleKey}
