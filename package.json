@@ -6,7 +6,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.10",
-    "office-ui-fabric-react": "^5.92.0",
+    "office-ui-fabric-react": "^6.78.0",
     "prop-types": "^15.6.1",
     "purecss": "^1.0.0",
     "react": "^16.2.0",

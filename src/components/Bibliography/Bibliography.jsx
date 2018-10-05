@@ -12,7 +12,7 @@ const Bibliography = () => (
       className="pure-u-1 bibliography-btn"
       onClick={generateBibliography}
     >
-      Generate Bibliography
+      Update Bibliography
     </DefaultButton>
   </div>
 );
