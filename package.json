@@ -30,8 +30,6 @@
     "@storybook/addon-links": "^3.4.2",
     "@storybook/addons": "^3.4.2",
     "@storybook/react": "^3.4.2",
-    "babel-core": "^6.26.0",
-    "babel-runtime": "^6.26.0",
     "gh-pages": "^1.1.0",
     "storybook-host": "^5.0.1"
   }
