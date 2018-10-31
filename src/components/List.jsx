@@ -8,6 +8,8 @@ import { REFDEN_URL, REFERENCE_TAG_PREFIX } from '../constants';
 import generateBibliography from '../lib/generateBibliography';
 import insertCitationText from '../lib/generateBibliography/insertCitationText';
 
+import Reference from './Reference/Reference';
+
 import './Lists.css';
 
 class List extends Component {
@@ -64,13 +66,11 @@ class List extends Component {
 
     return (
       this.state.references.map(reference => (
-        <Link
+        <Reference
           key={reference.id}
-          className="pure-u-1 list"
+          reference={reference}
           onClick={this.insertCitation(reference)}
-        >
-          {reference.title}
-        </Link>
+        />
       ))
     );
   };
