@@ -2,24 +2,9 @@ import React, { Component } from 'react';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 
 import Bibliography from '../Bibliography/Bibliography';
-import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE } from "../../constants";
+import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE, STYLES, LOCALES } from '../../constants';
 
 import { updateBibliography } from '../../lib/generateBibliography/index';
-
-const STYLES = [
-  { key: 'american-medical-association', text: 'American Medical Association' },
-  { key: 'american-society-of-mechanical-engineers', text: 'ASME' },
-  { key: 'apa', text: 'APA' },
-  { key: 'apa-no-ampersand', text: 'APA without &' },
-  { key: 'ieee', text: 'IEEE' },
-  { key: 'vancouver', text: 'Vancouver' },
-];
-
-const LOCALES = [
-  { key: 'en-US', text: 'en-US' },
-  { key: 'en-GB', text: 'en-GB' },
-  { key: 'es-ES', text: 'es-ES' },
-];
 
 class Settings extends Component {
   constructor(props) {
