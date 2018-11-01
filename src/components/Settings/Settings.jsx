@@ -12,6 +12,7 @@ const STYLES = [
   { key: 'apa', text: 'APA' },
   { key: 'apa-no-ampersand', text: 'APA without &' },
   { key: 'ieee', text: 'IEEE' },
+  { key: 'vancouver', text: 'Vancouver' },
 ];
 
 const LOCALES = [
