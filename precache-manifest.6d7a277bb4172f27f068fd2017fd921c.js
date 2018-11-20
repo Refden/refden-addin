@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/refden-addin/static/css/1.1e15afee.chunk.css"
   },
   {
-    "revision": "14cdf69aa5fbf4689faa7aa98ec2b94f",
+    "revision": "565c8ac2e3a69733388111b9de6c2d03",
     "url": "/refden-addin/index.html"
   }
 ];
