@@ -11,10 +11,10 @@
  * See https://goo.gl/2aRDsh
  */
 
-importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.2/workbox-sw.js");
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/refden-addin/precache-manifest.6d7a277bb4172f27f068fd2017fd921c.js"
+  "/refden-addin/precache-manifest.abede33fb68adda88b997ba371048fcb.js"
 );
 
 workbox.clientsClaim();
