@@ -53,7 +53,7 @@ export const updateBibliography = () => {
       const referenceItems = getReferencesControlItems(contentControls);
       if (_.isEmpty(referenceItems)) return;
 
-      referenceItems.forEach(referenceItem => {
+      referenceItems.forEach((referenceItem, key, arr) => {
         const id = getReferenceIdFromControlItem(referenceItem);
 
         refden.getReferenceFromId(id)
@@ -63,7 +63,13 @@ export const updateBibliography = () => {
             referenceItem.title = data.reference;
             insertCitationText(referenceItem, data.citation);
 
-            context.sync().then(generateBibliography);
+            context.sync().then(() => {
+              // TODO: unit test and extract this function. Only generate bibliography when processing last item
+              // Consider using await all and then generating the bibliography
+              if (Object.is(arr.length - 1, key)) {
+                generateBibliography();
+              }
+            });
           })
           .catch(() => localStorage.removeItem('headers'))
       });
