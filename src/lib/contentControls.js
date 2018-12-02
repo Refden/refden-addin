@@ -2,7 +2,7 @@ import _ from 'lodash/fp';
 
 import { STYLES_WITH_BRACKETS } from '../constants';
 
-import getReferencesControlItems from './getReferencesControlItems';
+import { getReferencesControlItems } from './wordContentControls';
 
 const buildCitationIndex = (index, cslStyle) => {
   const referenceIndex = (index + 1).toString();

@@ -1,6 +1,6 @@
 import _ from 'lodash/fp';
 
-import { REFERENCE_TAG_PREFIX } from '../constants';
+import { REFERENCE_TAG_PREFIX } from '../../constants/index';
 
 const onlyReferences = _.flow(
   _.get('tag'),

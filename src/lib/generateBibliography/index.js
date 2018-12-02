@@ -1,23 +1,24 @@
-import _ from "lodash/fp";
+import _ from 'lodash/fp';
 
 import * as refden from '../../api/refden';
 import { LOCAL_STORAGE__STYLE } from '../../constants';
-import { updateIndexes } from "../contentControls";
-import getReferencesControlItems from "../getReferencesControlItems";
-import getReferenceIdFromControlItem from '../getReferenceIdFromControlItem';
+import { updateIndexes } from '../contentControls';
+import { mapControlItemsWithIds } from '../getReferenceIdFromControlItem';
 
-import getReferenceIndex from "./getReferenceIndex";
-import isCitationFormatWithNumbers from "./isCitationFormatWithNumbers";
+import getReferenceIndex from './getReferenceIndex';
+import isCitationFormatWithNumbers from './isCitationFormatWithNumbers';
 import insertCitationText from './insertCitationText';
-
-const BIBLIOGRAPHY_TAG = 'refden_bibliography';
+import {
+  getBibliographyContentControls,
+  initializeBibliographyContentControl,
+  getReferencesControlItems,
+} from '../wordContentControls';
 
 const REFERENCE_TEXT = 'title';
-
 const PARAMS_TO_LOAD = [
   'tag',
   'text',
-  REFERENCE_TEXT
+  REFERENCE_TEXT,
 ];
 
 const getUniqueReferences = _.flow(
@@ -30,53 +31,6 @@ const getReferencesFromControls = _.flow(
   _.sortBy(_.identity),
 );
 
-const getBibliographyControl = (bibliographyControls, document) => {
-  let contentControl;
-
-  if(_.isEmpty(bibliographyControls.items)) {
-    const paragraph = document.body.insertParagraph("", window.Word.InsertLocation.end);
-    contentControl = paragraph.insertContentControl();
-    contentControl.tag = BIBLIOGRAPHY_TAG;
-  } else {
-    contentControl = bibliographyControls.items[0];
-    contentControl.clear();
-  }
-  return contentControl;
-};
-
-export const updateBibliography = () => {
-  window.Word.run(context => {
-    const { contentControls } = context.document;
-    context.load(contentControls, PARAMS_TO_LOAD);
-
-    return context.sync().then(() => {
-      const referenceItems = getReferencesControlItems(contentControls);
-      if (_.isEmpty(referenceItems)) return;
-
-      referenceItems.forEach((referenceItem, key, arr) => {
-        const id = getReferenceIdFromControlItem(referenceItem);
-
-        refden.getReferenceFromId(id)
-          .then(response => {
-            const { data } = response;
-
-            referenceItem.title = data.reference;
-            insertCitationText(referenceItem, data.citation);
-
-            context.sync().then(() => {
-              // TODO: unit test and extract this function. Only generate bibliography when processing last item
-              // Consider using await all and then generating the bibliography
-              if (Object.is(arr.length - 1, key)) {
-                generateBibliography();
-              }
-            });
-          })
-          .catch(() => localStorage.removeItem('headers'))
-      });
-    });
-  });
-};
-
 const generateBibliography = () => {
   const { Word } = window;
 
@@ -84,13 +38,13 @@ const generateBibliography = () => {
     const { document } = context;
     const { contentControls } = document;
 
-    const bibliographyControls = contentControls.getByTag(BIBLIOGRAPHY_TAG);
+    const bibliographyContentControls = getBibliographyContentControls(contentControls);
 
     context.load(contentControls, PARAMS_TO_LOAD);
-    context.load(bibliographyControls);
+    context.load(bibliographyContentControls);
 
     return context.sync().then(() => {
-      const contentControl = getBibliographyControl(bibliographyControls, document);
+      const contentControl = initializeBibliographyContentControl(bibliographyContentControls, document);
 
       const referenceItems = getReferencesControlItems(contentControls);
       if (_.isEmpty(referenceItems)) return;
@@ -106,18 +60,47 @@ const generateBibliography = () => {
           const referenceIndex = getReferenceIndex(index, cslStyle);
           contentControl.insertText(referenceIndex, Word.InsertLocation.end);
           contentControl.insertText(reference, Word.InsertLocation.end);
-          contentControl.insertText("\n", Word.InsertLocation.end);
+          contentControl.insertText('\n', Word.InsertLocation.end);
         });
       } else {
         references = getReferencesFromControls(referenceItems);
 
         references.forEach(reference => {
           contentControl.insertText(reference, Word.InsertLocation.end);
-          contentControl.insertText("\n", Word.InsertLocation.end);
+          contentControl.insertText('\n', Word.InsertLocation.end);
         });
       }
     });
   });
+};
+
+export const updateBibliography = () => {
+  window.Word.run(context => {
+    const { contentControls } = context.document;
+    context.load(contentControls, PARAMS_TO_LOAD);
+
+    return context.sync().then(updateReferencesInDocument(context));
+  })
+};
+
+export const updateReferencesInDocument = context => () => {
+  const referenceItems = getReferencesControlItems();
+  if (_.isEmpty(referenceItems)) return;
+
+  const mapControlItems = mapControlItemsWithIds(referenceItems);
+
+  refden.getReferencesFromIds(mapControlItems.ids)
+    .then(response => {
+      const { data } = response;
+
+      data.forEach(ref => {
+        mapControlItems[ref.id].title = ref.reference;
+        insertCitationText(mapControlItems[ref.id], ref.citation);
+      });
+
+      context.sync(generateBibliography);
+    })
+    .catch(console.log);
 };
 
 export default generateBibliography;
