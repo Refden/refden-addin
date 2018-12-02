@@ -84,7 +84,7 @@ export const updateBibliography = () => {
 };
 
 export const updateReferencesInDocument = context => () => {
-  const referenceItems = getReferencesControlItems();
+  const referenceItems = getReferencesControlItems(context.document.contentControls);
   if (_.isEmpty(referenceItems)) return;
 
   const mapControlItems = mapControlItemsWithIds(referenceItems);
@@ -98,7 +98,7 @@ export const updateReferencesInDocument = context => () => {
         insertCitationText(mapControlItems[ref.id], ref.citation);
       });
 
-      context.sync(generateBibliography);
+      context.sync().then(generateBibliography);
     })
     .catch(console.log);
 };
