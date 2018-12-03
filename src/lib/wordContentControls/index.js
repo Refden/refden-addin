@@ -19,6 +19,7 @@ const initializeBibliographyContentControl = (bibliographyContentControls, docum
 };
 
 export { default as getReferencesControlItems } from './getReferencesControlItems';
+export { default as mapControlItemsWithIds } from './mapControlItemsWithIds';
 
 export {
   initializeBibliographyContentControl,

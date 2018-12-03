@@ -3,16 +3,16 @@ import _ from 'lodash/fp';
 import * as refden from '../../api/refden';
 import { LOCAL_STORAGE__STYLE } from '../../constants';
 import { updateIndexes } from '../contentControls';
-import { mapControlItemsWithIds } from '../getReferenceIdFromControlItem';
-
-import getReferenceIndex from './getReferenceIndex';
-import isCitationFormatWithNumbers from './isCitationFormatWithNumbers';
-import insertCitationText from './insertCitationText';
 import {
   getBibliographyContentControls,
   initializeBibliographyContentControl,
   getReferencesControlItems,
+  mapControlItemsWithIds,
 } from '../wordContentControls';
+
+import getReferenceIndex from './getReferenceIndex';
+import isCitationFormatWithNumbers from './isCitationFormatWithNumbers';
+import insertCitationText from './insertCitationText';
 
 const REFERENCE_TEXT = 'title';
 const PARAMS_TO_LOAD = [
