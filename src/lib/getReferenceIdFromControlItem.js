@@ -7,11 +7,15 @@ const getReferenceIdFromControlItem = item =>
 
 export const mapControlItemsWithIds = controlItems => {
   let result = {};
-  result.ids = _.map(getReferenceIdFromControlItem, controlItems);
+  result.ids = _.uniq(_.map(getReferenceIdFromControlItem, controlItems));
 
   controlItems.forEach(controlItem => {
     const id = getReferenceIdFromControlItem(controlItem);
-    result[id] = controlItem;
+    if (_.isEmpty(result[id])) {
+      result[id] = [controlItem];
+    } else {
+      result[id].push(controlItem);
+    }
   });
 
   return result;

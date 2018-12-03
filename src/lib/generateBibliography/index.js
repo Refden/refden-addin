@@ -94,8 +94,10 @@ export const updateReferencesInDocument = context => () => {
       const { data } = response;
 
       data.forEach(ref => {
-        mapControlItems[ref.id].title = ref.reference;
-        insertCitationText(mapControlItems[ref.id], ref.citation);
+        mapControlItems[ref.id].forEach(referenceControlItem => {
+          referenceControlItem.title = ref.reference;
+          insertCitationText(referenceControlItem, ref.citation);
+        });
       });
 
       context.sync().then(generateBibliography);

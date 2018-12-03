@@ -6,22 +6,29 @@ import ReferenceControlItem from '../../tests/factories/referenceControlItem';
 import { updateReferencesInDocument } from './index';
 import insertCitationText from './insertCitationText';
 
-jest.mock('../wordContentControls');
 jest.mock('../../api/refden');
 jest.mock('./insertCitationText');
 
+const buildContext = items => Context.build({
+  document: { contentControls: { items } },
+});
+
 describe('updateReferencesInDocument()', () => {
+  beforeEach(() => {
+    global.Word = {
+      run: jest.fn(),
+    };
+  });
   afterEach(jest.clearAllMocks);
 
   it('calls refden api with references present in the document', async () => {
-    const context = Context.build({});
     const items = [
       ReferenceControlItem.build({ tag: 'refden-ref-12' }),
       ReferenceControlItem.build({ tag: 'refden-ref-11' }),
     ];
-    getReferencesControlItems.mockImplementationOnce(() => items);
+    const context = buildContext(items);
     refden.getReferencesFromIds.mockImplementation(() => Promise.resolve({
-      data: []
+      data: [],
     }));
 
     await updateReferencesInDocument(context)();
@@ -30,11 +37,10 @@ describe('updateReferencesInDocument()', () => {
   });
 
   it('inserts citations for all the references', async () => {
-    const context = Context.build({});
     const items = [
       ReferenceControlItem.build({ tag: 'refden-ref-1' }),
     ];
-    getReferencesControlItems.mockImplementationOnce(() => items);
+    const context = buildContext(items);
     refden.getReferencesFromIds.mockImplementation(() => Promise.resolve({
       data: [{ id: 1, citation: 'Fossel 2001', reference: 'Fossel Journal, 23-25, 2001' }],
     }));
@@ -47,9 +53,8 @@ describe('updateReferencesInDocument()', () => {
 
   describe('when no references in the document', () => {
     it('does not call refden api', async () => {
-      const context = Context.build({});
       const items = [];
-      getReferencesControlItems.mockImplementationOnce(() => items);
+      const context = buildContext(items);
       refden.getReferencesFromIds.mockImplementation(() => Promise.resolve({}));
 
       await updateReferencesInDocument(context)();
