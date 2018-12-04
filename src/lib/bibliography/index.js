@@ -30,6 +30,7 @@ const getReferencesFromControls = _.flow(
   _.sortBy(_.identity),
 );
 
+// TODO: can't extract into its own file. Get error on promise when generating the bibliography
 const generateBibliography = () => {
   const { Word } = window;
 
