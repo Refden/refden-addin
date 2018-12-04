@@ -1,25 +1,24 @@
 import _ from 'lodash/fp';
 
-import * as refden from '../../api/refden';
 import { LOCAL_STORAGE__STYLE } from '../../constants';
 import { updateIndexes } from '../contentControls';
 import {
   getBibliographyContentControls,
   initializeBibliographyContentControl,
   getReferencesControlItems,
-  mapControlItemsWithIds,
 } from '../wordContentControls';
 
 import getReferenceIndex from './getReferenceIndex';
 import isCitationFormatWithNumbers from './isCitationFormatWithNumbers';
-import insertCitationText from './insertCitationText';
 
-const REFERENCE_TEXT = 'title';
-const PARAMS_TO_LOAD = [
+export const REFERENCE_TEXT = 'title';
+export const PARAMS_TO_LOAD = [
   'tag',
   'text',
   REFERENCE_TEXT,
 ];
+
+export { default as updateBibliography } from './updateBibliography';
 
 const getUniqueReferences = _.flow(
   _.map(REFERENCE_TEXT),
@@ -72,37 +71,6 @@ const generateBibliography = () => {
       }
     });
   });
-};
-
-export const updateBibliography = () => {
-  window.Word.run(context => {
-    const { contentControls } = context.document;
-    context.load(contentControls, PARAMS_TO_LOAD);
-
-    return context.sync().then(updateReferencesInDocument(context));
-  })
-};
-
-export const updateReferencesInDocument = context => () => {
-  const referenceItems = getReferencesControlItems(context.document.contentControls);
-  if (_.isEmpty(referenceItems)) return;
-
-  const mapControlItems = mapControlItemsWithIds(referenceItems);
-
-  refden.getReferencesFromIds(mapControlItems.ids)
-    .then(response => {
-      const { data } = response;
-
-      data.forEach(ref => {
-        mapControlItems[ref.id].forEach(referenceControlItem => {
-          referenceControlItem.title = ref.reference;
-          insertCitationText(referenceControlItem, ref.citation);
-        });
-      });
-
-      context.sync().then(generateBibliography);
-    })
-    .catch(console.log);
 };
 
 export default generateBibliography;

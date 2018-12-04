@@ -1,9 +1,8 @@
-import { getReferencesControlItems } from '../wordContentControls';
 import * as refden from '../../api/refden';
 import Context from '../../tests/factories/context';
 import ReferenceControlItem from '../../tests/factories/referenceControlItem';
 
-import { updateReferencesInDocument } from './index';
+import { updateReferencesInDocument } from './updateBibliography';
 import insertCitationText from './insertCitationText';
 
 jest.mock('../../api/refden');
