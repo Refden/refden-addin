@@ -5,8 +5,8 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
 import * as refden from '../api/refden';
 import { REFDEN_URL, REFERENCE_TAG_PREFIX } from '../constants';
-import generateBibliography from '../lib/generateBibliography';
-import insertCitationText from '../lib/generateBibliography/insertCitationText';
+import generateBibliography from '../lib/bibliography';
+import insertCitationText from '../lib/bibliography/insertCitationText';
 
 import Reference from './Reference/Reference';
 

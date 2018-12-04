@@ -4,7 +4,7 @@ import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import Bibliography from '../Bibliography/Bibliography';
 import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE, STYLES, LOCALES } from '../../constants';
 
-import { updateBibliography } from '../../lib/generateBibliography/index';
+import { updateBibliography } from '../../lib/bibliography/index';
 
 class Settings extends Component {
   constructor(props) {
