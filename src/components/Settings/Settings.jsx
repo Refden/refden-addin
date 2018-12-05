@@ -16,13 +16,13 @@ class Settings extends Component {
     };
   }
 
-  changeStyle = item => {
+  changeStyle = (_event, item) => {
     localStorage.setItem(LOCAL_STORAGE__STYLE, item.key);
     this.setState({ selectedStyleKey: item.key });
     updateBibliography();
   };
 
-  changeLocale = item => {
+  changeLocale = (_event, item) => {
     localStorage.setItem(LOCAL_STORAGE__LOCALE, item.key);
     this.setState({ selectedLocaleKey: item.key });
     updateBibliography();
@@ -35,7 +35,7 @@ class Settings extends Component {
         <Dropdown
           label='Style:'
           selectedKey={this.state.selectedStyleKey}
-          onChanged={this.changeStyle}
+          onChange={this.changeStyle}
           placeHolder='Select an Style'
           options={STYLES}
         />
@@ -44,7 +44,7 @@ class Settings extends Component {
         <Dropdown
           label='Locale:'
           selectedKey={this.state.selectedLocaleKey}
-          onChanged={this.changeLocale}
+          onChange={this.changeLocale}
           placeHolder='Select a Locale'
           options={LOCALES}
         />
