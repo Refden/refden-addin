@@ -4,3 +4,6 @@ rules:
   quotes:
     - 2
     - single
+  object-curly-spacing:
+    - 2
+    - always

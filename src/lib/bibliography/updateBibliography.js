@@ -4,7 +4,7 @@ import { getReferencesControlItems, mapControlItemsWithIds } from '../wordConten
 import insertCitationText from './insertCitationText';
 import * as refden from '../../api/refden';
 
-import generateBibliography, { PARAMS_TO_LOAD} from './index';
+import generateBibliography, { PARAMS_TO_LOAD } from './index';
 
 export const updateReferencesInDocument = context => () => {
   const referenceItems = getReferencesControlItems(context.document.contentControls);

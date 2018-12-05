@@ -28,7 +28,7 @@ class App extends Component {
     refden.login(email, password)
       .then(response => {
         localStorage.setItem('headers', JSON.stringify(response.headers));
-        this.setState({isLogged: true});
+        this.setState({ isLogged: true });
       })
       .catch(error => {
         const errorMsg = error.response.data.errors[0];
@@ -38,7 +38,7 @@ class App extends Component {
 
   logout = () => {
     localStorage.removeItem('headers');
-    this.setState({isLogged: false});
+    this.setState({ isLogged: false });
   };
 
   render() {

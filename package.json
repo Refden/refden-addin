@@ -17,7 +17,7 @@
   "scripts": {
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
-    "lint": "node_modules/eslint/bin/eslint.js src",
+    "lint": "node_modules/eslint/bin/eslint.js src --ext .js --ext .jsx",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "yarn run build",
