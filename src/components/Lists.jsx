@@ -26,7 +26,6 @@ class Lists extends Component {
     this.setState({ loading: true });
     refden.getLists()
       .then(response => this.setState({ lists: response.data, loading: false }))
-      .catch(() => this.props.logout())
   };
 
   handleListClick = list => () => {
@@ -41,7 +40,6 @@ class Lists extends Component {
     <List
       key={this.state.selectedList.id}
       list={this.state.selectedList}
-      logout={this.props.logout}
     />
   );
 

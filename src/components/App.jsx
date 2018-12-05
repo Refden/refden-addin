@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import toastr from 'toastr';
+import axios from 'axios';
 
 import * as refden from '../api/refden';
 
@@ -16,9 +17,20 @@ const isLogged = () => {
   return expiryInMs && expiryInMs > Date.now();
 };
 
+const axiosOnResponseOk = response => response;
+const axiosOnResponseError = logout => error => {
+  if (error.response.status === 401) {
+    logout();
+  }
+
+  return Promise.reject(error);
+};
+
 class App extends Component {
   constructor(props) {
     super(props);
+    axios.interceptors.response.use(axiosOnResponseOk, axiosOnResponseError(this.logout));
+
     this.state = {
       isLogged: isLogged(),
     };

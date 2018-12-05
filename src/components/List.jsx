@@ -25,7 +25,6 @@ class List extends Component {
     this.setState({ loading: true });
     refden.getReferences(this.props.list)
       .then(response => this.setState({ loading: false, references: response.data }))
-      .catch(() => this.props.logout())
   };
 
   insertCitation = reference => event => {
@@ -50,7 +49,6 @@ class List extends Component {
           return context.sync();
         });
       })
-      .catch(() => this.props.logout())
   };
 
   renderList = () => {
