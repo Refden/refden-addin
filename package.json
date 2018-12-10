@@ -6,11 +6,11 @@
   "dependencies": {
     "axios": "^0.18.0",
     "lodash": "^4.17.10",
-    "office-ui-fabric-react": "^6.78.0",
+    "office-ui-fabric-react": "^6.111.2",
     "prop-types": "^15.6.1",
     "purecss": "^1.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3",
     "react-scripts": "2.1.1",
     "toastr": "^2.1.4"
   },
