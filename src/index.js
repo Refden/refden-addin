@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { initializeIcons } from 'office-ui-fabric-react/lib/Icons';
+import 'react-app-polyfill/ie11'; // NOTE: support for ie11 for now
 
 import App from './components/App';
 
