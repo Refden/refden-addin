@@ -19,7 +19,7 @@ const isLogged = () => {
 
 const axiosOnResponseOk = response => response;
 const axiosOnResponseError = logout => error => {
-  if (error.response.status === 401) {
+  if (error.response && error.response.status === 401) {
     logout();
   }
 
