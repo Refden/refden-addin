@@ -36,7 +36,7 @@ class Settings extends Component {
           label='Style:'
           selectedKey={this.state.selectedStyleKey}
           onChange={this.changeStyle}
-          placeHolder='Select an Style'
+          placeholder='Select an Style'
           options={STYLES}
         />
       </div>,
@@ -45,7 +45,7 @@ class Settings extends Component {
           label='Locale:'
           selectedKey={this.state.selectedLocaleKey}
           onChange={this.changeLocale}
-          placeHolder='Select a Locale'
+          placeholder='Select a Locale'
           options={LOCALES}
         />
       </div>,
