@@ -45,6 +45,7 @@ class Login extends Component {
             className="align-center"
             required
             value={this.state.email}
+            autoComplete="username"
             placeholder="Email"
             onChange={this.handleChange}
           />
@@ -54,6 +55,7 @@ class Login extends Component {
             className="align-center"
             required
             value={this.state.password}
+            autoComplete="current-password"
             placeholder="Password"
             onChange={this.handleChange}
           />
