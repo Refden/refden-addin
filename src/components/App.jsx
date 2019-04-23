@@ -40,6 +40,14 @@ class App extends Component {
     refden.login(email, password)
       .then(response => {
         localStorage.setItem('headers', JSON.stringify(response.headers));
+        window.Rollbar.configure({
+          payload: {
+            person: {
+              id: response.data.data.id,
+              email: response.data.data.email,
+            },
+          },
+        });
         this.setState({ isLogged: true });
       })
       .catch(error => {
