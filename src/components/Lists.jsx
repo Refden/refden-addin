@@ -26,6 +26,7 @@ class Lists extends Component {
     this.setState({ loading: true });
     refden.getLists()
       .then(response => this.setState({ lists: response.data, loading: false }))
+      .catch(console.log)
   };
 
   handleListClick = list => () => {
