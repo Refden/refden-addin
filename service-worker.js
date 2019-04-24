@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/refden-addin/precache-manifest.6bc54c6c0a3e00aae768458fd89515e9.js"
+  "/refden-addin/precache-manifest.bbf10f0a82988b610f66bb9bde8e5200.js"
 );
 
 workbox.clientsClaim();
