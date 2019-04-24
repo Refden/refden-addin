@@ -1018,9 +1018,9 @@
   integrity sha512-n/VQ4mbfr81aqkx/XmVicOLjviMuy02eenSdJY33SVA7S2J42EU0P1H0mOogfYedb3wXA0d/LVtBrgTSm04WEA==
 
 "@microsoft/load-themed-styles@^1.7.13":
-  version "1.8.83"
-  resolved "https://registry.yarnpkg.com/@microsoft/load-themed-styles/-/load-themed-styles-1.8.83.tgz#31767f488e2d4542f8473fff8a467a94c3c48c93"
-  integrity sha512-ocE95XMd7YGTkzEZpTE9uKcnRE6iEYoo89H9xbnn/xEWeTvLPdg0Ix1L2D1jRNsDZYyvNiSDu+PBG4wMEawyUg==
+  version "1.8.85"
+  resolved "https://registry.yarnpkg.com/@microsoft/load-themed-styles/-/load-themed-styles-1.8.85.tgz#69660be7821ed66c76e50d5200d9453f1df0d62d"
+  integrity sha512-U4X7d5uxfaFPNnn7sazISnGz0563echOO1EA3/DRc9fEQJqGecS7cJaFRpiq574vRgsCreZjvaGfJo6n1FzDUw==
 
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
@@ -1537,10 +1537,10 @@
     "@uifabric/styling" "^6.45.2"
     tslib "^1.7.1"
 
-"@uifabric/merge-styles@^6.16.5":
-  version "6.16.5"
-  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-6.16.5.tgz#c10f046d547f2f295635c197cc16b0c687d7bfb6"
-  integrity sha512-zUzVxabq6E2AAY6h+WU6W4L4de9J+mIjZg3q/4bzna1hEQgccCZkVyHg7OesJAylPzp4lYP3KWKP9hRaOZlnhg==
+"@uifabric/merge-styles@^6.17.0":
+  version "6.17.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-6.17.0.tgz#5133b8108662824fbd5b39497991c149038396f6"
+  integrity sha512-yTIjOhskNzhstiqpMhM/HI5yUBCNbWOF/8+WDfGLIe4rusxxjVyC6lpBV+B2Iw20ridDFdIhs/YjKy19/ifTgQ==
   dependencies:
     "@uifabric/set-version" "^1.1.3"
     tslib "^1.7.1"
@@ -1552,23 +1552,23 @@
   dependencies:
     tslib "^1.7.1"
 
-"@uifabric/styling@^6.45.2", "@uifabric/styling@^6.45.3":
-  version "6.45.3"
-  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-6.45.3.tgz#6de0597b9b1749fd4c8cc20123d5c9097690dd42"
-  integrity sha512-Ru/KL36YqZF6Tfb7uprKnIQlN19M3P1aBHW+afrrvjhJVi/RwYUR2aZGyydjAmVmwPw01/35NC2CMWGxAqaN1A==
+"@uifabric/styling@^6.45.2", "@uifabric/styling@^6.46.1":
+  version "6.46.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-6.46.1.tgz#947d4567f9cb077fa23057606475b57b1781db15"
+  integrity sha512-ktHorDiaNaSu8tAv3eTUBn3EIRNXCyzJJVYH5HnIv0WiTumpZ2VlH5yXTg52nhHWk9wDTOXrBf2bwnmbsqabCw==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
-    "@uifabric/merge-styles" "^6.16.5"
+    "@uifabric/merge-styles" "^6.17.0"
     "@uifabric/set-version" "^1.1.3"
-    "@uifabric/utilities" "^6.35.5"
+    "@uifabric/utilities" "^6.35.6"
     tslib "^1.7.1"
 
-"@uifabric/utilities@^6.35.3", "@uifabric/utilities@^6.35.5":
-  version "6.35.5"
-  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-6.35.5.tgz#4a44b815694b87dc028e1641915d99803dfde62d"
-  integrity sha512-L+xd+Zkjr4YIMWs3kEwzibZG/DgXU4KpfQwynEq3p4P4hudei/0DzgGejRQ2jScwFvB0zVJQGa0sKR/Wc3ICZQ==
+"@uifabric/utilities@^6.35.3", "@uifabric/utilities@^6.35.6", "@uifabric/utilities@^6.35.7":
+  version "6.35.7"
+  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-6.35.7.tgz#5536c4dc28699597109655d0a26144bcccc01dc5"
+  integrity sha512-fLTnIFrpaS1LsToxT6zy/Dz9kTk8q/wif7ZO3E8qiiCvDIGsIYpX9XNdqCpVdGjmt4hFHTNRCUFswhb3zl4GQA==
   dependencies:
-    "@uifabric/merge-styles" "^6.16.5"
+    "@uifabric/merge-styles" "^6.17.0"
     "@uifabric/set-version" "^1.1.3"
     prop-types "^15.5.10"
     tslib "^1.7.1"
@@ -8367,17 +8367,17 @@ obuf@^1.0.0, obuf@^1.1.2:
   integrity sha512-PX1wu0AmAdPqOL1mWhqmlOd8kOIZQwGZw6rh7uby9fTc5lhaOWFLX3I6R1hrF9k3zUY40e6igsLGkDXK92LJNg==
 
 office-ui-fabric-react@^6.165.1:
-  version "6.165.1"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.165.1.tgz#53368032776fe31a48b01094b6dab244ac05fc6c"
-  integrity sha512-ytARTuZwDql08+JLnt0/VWbzlXuLTPA2O2NAEKpv6I6Avm/7G6TS/VT+XO0odHS6+O31rkdwh6xK6p9zuxwa7w==
+  version "6.168.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.168.0.tgz#34501ee55d59beac86bad71d22b56fefc34bc28e"
+  integrity sha512-SX3CsFlt0dhc1iVl8XG9V1vbGmvtQQ758FvzwkCoAvX3RPr58lAi7fpK2q5oj8zbnTrnnht8hicD7VAjlWyYAA==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^0.7.4"
     "@uifabric/icons" "^6.5.1"
-    "@uifabric/merge-styles" "^6.16.5"
+    "@uifabric/merge-styles" "^6.17.0"
     "@uifabric/set-version" "^1.1.3"
-    "@uifabric/styling" "^6.45.3"
-    "@uifabric/utilities" "^6.35.5"
+    "@uifabric/styling" "^6.46.1"
+    "@uifabric/utilities" "^6.35.7"
     prop-types "^15.5.10"
     tslib "^1.7.1"
 

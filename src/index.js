@@ -9,9 +9,8 @@ import './index.css';
 import 'toastr/build/toastr.min.css';
 import 'purecss/build/pure-min.css';
 
-const bootstrap = () =>
-  initializeIcons();
-  ReactDOM.render(<App />, document.getElementById('root'));
-
 // INFO: The add-in is ready to start interacting with the application and hosted document.
-window.Office.initialize = () => bootstrap();
+window.Office.initialize = () => {
+  initializeIcons();
+  ReactDOM.render(<App/>, document.getElementById('root'));
+};
