@@ -28,10 +28,11 @@
     "toastr": "^2.1.4"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^5.0.6",
-    "@storybook/addon-links": "^5.0.6",
-    "@storybook/addons": "^5.0.6",
-    "@storybook/react": "^5.0.6",
+    "@storybook/addon-actions": "^5.0.10",
+    "@storybook/addon-links": "^5.0.10",
+    "@storybook/addons": "^5.0.10",
+    "@storybook/react": "^5.0.10",
+    "babel-loader": "^8.0.5",
     "gh-pages": "^2.0.1",
     "rosie": "^2.0.1",
     "storybook-host": "^5.0.3"
