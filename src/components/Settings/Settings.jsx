@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import _ from 'lodash/fp';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 
 import Bibliography from '../Bibliography/Bibliography';
@@ -6,13 +7,28 @@ import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE, STYLES, LOCALES } from '..
 
 import { updateBibliography } from '../../lib/bibliography/index';
 
+const DEFAULT_STYLE = 'apa';
+const DEFAULT_LOCALE = 'en-US';
+
+const initializeLocalStorage = () => {
+  if (_.isEmpty(localStorage.getItem(LOCAL_STORAGE__STYLE))) {
+    localStorage.setItem(LOCAL_STORAGE__STYLE, DEFAULT_STYLE);
+  }
+
+  if (_.isEmpty(localStorage.getItem(LOCAL_STORAGE__LOCALE))) {
+    localStorage.setItem(LOCAL_STORAGE__LOCALE, DEFAULT_LOCALE);
+  }
+};
+
 class Settings extends Component {
   constructor(props) {
     super(props);
 
+    initializeLocalStorage();
+
     this.state = {
-      selectedStyleKey: localStorage.getItem(LOCAL_STORAGE__STYLE) || 'apa',
-      selectedLocaleKey: localStorage.getItem(LOCAL_STORAGE__LOCALE) || 'en-US',
+      selectedStyleKey: localStorage.getItem(LOCAL_STORAGE__STYLE),
+      selectedLocaleKey: localStorage.getItem(LOCAL_STORAGE__LOCALE),
     };
   }
 
