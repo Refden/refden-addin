@@ -59,14 +59,14 @@ const generateBibliography = () => {
         references.forEach((reference, index) => {
           const referenceIndex = getReferenceIndex(index, cslStyle);
           contentControl.insertText(referenceIndex, Word.InsertLocation.end);
-          contentControl.insertText(reference, Word.InsertLocation.end);
+          contentControl.insertHtml(reference, Word.InsertLocation.end);
           contentControl.insertText('\n', Word.InsertLocation.end);
         });
       } else {
         references = getReferencesFromControls(referenceItems);
 
         references.forEach(reference => {
-          contentControl.insertText(reference, Word.InsertLocation.end);
+          contentControl.insertHtml(reference, Word.InsertLocation.end);
           contentControl.insertText('\n', Word.InsertLocation.end);
         });
       }
