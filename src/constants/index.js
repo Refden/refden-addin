@@ -11,6 +11,8 @@ export const STYLES = [
   { key: 'apa', text: 'APA' },
   { key: 'apa-no-ampersand', text: 'APA without &' },
   { key: 'ieee', text: 'IEEE' },
+  { key: 'harvard-cite-them-right', text: 'Harvard - Cite Them Right' },
+  { key: 'sage-harvard', text: 'SAGE - Harvard' },
   { key: 'vancouver', text: 'Vancouver' },
 ];
 
