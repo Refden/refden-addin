@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "0ecd1fe6923731aa57e6",
+    "revision": "31150eef610697266ef4",
     "url": "/refden-addin/static/css/main.ff4c0ec6.chunk.css"
   },
   {
-    "revision": "0ecd1fe6923731aa57e6",
-    "url": "/refden-addin/static/js/main.588e1ef4.chunk.js"
+    "revision": "31150eef610697266ef4",
+    "url": "/refden-addin/static/js/main.b6d1d934.chunk.js"
   },
   {
     "revision": "2bfb760d188127f4a59f",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/refden-addin/static/js/2.ea366abd.chunk.js"
   },
   {
-    "revision": "c215f7beda8832143ecffea0fd170b26",
+    "revision": "34d84615f8bab1989fe446bc9574c1c0",
     "url": "/refden-addin/index.html"
   }
 ];
