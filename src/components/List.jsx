@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { MessageBar } from 'office-ui-fabric-react/lib/MessageBar';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
+import _ from 'lodash/fp';
 
 import * as refden from '../api/refden';
 import { REFDEN_URL, REFERENCE_TAG_PREFIX } from '../constants';
@@ -12,12 +14,23 @@ import Reference from './Reference/Reference';
 
 import './Lists.css';
 
+const authorIncludesText = text => _.flow(
+  _.get('name'),
+  _.lowerCase,
+  _.includes(text),
+);
+
+const referenceIncludesText = text => reference =>
+  (reference.title.toLowerCase().includes(text)) ||
+  (_.some(authorIncludesText(text), reference.authors));
+
 class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
       loading: false,
       references: [],
+      searchText: '',
     };
   }
 
@@ -53,8 +66,11 @@ class List extends Component {
       .catch(console.log)
   };
 
+  visibleReferences = () =>
+    this.state.references.filter(referenceIncludesText(this.state.searchText));
+
   renderList = () => {
-    if (this.state.loading) return <Spinner size={SpinnerSize.large} />;
+    if (this.state.loading) return <Spinner size={SpinnerSize.large}/>;
     if (this.state.references.length === 0) {
       return (
         <MessageBar>
@@ -65,7 +81,7 @@ class List extends Component {
     }
 
     return (
-      this.state.references.map(reference => (
+      this.visibleReferences().map(reference => (
         <Reference
           key={reference.id}
           reference={reference}
@@ -78,6 +94,11 @@ class List extends Component {
   render = () => (
     <div className="pure-u-1">
       <h1 className="pure-u-1">{this.props.list.name}</h1>
+      <SearchBox
+        placeholder={'Search for "title" or "author"'}
+        onChange={searchText => this.setState({ searchText: searchText.toLowerCase() })}
+      />
+      <br/>
       {this.renderList()}
     </div>
   );
