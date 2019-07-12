@@ -22,9 +22,9 @@
     "prop-types": "^15.7.2",
     "purecss": "^1.0.0",
     "react": "^16.8.6",
-    "react-app-polyfill": "^0.2.2",
+    "react-app-polyfill": "^1.0.1",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8",
+    "react-scripts": "3.0.1",
     "toastr": "^2.1.4"
   },
   "devDependencies": {
@@ -32,7 +32,7 @@
     "@storybook/addon-links": "^5.0.10",
     "@storybook/addons": "^5.0.10",
     "@storybook/react": "^5.0.10",
-    "babel-loader": "^8.0.5",
+    "babel-loader": "8.0.5",
     "gh-pages": "^2.0.1",
     "rosie": "^2.0.1",
     "storybook-host": "^5.0.3"
