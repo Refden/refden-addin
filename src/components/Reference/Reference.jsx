@@ -1,9 +1,7 @@
 import React from 'react';
 import _ from 'lodash/fp';
 import PropTypes from 'prop-types';
-import { Link } from 'office-ui-fabric-react/lib/Link';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
 const showAuthors = _.flow(
   _.get('authors'),
@@ -21,19 +19,43 @@ const Reference = ({ reference, onClick }) => (
       &nbsp;
       {reference.published_year}
     </small>
-    &nbsp;
-    <TooltipHost
-      id={`${reference.id}-tooltip`}
-      content="Insert Citation & Reference"
-      calloutProps={{ gapSpace: 0 }}
-    >
-      <Link
-        aria-describedby={`${reference.id}-tooltip`}
-        onClick={onClick}
-      >
-        <Icon iconName="InsertSignatureLine" className=""/>
-      </Link>
-    </TooltipHost>
+    <DefaultButton
+      className="my-1"
+      style={{ width: '100%' }}
+      text="Insert Citation & Reference"
+      menuProps={{
+        shouldFocusOnMount: true,
+        items: [
+          {
+            key: 'default',
+            iconProps: {
+              iconName: 'InsertSignatureLine',
+            },
+            text: 'Default',
+            secondaryText: '(Author, 2000)',
+            onClick: onClick,
+          },
+          {
+            key: 'without_author',
+            iconProps: {
+              iconName: 'InsertSignatureLine',
+            },
+            text: 'Suppress Author',
+            secondaryText: '(2000)',
+            onClick: () => onClick({ suppressAuthor: true }),
+          },
+          {
+            key: 'only_author',
+            iconProps: {
+              iconName: 'InsertSignatureLine',
+            },
+            text: 'Only Author',
+            secondaryText: '(Author)',
+            onClick: () => onClick({ onlyAuthor: true }),
+          },
+        ],
+      }}
+    />
   </div>
 );
 

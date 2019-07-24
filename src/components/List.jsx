@@ -24,6 +24,17 @@ const referenceIncludesText = text => reference =>
   (reference.title.toLowerCase().includes(text)) ||
   (_.some(authorIncludesText(text), reference.authors));
 
+const getCitationText = (data, opts) => {
+  if (opts.suppressAuthor) {
+    return data.citation_suppress_author
+  }
+  if (opts.onlyAuthor) {
+    return data.citation.split(',').slice(0, -1).join('').concat(')');
+  }
+
+  return data.citation;
+};
+
 class List extends Component {
   constructor(props) {
     super(props);
@@ -41,9 +52,7 @@ class List extends Component {
       .catch(console.log)
   };
 
-  insertCitation = reference => event => {
-    event.preventDefault();
-
+  insertCitation = reference => (opts = {}) => {
     refden.getReference(reference)
       .then(response => {
         const data = response.data;
@@ -56,7 +65,9 @@ class List extends Component {
           const contentControl = range.insertContentControl();
           contentControl.tag = `${REFERENCE_TAG_PREFIX}${data.id.toString()}`;
           contentControl.title = data.reference;
-          insertCitationText(contentControl, data.citation);
+
+          const citation = getCitationText(data, opts);
+          insertCitationText(contentControl,citation);
 
           generateBibliography();
 
