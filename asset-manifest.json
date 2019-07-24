@@ -1,15 +1,17 @@
 {
-  "main.css": "/refden-addin/static/css/main.ff4c0ec6.chunk.css",
-  "main.js": "/refden-addin/static/js/main.48a103e8.chunk.js",
-  "main.js.map": "/refden-addin/static/js/main.48a103e8.chunk.js.map",
-  "runtime~main.js": "/refden-addin/static/js/runtime~main.d0dc15bb.js",
-  "runtime~main.js.map": "/refden-addin/static/js/runtime~main.d0dc15bb.js.map",
-  "static/css/2.83ccee82.chunk.css": "/refden-addin/static/css/2.83ccee82.chunk.css",
-  "static/js/2.092b079b.chunk.js": "/refden-addin/static/js/2.092b079b.chunk.js",
-  "static/js/2.092b079b.chunk.js.map": "/refden-addin/static/js/2.092b079b.chunk.js.map",
-  "index.html": "/refden-addin/index.html",
-  "precache-manifest.e7fb034f6467491fb0bba2294300bc96.js": "/refden-addin/precache-manifest.e7fb034f6467491fb0bba2294300bc96.js",
-  "service-worker.js": "/refden-addin/service-worker.js",
-  "static/css/2.83ccee82.chunk.css.map": "/refden-addin/static/css/2.83ccee82.chunk.css.map",
-  "static/css/main.ff4c0ec6.chunk.css.map": "/refden-addin/static/css/main.ff4c0ec6.chunk.css.map"
+  "files": {
+    "main.css": "/refden-addin/static/css/main.ec473ef0.chunk.css",
+    "main.js": "/refden-addin/static/js/main.171add08.chunk.js",
+    "main.js.map": "/refden-addin/static/js/main.171add08.chunk.js.map",
+    "runtime~main.js": "/refden-addin/static/js/runtime~main.d0dc15bb.js",
+    "runtime~main.js.map": "/refden-addin/static/js/runtime~main.d0dc15bb.js.map",
+    "static/css/2.9250752b.chunk.css": "/refden-addin/static/css/2.9250752b.chunk.css",
+    "static/js/2.49ee42bb.chunk.js": "/refden-addin/static/js/2.49ee42bb.chunk.js",
+    "static/js/2.49ee42bb.chunk.js.map": "/refden-addin/static/js/2.49ee42bb.chunk.js.map",
+    "index.html": "/refden-addin/index.html",
+    "precache-manifest.06cae166ae444b28e77af48514166798.js": "/refden-addin/precache-manifest.06cae166ae444b28e77af48514166798.js",
+    "service-worker.js": "/refden-addin/service-worker.js",
+    "static/css/2.9250752b.chunk.css.map": "/refden-addin/static/css/2.9250752b.chunk.css.map",
+    "static/css/main.ec473ef0.chunk.css.map": "/refden-addin/static/css/main.ec473ef0.chunk.css.map"
+  }
 }
