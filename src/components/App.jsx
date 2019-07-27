@@ -65,6 +65,13 @@ class App extends Component {
     return (
       <div className="App">
         {
+          process.env.NODE_ENV === 'development' && (
+            <div className="development-badge">
+              Development
+            </div>
+          )
+        }
+        {
           this.state.isLogged
             ? <Lists logout={this.logout} />
             : <Login handleLogin={this.handleLogin} />
