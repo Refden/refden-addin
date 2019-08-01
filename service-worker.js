@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/refden-addin/precache-manifest.06cae166ae444b28e77af48514166798.js"
+  "/refden-addin/precache-manifest.3783b679a1d5565bb953f661a442f031.js"
 );
 
 self.addEventListener('message', (event) => {
