@@ -11,10 +11,14 @@ import {
 import getReferenceIndex from './getReferenceIndex';
 import isCitationFormatWithNumbers from './isCitationFormatWithNumbers';
 
+const HANGING_INDENT = -35;
+const NONE_INDENT = 0;
+
 export const REFERENCE_TEXT = 'title';
 export const PARAMS_TO_LOAD = [
   'tag',
   'text',
+  'items',
   REFERENCE_TEXT,
 ];
 
@@ -30,6 +34,22 @@ const getReferencesFromControls = _.flow(
   _.sortBy(_.identity),
 );
 
+const setLineIndents = async (context, contentControl, lineIndent) => {
+  const { paragraphs } = contentControl;
+
+  context.load(paragraphs, ['items']);
+  await context.sync();
+
+  paragraphs.items.forEach(item => {
+    context.load(item, ['firstLineIndent', 'text']);
+  });
+  await context.sync();
+
+  paragraphs.items.forEach(item => {
+    item.firstLineIndent = lineIndent;
+  });
+};
+
 // TODO: can't extract into its own file. Get error on promise when generating the bibliography
 const generateBibliography = () => {
   const { Word } = window;
@@ -43,7 +63,7 @@ const generateBibliography = () => {
     context.load(contentControls, PARAMS_TO_LOAD);
     context.load(bibliographyContentControls);
 
-    return context.sync().then(() => {
+    return context.sync().then(async () => {
       const contentControl = initializeBibliographyContentControl(bibliographyContentControls, document);
 
       const referenceItems = getReferencesControlItems(contentControls);
@@ -62,6 +82,8 @@ const generateBibliography = () => {
           contentControl.insertHtml(reference, Word.InsertLocation.end);
           contentControl.insertText('\n', Word.InsertLocation.end);
         });
+
+        return await setLineIndents(context, contentControl, NONE_INDENT);
       } else {
         references = getReferencesFromControls(referenceItems);
 
@@ -69,6 +91,8 @@ const generateBibliography = () => {
           contentControl.insertHtml(reference, Word.InsertLocation.end);
           contentControl.insertText('\n', Word.InsertLocation.end);
         });
+
+        return await setLineIndents(context, contentControl, HANGING_INDENT);
       }
     });
   });
