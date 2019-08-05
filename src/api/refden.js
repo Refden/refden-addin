@@ -14,16 +14,16 @@ export const getLists = () =>
 export const getReferences = list =>
   axios.get(buildUrl(`lists/${list.id}/references`), { headers: headers() });
 
-export const getReference = reference => getReferenceFromId(reference.id);
-
-export const getReferenceFromId = id =>
-  axios.get(buildUrl(`references/${id}`), {
+export const getReference = (reference, page) => {
+  return axios.get(buildUrl(`references/${reference.id}`), {
     params: {
+      locator: page,
       style: localStorage.getItem(LOCAL_STORAGE__STYLE),
       locale: localStorage.getItem(LOCAL_STORAGE__LOCALE),
     },
     headers: headers(),
   });
+};
 
 export const getReferencesFromIds = ids =>
   axios.get(buildUrl('references_exporter'), {

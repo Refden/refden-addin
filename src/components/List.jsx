@@ -8,6 +8,7 @@ import _ from 'lodash/fp';
 import * as refden from '../api/refden';
 import { REFDEN_URL, REFERENCE_TAG_PREFIX } from '../constants';
 import generateBibliography from '../lib/bibliography';
+import getCitationText from '../lib/bibliography/getCitationText';
 import insertCitationText from '../lib/bibliography/insertCitationText';
 
 import Reference from './Reference/Reference';
@@ -23,17 +24,6 @@ const authorIncludesText = text => _.flow(
 const referenceIncludesText = text => reference =>
   (reference.title.toLowerCase().includes(text)) ||
   (_.some(authorIncludesText(text), reference.authors));
-
-const getCitationText = (data, opts) => {
-  if (opts.suppressAuthor) {
-    return data.citation_suppress_author
-  }
-  if (opts.onlyAuthor) {
-    return data.citation.split(',').slice(0, -1).join('').concat(')');
-  }
-
-  return data.citation;
-};
 
 class List extends Component {
   constructor(props) {
@@ -53,7 +43,7 @@ class List extends Component {
   };
 
   insertCitation = reference => (opts = {}) => {
-    refden.getReference(reference)
+    refden.getReference(reference, opts.page)
       .then(response => {
         const data = response.data;
         const { Word } = window;
