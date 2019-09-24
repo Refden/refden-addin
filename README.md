@@ -1,5 +1,8 @@
 # Refden Word Add-in
 
+[![Build Status](https://travis-ci.org/Refden/refden-addin.svg?branch=master)](https://travis-ci.org/Refden/refden-extension)
+
+
 https://appsource.microsoft.com/en-us/product/office/WA104381598
 
 ## Dev
