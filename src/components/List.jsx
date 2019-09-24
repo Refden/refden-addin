@@ -82,9 +82,9 @@ class List extends Component {
     }
 
     return (
-      this.visibleReferences().map(reference => (
+      this.visibleReferences().map((reference, index) => (
         <Reference
-          key={reference.id}
+          key={`${reference.id}-${index}`}
           reference={reference}
           onClick={this.insertCitation(reference)}
         />
