@@ -57,7 +57,7 @@ class List extends Component {
           contentControl.title = data.reference;
 
           const citation = getCitationText(data, opts);
-          insertCitationText(contentControl,citation);
+          insertCitationText(contentControl, citation);
 
           generateBibliography();
 
@@ -92,12 +92,16 @@ class List extends Component {
     );
   };
 
+  debouncedSearch = _.debounce(150, searchText =>
+    this.setState({ searchText: searchText.toLowerCase() }),
+  );
+
   render = () => (
     <div className="pure-u-1">
       <h1 className="pure-u-1">{this.props.list.name}</h1>
       <SearchBox
         placeholder={'Search for "title" or "author"'}
-        onChange={searchText => this.setState({ searchText: searchText.toLowerCase() })}
+        onChange={this.debouncedSearch}
       />
       <br/>
       {this.renderList()}
