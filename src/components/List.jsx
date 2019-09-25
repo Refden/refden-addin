@@ -83,6 +83,7 @@ class List extends Component {
 
     return (
       this.visibleReferences().map((reference, index) => (
+        // TODO: fix api returning duplicated records
         <Reference
           key={`${reference.id}-${index}`}
           reference={reference}
