@@ -24,7 +24,7 @@ We use linter & tests:
 - `yarn test`
 
 ### Errors
-``
+
 We use Rollbar for catching errors:
 
 https://docs.rollbar.com/docs/browser-js
