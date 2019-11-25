@@ -1,6 +1,6 @@
 import _ from 'lodash/fp';
 
-import { STYLES_WITH_BRACKETS } from '../constants';
+import { REFERENCE_TAG_PREFIX, STYLES_WITH_BRACKETS } from '../constants';
 
 import { getReferencesControlItems } from './wordContentControls';
 
@@ -31,3 +31,17 @@ export const updateIndexes = (contentControls, cslStyle) => {
   referenceItems.forEach((item) =>
     updateIndex(item, referenceTagIndexes[item.tag]));
 };
+
+export const buildTag = responseData => {
+  let tag = `${REFERENCE_TAG_PREFIX}${responseData.id.toString()}`;
+
+  if(!_.isEmpty(responseData.references)) {
+    responseData.references.forEach(reference => {
+      tag += `-${reference.id.toString()}`;
+    })
+  }
+
+  return tag;
+};
+
+export const buildTitle = references => JSON.stringify(references);
