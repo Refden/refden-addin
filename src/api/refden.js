@@ -25,6 +25,17 @@ export const getReference = (reference, page) => {
   });
 };
 
+export const getReferenceWithIds = (referenceId, otherIds) => {
+  return axios.get(buildUrl(`references/${referenceId}`), {
+    params: {
+      extra_ids: otherIds.join(','),
+      style: localStorage.getItem(LOCAL_STORAGE__STYLE),
+      locale: localStorage.getItem(LOCAL_STORAGE__LOCALE),
+    },
+    headers: headers(),
+  });
+};
+
 export const getReferencesFromIds = ids =>
   axios.get(buildUrl('references_exporter'), {
     params: {
