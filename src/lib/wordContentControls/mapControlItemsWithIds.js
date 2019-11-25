@@ -1,6 +1,6 @@
 import _ from 'lodash/fp';
 
-import getReferenceIdFromControlItem from './getReferenceIdFromControlItem';
+import { getReferenceIdFromControlItem } from './getReferenceIdFromControlItem';
 
 const getIds = _.flow(
   _.map(getReferenceIdFromControlItem),
