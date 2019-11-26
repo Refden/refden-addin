@@ -21,22 +21,6 @@ import Reference from './Reference/Reference';
 
 import './Lists.css';
 
-type ReferenceType = {
-    id: number,
-    title: string | null,
-    authors: any[],
-}
-
-const authorIncludesText = (text: string) => _.flow(
-    _.get('name'),
-    _.lowerCase,
-    _.includes(text),
-);
-
-const referenceIncludesText = (text: string) => (reference: ReferenceType) =>
-    (reference.title && reference.title.toLowerCase().includes(text)) ||
-    (_.some(authorIncludesText(text), reference.authors));
-
 type ListProps = {
     list: {
         name: string,
@@ -48,6 +32,16 @@ type ListState = {
     references: ReferenceType[],
     searchText: string,
 }
+
+const authorIncludesText = (text: string) => _.flow(
+    _.get('name'),
+    _.lowerCase,
+    _.includes(text),
+);
+
+const referenceIncludesText = (text: string) => (reference: ReferenceType) =>
+    (reference.title && reference.title.toLowerCase().includes(text)) ||
+    (_.some(authorIncludesText(text), reference.authors));
 
 const generateMultipleCitation = async (
     data: any,
