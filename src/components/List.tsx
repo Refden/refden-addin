@@ -14,8 +14,8 @@ import {
     getReferenceIdFromControlItem,
     getRestReferenceIdsFromControlItem,
 }
-    from "../lib/wordContentControls/getReferenceIdFromControlItem";
-import { buildTag, buildTitle } from "../lib/contentControls";
+    from '../lib/wordContentControls/getReferenceIdFromControlItem';
+import { buildTag, buildTitle } from '../lib/contentControls';
 
 import Reference from './Reference/Reference';
 
