@@ -23,16 +23,20 @@ describe('updateReferencesInDocument()', () => {
   it('calls refden api with references present in the document', async () => {
     const items = [
       ReferenceControlItem.build({ tag: 'refden-ref-12' }),
-      ReferenceControlItem.build({ tag: 'refden-ref-11' }),
+      ReferenceControlItem.build({ tag: 'refden-ref-11-2-3' }),
     ];
     const context = buildContext(items);
-    refden.getReferencesFromIds.mockImplementation(() => Promise.resolve({
-      data: [],
+    refden.getReferenceWithIds.mockImplementation((id) => Promise.resolve({
+      data: { id: id,
+        citation: 'Fossel 2001',
+        reference: 'Fossel Journal, 23-25, 2001',
+      },
     }));
 
     await updateReferencesInDocument(context)();
 
-    expect(refden.getReferencesFromIds).toBeCalledWith(['12', '11']);
+    expect(refden.getReferenceWithIds).toHaveBeenNthCalledWith(1, '12', []);
+    expect(refden.getReferenceWithIds).toHaveBeenNthCalledWith(2, '11', ['2', '3']);
   });
 
   it('inserts citations for all the references', async () => {
@@ -40,8 +44,8 @@ describe('updateReferencesInDocument()', () => {
       ReferenceControlItem.build({ tag: 'refden-ref-1' }),
     ];
     const context = buildContext(items);
-    refden.getReferencesFromIds.mockImplementation(() => Promise.resolve({
-      data: [{ id: 1, citation: 'Fossel 2001', reference: 'Fossel Journal, 23-25, 2001' }],
+    refden.getReferenceWithIds.mockImplementation(() => Promise.resolve({
+      data: { id: 1, citation: 'Fossel 2001', reference: 'Fossel Journal, 23-25, 2001' },
     }));
     insertCitationText.mockImplementation(jest.fn);
 
@@ -54,11 +58,11 @@ describe('updateReferencesInDocument()', () => {
     it('does not call refden api', async () => {
       const items = [];
       const context = buildContext(items);
-      refden.getReferencesFromIds.mockImplementation(() => Promise.resolve({}));
+      refden.getReferenceWithIds.mockImplementation(() => Promise.resolve({}));
 
       await updateReferencesInDocument(context)();
 
-      expect(refden.getReferencesFromIds).not.toBeCalled();
+      expect(refden.getReferenceWithIds).not.toBeCalled();
     });
   });
 });
