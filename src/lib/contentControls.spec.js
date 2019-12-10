@@ -1,12 +1,50 @@
-import { updateIndexes } from './contentControls';
+import { buildTag, buildTitle, updateIndexes } from './contentControls';
 
 const mockWord = () => {
   global.Word = {
     InsertLocation: {
-      end: 'end'
-    }
+      end: 'end',
+    },
   };
 };
+
+describe('buildTag()', () => {
+  it('uses reference ids', () => {
+    const responseData = {
+      id: 1,
+      references: [
+        { id: 2 },
+        { id: 3 },
+      ],
+    };
+
+    const actual = buildTag(responseData);
+    const expected = 'refden-ref-1-2-3';
+
+    expect(actual).toEqual(expected);
+  });
+
+  it('returns main id', () => {
+    const responseData = {
+      id: 1,
+    };
+
+    const actual = buildTag(responseData);
+    const expected = 'refden-ref-1';
+
+    expect(actual).toEqual(expected);
+  })
+});
+
+describe('buildTitle()', () => {
+  it('stores in JSON string the references', () => {
+    const references = ['1st ref', '2nd ref'];
+
+    const actual = buildTitle(references);
+
+    expect(JSON.parse(actual)).toEqual(references);
+  });
+});
 
 describe('updateIndexes()', () => {
   it('updates indexes for references', () => {

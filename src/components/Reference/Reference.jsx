@@ -109,7 +109,7 @@ class Reference extends Component {
 Reference.propTypes = {
   reference: PropTypes.shape({
     id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     published_year: PropTypes.number,
   }),
   onClick: PropTypes.func.isRequired,

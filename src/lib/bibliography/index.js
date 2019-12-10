@@ -24,10 +24,16 @@ export const PARAMS_TO_LOAD = [
 
 export { default as updateBibliography } from './updateBibliography';
 
-const getUniqueReferences = _.flow(
-  _.map(REFERENCE_TEXT),
-  _.uniq,
-);
+const getUniqueReferences = contentControls => {
+  let references = [];
+
+  _.forEach(contentControl => {
+    const referencesInContentControl = JSON.parse(_.get(REFERENCE_TEXT, contentControl));
+    references = references.concat(referencesInContentControl);
+  }, contentControls);
+
+  return _.uniq(references);
+};
 
 const getReferencesFromControls = _.flow(
   getUniqueReferences,
@@ -50,7 +56,6 @@ const setLineIndents = async (context, contentControl, lineIndent) => {
   });
 };
 
-// TODO: can't extract into its own file. Get error on promise when generating the bibliography
 const generateBibliography = () => {
   const { Word } = window;
 
