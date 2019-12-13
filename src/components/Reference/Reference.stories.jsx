@@ -1,13 +1,15 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+
 import { customHost } from '../../stories';
 
 import Reference from './Reference';
 
 storiesOf('Reference', module)
   .addDecorator(customHost())
-  .add('default', () => <Reference
+  .add('default', () => (
+    <Reference
       reference={
         {
           id: 1,
@@ -34,5 +36,5 @@ storiesOf('Reference', module)
         }
       }
       onClick={action('Insert Reference')}
-    />,
-  );
+    />
+  ));

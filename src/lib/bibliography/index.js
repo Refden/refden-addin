@@ -24,10 +24,10 @@ export const PARAMS_TO_LOAD = [
 
 export { default as updateBibliography } from './updateBibliography';
 
-const getUniqueReferences = contentControls => {
+const getUniqueReferences = (contentControls) => {
   let references = [];
 
-  _.forEach(contentControl => {
+  _.forEach((contentControl) => {
     const referencesInContentControl = JSON.parse(_.get(REFERENCE_TEXT, contentControl));
     references = references.concat(referencesInContentControl);
   }, contentControls);
@@ -46,12 +46,12 @@ const setLineIndents = async (context, contentControl, lineIndent) => {
   context.load(paragraphs, ['items']);
   await context.sync();
 
-  paragraphs.items.forEach(item => {
+  paragraphs.items.forEach((item) => {
     context.load(item, ['firstLineIndent', 'text']);
   });
   await context.sync();
 
-  paragraphs.items.forEach(item => {
+  paragraphs.items.forEach((item) => {
     item.firstLineIndent = lineIndent;
   });
 };
@@ -59,7 +59,7 @@ const setLineIndents = async (context, contentControl, lineIndent) => {
 const generateBibliography = () => {
   const { Word } = window;
 
-  Word.run(context => {
+  Word.run((context) => {
     const { document } = context;
     const { contentControls } = document;
 
@@ -89,16 +89,15 @@ const generateBibliography = () => {
         });
 
         return await setLineIndents(context, contentControl, NONE_INDENT);
-      } else {
-        references = getReferencesFromControls(referenceItems);
-
-        references.forEach(reference => {
-          contentControl.insertHtml(reference, Word.InsertLocation.end);
-          contentControl.insertText('\n', Word.InsertLocation.end);
-        });
-
-        return await setLineIndents(context, contentControl, HANGING_INDENT);
       }
+      references = getReferencesFromControls(referenceItems);
+
+      references.forEach((reference) => {
+        contentControl.insertHtml(reference, Word.InsertLocation.end);
+        contentControl.insertText('\n', Word.InsertLocation.end);
+      });
+
+      return await setLineIndents(context, contentControl, HANGING_INDENT);
     });
   });
 };

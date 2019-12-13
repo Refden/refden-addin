@@ -2,7 +2,7 @@ import _ from 'lodash/fp';
 
 const BIBLIOGRAPHY_TAG = 'refden_bibliography';
 
-const getBibliographyContentControls = contentControls => contentControls.getByTag(BIBLIOGRAPHY_TAG);
+const getBibliographyContentControls = (contentControls) => contentControls.getByTag(BIBLIOGRAPHY_TAG);
 
 const initializeBibliographyContentControl = (bibliographyContentControls, document) => {
   let contentControl;

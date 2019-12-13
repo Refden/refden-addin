@@ -12,5 +12,5 @@ import 'purecss/build/pure-min.css';
 // INFO: The add-in is ready to start interacting with the application and hosted document.
 window.Office.initialize = () => {
   initializeIcons();
-  ReactDOM.render(<App/>, document.getElementById('root'));
+  ReactDOM.render(<App />, document.getElementById('root'));
 };

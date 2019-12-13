@@ -13,7 +13,7 @@ describe('isCitationFormatWithNumbers()', () => {
     expect(actual).toEqual(true);
   });
 
-  it('returns false when text contains "x"',  () => {
+  it('returns false when text contains "x"', () => {
     const referenceItems = [
       {
         text: 'Caxi',
@@ -63,5 +63,5 @@ describe('isCitationFormatWithNumbers()', () => {
 
       expect(actual).toEqual(false);
     });
-  })
+  });
 });

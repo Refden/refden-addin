@@ -14,13 +14,13 @@ class Login extends Component {
     };
   }
 
-  handleChange = event => {
+  handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     this.props.handleLogin(this.state.email, this.state.password);
     event.preventDefault();
   };
@@ -65,7 +65,7 @@ class Login extends Component {
             value="Submit"
           />
         </form>
-        <br/>
+        <br />
         <div className="pure-g">
           <p className="pure-u-1">
             Don't have a Refden account? Sign up or learn more about our services&nbsp;

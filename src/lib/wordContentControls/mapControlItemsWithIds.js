@@ -17,8 +17,8 @@ const assignControlItemToId = _.curry((result, controlItem) => {
   }
 });
 
-const mapControlItemsWithIds = controlItems => {
-  let result = {};
+const mapControlItemsWithIds = (controlItems) => {
+  const result = {};
 
   result.ids = getIds(controlItems);
   controlItems.forEach(assignControlItemToId(result));

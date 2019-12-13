@@ -3,8 +3,9 @@ import _ from 'lodash/fp';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 
 import Bibliography from '../Bibliography/Bibliography';
-import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE, STYLES, LOCALES } from '../../constants';
-
+import {
+  LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE, STYLES, LOCALES,
+} from '../../constants';
 import { updateBibliography } from '../../lib/bibliography/index';
 
 const DEFAULT_STYLE = 'apa';
@@ -49,19 +50,19 @@ class Settings extends Component {
       <Bibliography key="bibliography" />,
       <div key="styles" className="pure-u-1">
         <Dropdown
-          label='Style:'
+          label="Style:"
           selectedKey={this.state.selectedStyleKey}
           onChange={this.changeStyle}
-          placeholder='Select an Style'
+          placeholder="Select an Style"
           options={STYLES}
         />
       </div>,
       <div key="locales" className="pure-u-1">
         <Dropdown
-          label='Locale:'
+          label="Locale:"
           selectedKey={this.state.selectedLocaleKey}
           onChange={this.changeLocale}
-          placeholder='Select a Locale'
+          placeholder="Select a Locale"
           options={LOCALES}
         />
       </div>,

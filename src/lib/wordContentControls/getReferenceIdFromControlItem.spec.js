@@ -25,8 +25,8 @@ describe('getReferenceIdFromControlItem()', () => {
       const expected = '12';
 
       expect(actual).toEqual(expected);
-    })
-  })
+    });
+  });
 });
 
 describe('getRestReferenceIdsFromControlItem()', () => {

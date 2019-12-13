@@ -17,21 +17,21 @@ class Reference extends Component {
     super(props);
     this.state = {
       page: '',
-    }
+    };
   }
 
-  renderPageInput = () => {
-    return (
-      <div>
-        <Separator />
-        <div style={{ padding: '0 15px 15px' }}>
-          <TextField label="Page:"
-                     value={this.state.page}
-                     onChange={(_event, page) => this.setState({ page })} />
-        </div>
+  renderPageInput = () => (
+    <div>
+      <Separator />
+      <div style={{ padding: '0 15px 15px' }}>
+        <TextField
+          label="Page:"
+          value={this.state.page}
+          onChange={(_event, page) => this.setState({ page })}
+        />
       </div>
-    );
-  };
+    </div>
+  );
 
   handleOnClick = (options = {}) => () => {
     options.page = this.state.page;
@@ -44,7 +44,7 @@ class Reference extends Component {
   render = () => (
     <div className="pure-u-1 list">
       {this.props.reference.title}
-      <br/>
+      <br />
       <small>
         {showAuthors(this.props.reference)}
         &nbsp;

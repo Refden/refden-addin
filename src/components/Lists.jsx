@@ -25,11 +25,11 @@ class Lists extends Component {
   componentDidMount = () => {
     this.setState({ loading: true });
     refden.getLists()
-      .then(response => this.setState({ lists: response.data, loading: false }))
-      .catch(console.log)
+      .then((response) => this.setState({ lists: response.data, loading: false }))
+      .catch(console.log);
   };
 
-  handleListClick = list => () => {
+  handleListClick = (list) => () => {
     this.setState({ selectedList: list });
   };
 
@@ -56,7 +56,7 @@ class Lists extends Component {
     }
 
     return (
-      this.state.lists.map(list => (
+      this.state.lists.map((list) => (
         <Link
           key={list.id}
           className="pure-u-1 list"
@@ -64,8 +64,7 @@ class Lists extends Component {
         >
           {list.name}
         </Link>
-        )
-      )
+      ))
     );
   };
 
@@ -83,13 +82,15 @@ class Lists extends Component {
         this.state.selectedList === null ? this.renderListsContainer() : this.renderList()
       }
       {
-        this.state.selectedList !== null &&
+        this.state.selectedList !== null
+          && (
           <DefaultButton
             className="pure-u-1-3 mt-1 go-back"
             onClick={this.unSelectList}
           >
             Go back
           </DefaultButton>
+          )
       }
       <DefaultButton className="pure-u-1-3 mt-1" onClick={this.props.logout}>Log out</DefaultButton>
     </div>

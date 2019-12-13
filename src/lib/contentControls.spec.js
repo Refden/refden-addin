@@ -33,7 +33,7 @@ describe('buildTag()', () => {
     const expected = 'refden-ref-1';
 
     expect(actual).toEqual(expected);
-  })
+  });
 });
 
 describe('buildTitle()', () => {
@@ -92,7 +92,7 @@ describe('updateIndexes()', () => {
 
     expect(firstItem.clear).toHaveBeenCalled();
     expect(firstItem.insertHtml).toHaveBeenCalledWith(
-      `${'1'.sup()}, ${'2'.sup()}, ${'3'.sup()}`, 'end'
+      `${'1'.sup()}, ${'2'.sup()}, ${'3'.sup()}`, 'end',
     );
   });
 
@@ -120,7 +120,7 @@ describe('updateIndexes()', () => {
 
     expect(firstItem.clear).toHaveBeenCalled();
     expect(firstItem.insertHtml).toHaveBeenCalledWith(
-      `${'1'.sup()}, ${'2'.sup()}`, 'end'
+      `${'1'.sup()}, ${'2'.sup()}`, 'end',
     );
     expect(secondItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
   });

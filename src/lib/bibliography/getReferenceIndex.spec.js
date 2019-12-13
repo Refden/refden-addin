@@ -30,5 +30,5 @@ describe('getReferenceIndex()', () => {
 
       expect(actual).toEqual(expected);
     });
-  })
+  });
 });

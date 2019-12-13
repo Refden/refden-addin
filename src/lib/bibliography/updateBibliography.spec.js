@@ -8,7 +8,7 @@ import insertCitationText from './insertCitationText';
 jest.mock('../../api/refden');
 jest.mock('./insertCitationText');
 
-const buildContext = items => Context.build({
+const buildContext = (items) => Context.build({
   document: { contentControls: { items } },
 });
 
@@ -27,7 +27,8 @@ describe('updateReferencesInDocument()', () => {
     ];
     const context = buildContext(items);
     refden.getReferenceWithIds.mockImplementation((id) => Promise.resolve({
-      data: { id: id,
+      data: {
+        id,
         citation: 'Fossel 2001',
         reference: 'Fossel Journal, 23-25, 2001',
       },

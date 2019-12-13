@@ -1,7 +1,7 @@
 import React from 'react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
-import generateBibliography from '../../lib/bibliography'
+import generateBibliography from '../../lib/bibliography';
 
 import './Bibliography.css';
 
