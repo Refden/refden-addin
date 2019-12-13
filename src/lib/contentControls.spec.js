@@ -67,11 +67,62 @@ describe('updateIndexes()', () => {
       ],
     };
 
-    updateIndexes(contentControls);
+    updateIndexes(contentControls, 'vancouver');
 
     expect(firstItem.clear).toHaveBeenCalled();
     expect(firstItem.insertHtml).toHaveBeenCalledWith('1'.sup(), 'end');
     expect(secondItem.clear).not.toHaveBeenCalled();
+  });
+
+  it('can handle multiple citation', () => {
+    mockWord();
+    const firstItem = {
+      tag: 'refden-ref-1-2-7',
+      clear: jest.fn(),
+      insertHtml: jest.fn(),
+    };
+
+    const contentControls = {
+      items: [
+        firstItem,
+      ],
+    };
+
+    updateIndexes(contentControls, 'vancouver');
+
+    expect(firstItem.clear).toHaveBeenCalled();
+    expect(firstItem.insertHtml).toHaveBeenCalledWith(
+      `${'1'.sup()}, ${'2'.sup()}, ${'3'.sup()}`, 'end'
+    );
+  });
+
+  it('can handle both multiple citation and single citation', () => {
+    mockWord();
+    const firstItem = {
+      tag: 'refden-ref-1-2',
+      clear: jest.fn(),
+      insertHtml: jest.fn(),
+    };
+    const secondItem = {
+      tag: 'refden-ref-2',
+      clear: jest.fn(),
+      insertHtml: jest.fn(),
+    };
+
+    const contentControls = {
+      items: [
+        firstItem,
+        secondItem,
+      ],
+    };
+
+    updateIndexes(contentControls, 'vancouver');
+
+    expect(firstItem.clear).toHaveBeenCalled();
+    expect(firstItem.insertHtml).toHaveBeenCalledWith(
+      `${'1'.sup()}, ${'2'.sup()}`, 'end'
+    );
+    expect(secondItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
   });
 
   it('reuses the index for repeats', () => {
@@ -126,7 +177,7 @@ describe('updateIndexes()', () => {
       ],
     };
 
-    updateIndexes(contentControls);
+    updateIndexes(contentControls, 'vancouver');
 
     expect(thirdItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
   });
