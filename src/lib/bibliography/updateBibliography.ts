@@ -1,7 +1,6 @@
 import _ from 'lodash/fp';
 
 import { getReferencesControlItems } from '../wordContentControls';
-import insertCitationText from './insertCitationText';
 import * as refden from '../../api/refden';
 import {
   getReferenceIdFromControlItem,
@@ -9,16 +8,20 @@ import {
 } from '../wordContentControls/getReferenceIdFromControlItem';
 import { buildTag, buildTitle } from '../contentControls';
 
-import generateBibliography, { PARAMS_TO_LOAD } from './index';
+import insertCitationText from './insertCitationText';
 import getCitationText from './getCitationText';
+
+import generateBibliography, { PARAMS_TO_LOAD } from './index';
 
 export const updateReferencesInDocument = (context: Word.RequestContext) => async () => {
   const referenceItems = getReferencesControlItems(context.document.contentControls);
   if (_.isEmpty(referenceItems)) return;
 
+  // eslint-disable-next-line
   for (const contentControl of referenceItems) {
     const id = getReferenceIdFromControlItem(contentControl);
     const otherIds = getRestReferenceIdsFromControlItem(contentControl);
+    // eslint-disable-next-line no-await-in-loop
     const response = await refden.getReferenceWithIds(id, otherIds);
 
     const references = [response.data.reference];
@@ -39,12 +42,12 @@ export const updateReferencesInDocument = (context: Word.RequestContext) => asyn
 };
 
 const updateBibliography = () => {
-  window.Word.run(context => {
+  window.Word.run((context) => {
     const { contentControls } = context.document;
     context.load(contentControls, PARAMS_TO_LOAD);
 
     return context.sync().then(updateReferencesInDocument(context));
-  })
+  });
 };
 
 export default updateBibliography;

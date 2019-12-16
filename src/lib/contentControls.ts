@@ -4,16 +4,15 @@ import { REFERENCE_TAG_PREFIX, STYLES_WITH_BRACKETS } from '../constants';
 
 import { getReferencesControlItems } from './wordContentControls';
 import getRestReferenceIdsFromControlItem
-  from "./wordContentControls/getRestReferenceIdsFromControlItem";
+  from './wordContentControls/getRestReferenceIdsFromControlItem';
 
 const buildCitationIndex = (index: number, cslStyle: string) => {
   const referenceIndex = (index + 1).toString();
 
   if (STYLES_WITH_BRACKETS.includes(cslStyle)) {
     return `[${referenceIndex}]`;
-  } else {
-    return referenceIndex.sup();
   }
+  return referenceIndex.sup();
 };
 
 const updateIndex = (item: Word.ContentControl, referenceIndex: string) => {
@@ -34,19 +33,18 @@ export const updateIndexes = (contentControls: Word.ContentControl[], cslStyle: 
     }
 
     referenceTagIndexes[item.tag] = buildCitationIndex(index, cslStyle);
-    index++;
+    index += 1;
 
     const otherIds = getRestReferenceIdsFromControlItem(item);
     _.forEach((id) => {
-      referenceTagIndexes[item.tag] += ", ";
+      referenceTagIndexes[item.tag] += ', ';
       referenceTagIndexes[item.tag] += buildCitationIndex(index, cslStyle);
       referenceTagIndexes[`${REFERENCE_TAG_PREFIX}${id}`] = buildCitationIndex(index, cslStyle);
-      index++;
+      index += 1;
     }, otherIds);
   });
 
-  referenceItems.forEach((item) =>
-    updateIndex(item, referenceTagIndexes[item.tag]));
+  referenceItems.forEach((item) => updateIndex(item, referenceTagIndexes[item.tag]));
 };
 
 export const buildTag = (responseData: any) => {
@@ -55,7 +53,7 @@ export const buildTag = (responseData: any) => {
   if (!_.isEmpty(responseData.references)) {
     responseData.references.forEach((reference: ReferenceType) => {
       tag += `-${reference.id.toString()}`;
-    })
+    });
   }
 
   return tag;
