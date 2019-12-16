@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "1562feae415dfe189e119adb6c3c3ce8",
+    "revision": "8fc061db4eeb98ce310c2357e434c3fc",
     "url": "/refden-addin/index.html"
   },
   {
-    "revision": "9f56d762e6069dcf2844",
+    "revision": "20098b422dd74d81680d",
     "url": "/refden-addin/static/css/2.9250752b.chunk.css"
   },
   {
-    "revision": "5a76c795e7c5072681c5",
+    "revision": "e556fc0e00628a4914b8",
     "url": "/refden-addin/static/css/main.6ba42753.chunk.css"
   },
   {
-    "revision": "9f56d762e6069dcf2844",
-    "url": "/refden-addin/static/js/2.560f64fc.chunk.js"
+    "revision": "20098b422dd74d81680d",
+    "url": "/refden-addin/static/js/2.c390b2de.chunk.js"
   },
   {
-    "revision": "5a76c795e7c5072681c5",
-    "url": "/refden-addin/static/js/main.d95465bf.chunk.js"
+    "revision": "e556fc0e00628a4914b8",
+    "url": "/refden-addin/static/js/main.cdcdc57f.chunk.js"
   },
   {
     "revision": "8bd33e0a96cae40abe4e",
