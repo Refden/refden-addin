@@ -53,7 +53,7 @@ export const buildTag = (responseData: any) => {
   let tag = `${REFERENCE_TAG_PREFIX}${responseData.id.toString()}`;
 
   if (!_.isEmpty(responseData.references)) {
-    responseData.references.forEach(reference => {
+    responseData.references.forEach((reference: ReferenceType) => {
       tag += `-${reference.id.toString()}`;
     })
   }

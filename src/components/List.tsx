@@ -22,15 +22,15 @@ import Reference from './Reference/Reference';
 import './Lists.css';
 
 type ListProps = {
-    list: {
-        name: string;
-    };
+  list: {
+    name: string;
+  };
 }
 
 type ListState = {
-    loading: boolean;
-    references: ReferenceType[];
-    searchText: string;
+  loading: boolean;
+  references: ReferenceType[];
+  searchText: string;
 }
 
 const authorIncludesText = (text: string) => _.flow(
@@ -39,8 +39,10 @@ const authorIncludesText = (text: string) => _.flow(
   _.includes(text),
 );
 
-const referenceIncludesText = (text: string) => (reference: ReferenceType) => (reference.title && reference.title.toLowerCase().includes(text))
-    || (_.some(authorIncludesText(text), reference.authors));
+const referenceIncludesText = (text: string) => (reference: ReferenceType) => (
+  (reference.title && reference.title.toLowerCase().includes(text))
+  || (_.some(authorIncludesText(text), reference.authors))
+);
 
 const generateMultipleCitation = async (
   data: any,
@@ -78,12 +80,15 @@ const generateCitation = async (
   context.load(contentControls);
   await context.sync();
 
+  // eslint-disable-next-line
   for (const contentControl of contentControls.items) {
     const range = contentControl.getRange(window.Word.RangeLocation.whole);
     const locationRelation = currentRange.compareLocationWith(range);
+    // eslint-disable-next-line no-await-in-loop
     await context.sync();
 
     if (locationRelation.value === window.Word.LocationRelation.inside) {
+      // eslint-disable-next-line no-await-in-loop
       await generateMultipleCitation(data, context, contentControl);
 
       return;
@@ -101,6 +106,11 @@ const generateCitation = async (
 };
 
 class List extends Component<ListProps, ListState> {
+  debouncedSearch = _.debounce(
+    150,
+    (searchText) => this.setState({ searchText: searchText.toLowerCase() }),
+  );
+
   constructor(props: ListProps) {
     super(props);
     this.state = {
@@ -110,65 +120,65 @@ class List extends Component<ListProps, ListState> {
     };
   }
 
-    componentDidMount = () => {
-      this.setState({ loading: true });
-      refden.getReferences(this.props.list)
-        .then((response) => this.setState({ loading: false, references: response.data }))
-        .catch(console.log);
-    };
+  componentDidMount = () => {
+    this.setState({ loading: true });
+    refden.getReferences(this.props.list)
+      .then((response) => this.setState({ loading: false, references: response.data }))
+      .catch(console.log); // eslint-disable-line no-console
+  };
 
-    insertCitation = (reference: ReferenceType) => (opts: { page: string } = { page: '' }) => {
-      refden.getReference(reference, opts.page)
-        .then((response) => {
-          const { data } = response;
-          const { Word } = window;
+  insertCitation = (reference: ReferenceType) => (opts: { page: string } = { page: '' }) => {
+    refden.getReference(reference, opts.page)
+      .then((response) => {
+        const { data } = response;
+        const { Word } = window;
 
-          Word.run(async (context) => {
-            await generateCitation(data, context, opts);
-            generateBibliography();
-          });
-        })
-        .catch(console.log);
-    };
+        Word.run(async (context) => {
+          await generateCitation(data, context, opts);
+          generateBibliography();
+        });
+      })
+      .catch(console.log); // eslint-disable-line no-console
+  };
 
-    visibleReferences = () => this.state.references.filter(referenceIncludesText(this.state.searchText));
+  visibleReferences = () => (
+    this.state.references.filter(referenceIncludesText(this.state.searchText))
+  );
 
-    renderList = () => {
-      if (this.state.loading) return <Spinner size={SpinnerSize.large} />;
-      if (this.state.references.length === 0) {
-        return (
-          <MessageBar>
-                    You need to add a reference first at
-            <Link href={REFDEN_URL} target="_blank">our website.</Link>
-          </MessageBar>
-        );
-      }
-
+  renderList = () => {
+    if (this.state.loading) return <Spinner size={SpinnerSize.large} />;
+    if (this.state.references.length === 0) {
       return (
-        this.visibleReferences().map((reference, index) => (
-          // TODO: fix api returning duplicated records
-          <Reference
-            key={`${reference.id}-${index}`}
-            reference={reference}
-            onClick={this.insertCitation(reference)}
-          />
-        ))
+        <MessageBar>
+          You need to add a reference first at
+          <Link href={REFDEN_URL} target="_blank">our website.</Link>
+        </MessageBar>
       );
-    };
+    }
 
-    debouncedSearch = _.debounce(150, (searchText) => this.setState({ searchText: searchText.toLowerCase() }));
-
-    render = () => (
-      <div className="pure-u-1">
-        <h1 className="pure-u-1">{this.props.list.name}</h1>
-        <SearchBox
-          placeholder={'Search for "title" or "author"'}
-          onChange={this.debouncedSearch}
+    return (
+      this.visibleReferences().map((reference, index) => (
+        // TODO: fix api returning duplicated records
+        <Reference
+          key={`${reference.id}-${index}`} // eslint-disable-line react/no-array-index-key
+          reference={reference}
+          onClick={this.insertCitation(reference)}
         />
-        <br />
-        {this.renderList()}
-      </div>
+      ))
     );
+  };
+
+  render = () => (
+    <div className="pure-u-1">
+      <h1 className="pure-u-1">{this.props.list.name}</h1>
+      <SearchBox
+        placeholder={'Search for "title" or "author"'}
+        onChange={this.debouncedSearch}
+      />
+      <br />
+      {this.renderList()}
+    </div>
+  );
 }
 
 export default List;

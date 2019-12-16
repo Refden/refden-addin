@@ -68,7 +68,7 @@ class Login extends Component {
         <br />
         <div className="pure-g">
           <p className="pure-u-1">
-            Don't have a Refden account? Sign up or learn more about our services&nbsp;
+            Don&apos;t have a Refden account? Sign up or learn more about our services&nbsp;
             <a href={REFDEN_URL} target="_blank" rel="noopener noreferrer">
               here
             </a>

@@ -34,6 +34,7 @@ class Reference extends Component {
   );
 
   handleOnClick = (options = {}) => () => {
+    // eslint-disable-next-line no-param-reassign
     options.page = this.state.page;
 
     this.props.onClick(options);
@@ -111,7 +112,7 @@ Reference.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string,
     published_year: PropTypes.number,
-  }),
+  }).isRequired,
   onClick: PropTypes.func.isRequired,
 };
 

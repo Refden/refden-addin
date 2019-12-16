@@ -22,10 +22,15 @@ module.exports = {
     '@typescript-eslint',
   ],
   rules: {
+    '@typescript-eslint/camelcase': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-explicit-any': 'off',
     'import/extensions': 'off',
     'import/order': ['error', { 'newlines-between': 'always' }],
+    'no-param-reassign': ['error', { props: false }],
     'object-curly-spacing': [2, 'always'],
     'quotes': [2, 'single'],
+    'react/destructuring-assignment': 'off',
     'react/jsx-filename-extension': ['warn', { 'extensions': ['.tsx', '.jsx'] }],
   },
   settings: {
@@ -35,4 +40,12 @@ module.exports = {
       },
     },
   },
+  'overrides': [
+    {
+      'files': ['src/tests/**/*.js', 'src/stories/index.js', 'src/**/*.stories.jsx'],
+      'rules': {
+        'import/no-extraneous-dependencies': 'off',
+      },
+    },
+  ],
 };

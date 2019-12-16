@@ -52,6 +52,7 @@ const setLineIndents = async (context, contentControl, lineIndent) => {
   await context.sync();
 
   paragraphs.items.forEach((item) => {
+    // eslint-disable-next-line no-param-reassign
     item.firstLineIndent = lineIndent;
   });
 };
@@ -69,7 +70,10 @@ const generateBibliography = () => {
     context.load(bibliographyContentControls);
 
     return context.sync().then(async () => {
-      const contentControl = initializeBibliographyContentControl(bibliographyContentControls, document);
+      const contentControl = initializeBibliographyContentControl(
+        bibliographyContentControls,
+        document,
+      );
 
       const referenceItems = getReferencesControlItems(contentControls);
       if (_.isEmpty(referenceItems)) return;
@@ -88,7 +92,8 @@ const generateBibliography = () => {
           contentControl.insertText('\n', Word.InsertLocation.end);
         });
 
-        return await setLineIndents(context, contentControl, NONE_INDENT);
+        await setLineIndents(context, contentControl, NONE_INDENT);
+        return;
       }
       references = getReferencesFromControls(referenceItems);
 
@@ -97,7 +102,7 @@ const generateBibliography = () => {
         contentControl.insertText('\n', Word.InsertLocation.end);
       });
 
-      return await setLineIndents(context, contentControl, HANGING_INDENT);
+      await setLineIndents(context, contentControl, HANGING_INDENT);
     });
   });
 };

@@ -11,6 +11,7 @@ const assignControlItemToId = _.curry((result, controlItem) => {
   const id = getReferenceIdFromControlItem(controlItem);
 
   if (_.isEmpty(result[id])) {
+    // eslint-disable-next-line no-param-reassign
     result[id] = [controlItem];
   } else {
     result[id].push(controlItem);

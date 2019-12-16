@@ -2,7 +2,9 @@ import _ from 'lodash/fp';
 
 const BIBLIOGRAPHY_TAG = 'refden_bibliography';
 
-const getBibliographyContentControls = (contentControls) => contentControls.getByTag(BIBLIOGRAPHY_TAG);
+const getBibliographyContentControls = (contentControls) => (
+  contentControls.getByTag(BIBLIOGRAPHY_TAG)
+);
 
 const initializeBibliographyContentControl = (bibliographyContentControls, document) => {
   let contentControl;
@@ -12,6 +14,7 @@ const initializeBibliographyContentControl = (bibliographyContentControls, docum
     contentControl = paragraph.insertContentControl();
     contentControl.tag = BIBLIOGRAPHY_TAG;
   } else {
+    // eslint-disable-next-line prefer-destructuring
     contentControl = bibliographyContentControls.items[0];
     contentControl.clear();
   }
