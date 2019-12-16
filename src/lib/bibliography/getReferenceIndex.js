@@ -6,9 +6,8 @@ const getReferenceIndex = (index, cslStyle) => {
   if (STYLES_WITH_BRACKETS.includes(cslStyle)) {
     return `[${referenceIndex}] `;
   }
-  else {
-    return `${referenceIndex}. `;
-  }
+
+  return `${referenceIndex}. `;
 };
 
 export default getReferenceIndex;

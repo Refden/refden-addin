@@ -24,10 +24,10 @@ export const PARAMS_TO_LOAD = [
 
 export { default as updateBibliography } from './updateBibliography';
 
-const getUniqueReferences = contentControls => {
+const getUniqueReferences = (contentControls) => {
   let references = [];
 
-  _.forEach(contentControl => {
+  _.forEach((contentControl) => {
     const referencesInContentControl = JSON.parse(_.get(REFERENCE_TEXT, contentControl));
     references = references.concat(referencesInContentControl);
   }, contentControls);
@@ -46,12 +46,13 @@ const setLineIndents = async (context, contentControl, lineIndent) => {
   context.load(paragraphs, ['items']);
   await context.sync();
 
-  paragraphs.items.forEach(item => {
+  paragraphs.items.forEach((item) => {
     context.load(item, ['firstLineIndent', 'text']);
   });
   await context.sync();
 
-  paragraphs.items.forEach(item => {
+  paragraphs.items.forEach((item) => {
+    // eslint-disable-next-line no-param-reassign
     item.firstLineIndent = lineIndent;
   });
 };
@@ -59,7 +60,7 @@ const setLineIndents = async (context, contentControl, lineIndent) => {
 const generateBibliography = () => {
   const { Word } = window;
 
-  Word.run(context => {
+  Word.run((context) => {
     const { document } = context;
     const { contentControls } = document;
 
@@ -69,7 +70,10 @@ const generateBibliography = () => {
     context.load(bibliographyContentControls);
 
     return context.sync().then(async () => {
-      const contentControl = initializeBibliographyContentControl(bibliographyContentControls, document);
+      const contentControl = initializeBibliographyContentControl(
+        bibliographyContentControls,
+        document,
+      );
 
       const referenceItems = getReferencesControlItems(contentControls);
       if (_.isEmpty(referenceItems)) return;
@@ -88,17 +92,17 @@ const generateBibliography = () => {
           contentControl.insertText('\n', Word.InsertLocation.end);
         });
 
-        return await setLineIndents(context, contentControl, NONE_INDENT);
-      } else {
-        references = getReferencesFromControls(referenceItems);
-
-        references.forEach(reference => {
-          contentControl.insertHtml(reference, Word.InsertLocation.end);
-          contentControl.insertText('\n', Word.InsertLocation.end);
-        });
-
-        return await setLineIndents(context, contentControl, HANGING_INDENT);
+        await setLineIndents(context, contentControl, NONE_INDENT);
+        return;
       }
+      references = getReferencesFromControls(referenceItems);
+
+      references.forEach((reference) => {
+        contentControl.insertHtml(reference, Word.InsertLocation.end);
+        contentControl.insertText('\n', Word.InsertLocation.end);
+      });
+
+      await setLineIndents(context, contentControl, HANGING_INDENT);
     });
   });
 };

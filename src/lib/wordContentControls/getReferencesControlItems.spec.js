@@ -18,7 +18,7 @@ describe('getReferencesControlItems()', () => {
 
     const actual = getReferencesControlItems(contentControls);
     const expected = [
-      firstItem
+      firstItem,
     ];
 
     expect(actual).toEqual(expected);

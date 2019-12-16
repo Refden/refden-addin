@@ -11,14 +11,14 @@ import './App.css';
 
 const isLogged = () => {
   const headers = JSON.parse(localStorage.getItem('headers'));
-  if(headers === null) return false;
+  if (headers === null) return false;
 
   const expiryInMs = parseInt(headers.expiry, 10) * 1000;
   return expiryInMs && expiryInMs > Date.now();
 };
 
-const axiosOnResponseOk = response => response;
-const axiosOnResponseError = logout => error => {
+const axiosOnResponseOk = (response) => response;
+const axiosOnResponseError = (logout) => (error) => {
   if (error.response && error.response.status === 401) {
     logout();
   }
@@ -38,7 +38,7 @@ class App extends Component {
 
   handleLogin = (email, password) => {
     refden.login(email, password)
-      .then(response => {
+      .then((response) => {
         localStorage.setItem('headers', JSON.stringify(response.headers));
         window.Rollbar.configure({
           payload: {
@@ -50,7 +50,7 @@ class App extends Component {
         });
         this.setState({ isLogged: true });
       })
-      .catch(error => {
+      .catch((error) => {
         const errorMsg = error.response.data.errors[0];
         toastr.error(errorMsg);
       });
