@@ -125,61 +125,101 @@ describe('updateIndexes()', () => {
     expect(secondItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
   });
 
-  it('reuses the index for repeats', () => {
-    mockWord();
-    const firstItem = {
-      tag: 'refden-ref-12',
-      clear: jest.fn(),
-      insertHtml: jest.fn(),
-    };
-    const secondItem = {
-      tag: 'refden-ref-12',
-      clear: jest.fn(),
-      insertHtml: jest.fn(),
-    };
+  describe('when having repeats', () => {
+    it('reuses the index for repeats', () => {
+      mockWord();
+      const firstItem = {
+        tag: 'refden-ref-12',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const secondItem = {
+        tag: 'refden-ref-12',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
 
-    const contentControls = {
-      items: [
-        firstItem,
-        secondItem,
-      ],
-    };
+      const contentControls = {
+        items: [
+          firstItem,
+          secondItem,
+        ],
+      };
 
-    updateIndexes(contentControls);
+      updateIndexes(contentControls);
 
-    expect(firstItem.clear).toHaveBeenCalled();
-    expect(firstItem.insertHtml).toHaveBeenCalledWith('1'.sup(), 'end');
-    expect(secondItem.insertHtml).toHaveBeenCalledWith('1'.sup(), 'end');
-  });
+      expect(firstItem.clear).toHaveBeenCalled();
+      expect(firstItem.insertHtml).toHaveBeenCalledWith('1'.sup(), 'end');
+      expect(secondItem.insertHtml).toHaveBeenCalledWith('1'.sup(), 'end');
+    });
 
-  it('uses new index for non-repeat', () => {
-    mockWord();
-    const firstItem = {
-      tag: 'refden-ref-12',
-      clear: jest.fn(),
-      insertHtml: jest.fn(),
-    };
-    const secondItem = {
-      tag: 'refden-ref-12',
-      clear: jest.fn(),
-      insertHtml: jest.fn(),
-    };
-    const thirdItem = {
-      tag: 'refden-ref-13',
-      clear: jest.fn(),
-      insertHtml: jest.fn(),
-    };
-    const contentControls = {
-      items: [
-        firstItem,
-        secondItem,
-        thirdItem,
-      ],
-    };
+    it('uses new index for non-repeat', () => {
+      mockWord();
+      const firstItem = {
+        tag: 'refden-ref-12',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const secondItem = {
+        tag: 'refden-ref-12',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const thirdItem = {
+        tag: 'refden-ref-13',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const contentControls = {
+        items: [
+          firstItem,
+          secondItem,
+          thirdItem,
+        ],
+      };
 
-    updateIndexes(contentControls, 'vancouver');
+      updateIndexes(contentControls, 'vancouver');
 
-    expect(thirdItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
+      expect(thirdItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
+    });
+
+    it('can handle repeats in multiple citation', () => {
+      mockWord();
+      const firstItem = {
+        tag: 'refden-ref-1',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const secondItem = {
+        tag: 'refden-ref-2',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const thirdItem = {
+        tag: 'refden-ref-3-2',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+
+      const contentControls = {
+        items: [
+          firstItem,
+          secondItem,
+          thirdItem,
+        ],
+      };
+
+      updateIndexes(contentControls, 'vancouver');
+
+      expect(firstItem.clear).toHaveBeenCalled();
+      expect(firstItem.insertHtml).toHaveBeenCalledWith(
+        `${'1'.sup()}`, 'end',
+      );
+      expect(secondItem.insertHtml).toHaveBeenCalledWith('2'.sup(), 'end');
+      expect(thirdItem.insertHtml).toHaveBeenCalledWith(
+        `${'3'.sup()}, ${'2'.sup()}`, 'end',
+      );
+    });
   });
 
   describe('IEEE', () => {

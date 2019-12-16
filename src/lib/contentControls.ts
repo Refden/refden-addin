@@ -37,10 +37,16 @@ export const updateIndexes = (contentControls: Word.ContentControl[], cslStyle: 
 
     const otherIds = getRestReferenceIdsFromControlItem(item);
     _.forEach((id) => {
+      const tagForCurrentId = `${REFERENCE_TAG_PREFIX}${id}`;
       referenceTagIndexes[item.tag] += ', ';
-      referenceTagIndexes[item.tag] += buildCitationIndex(index, cslStyle);
-      referenceTagIndexes[`${REFERENCE_TAG_PREFIX}${id}`] = buildCitationIndex(index, cslStyle);
-      index += 1;
+
+      if (_.has(tagForCurrentId, referenceTagIndexes)) {
+        referenceTagIndexes[item.tag] += referenceTagIndexes[tagForCurrentId];
+      } else {
+        referenceTagIndexes[item.tag] += buildCitationIndex(index, cslStyle);
+        referenceTagIndexes[tagForCurrentId] = buildCitationIndex(index, cslStyle);
+        index += 1;
+      }
     }, otherIds);
   });
 
