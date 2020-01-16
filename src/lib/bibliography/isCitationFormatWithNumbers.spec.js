@@ -48,7 +48,7 @@ describe('isCitationFormatWithNumbers()', () => {
       const actual = isCitationFormatWithNumbers(referenceItems);
 
       expect(actual).toEqual(true);
-    })
+    });
   });
 
   describe('false cases', () => {
