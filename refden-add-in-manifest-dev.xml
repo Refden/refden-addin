@@ -9,16 +9,17 @@
   <ProviderName>Mario Perez-Alarcon</ProviderName>
   <DefaultLocale>en-US</DefaultLocale>
   <DisplayName DefaultValue="Refden" />
-  <Description DefaultValue="Add-in for Refden. Bring your references from your account at www.refden.co.
+  <Description DefaultValue="Add-in for Refden. Bring your references from your account at www.refden.com.
     We'll take care of inserting both the citation and the reference. If you don't have an account you'll need to create one first."
   />
 
   <IconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
   <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png" />
-  <SupportUrl DefaultValue="https://www.refden.co" />
+  <SupportUrl DefaultValue="https://www.refden.com" />
 
   <AppDomains>
     <AppDomain>https://www.refden.co</AppDomain>
+    <AppDomain>https://www.refden.com</AppDomain>
     <AppDomain>https://www.youtube.com</AppDomain>
   </AppDomains>
 
