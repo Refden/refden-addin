@@ -14,7 +14,7 @@
   />
 
   <IconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png" />
+  <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-64.png" />
   <SupportUrl DefaultValue="https://www.refden.com" />
 
   <AppDomains>
