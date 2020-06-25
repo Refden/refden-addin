@@ -31,7 +31,7 @@ class Login extends Component {
         <div className="pure-g">
           <p className="pure-u-1">
             Login and bring your references from your account at&nbsp;
-            <a href={REFDEN_URL} target="_blank" rel="noopener noreferrer">www.refden.com</a>
+            <a href={REFDEN_URL} target="_blank" rel="noopener noreferrer">www.refden.co</a>
             . See a video example&nbsp;
             <a href="https://www.youtube.com/watch?v=0-fXMe0zd8Y" target="_blank" rel="noopener noreferrer">here</a>
             .
