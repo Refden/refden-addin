@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE } from '../constants';
 
-const BASE_URL = 'https://www.refden.co/api/';
+const BASE_URL = 'https://www.refden.com/api/';
 
 const buildUrl = (path) => `${BASE_URL}${path}`;
 
