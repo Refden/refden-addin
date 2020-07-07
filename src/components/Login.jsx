@@ -33,7 +33,7 @@ class Login extends Component {
             Login and bring your references from your account at&nbsp;
             <a href={REFDEN_URL} target="_blank" rel="noopener noreferrer">www.refden.com</a>
             . See a video example&nbsp;
-            <a href="https://www.youtube.com/watch?v=0-fXMe0zd8Y" target="_blank" rel="noopener noreferrer">here</a>
+            <a href="https://youtu.be/LsGc16DRY04" target="_blank" rel="noopener noreferrer">here</a>
             .
           </p>
         </div>
