@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/refden-addin/static/css/main.6ba42753.chunk.css",
-    "main.js": "/refden-addin/static/js/main.fe327b93.chunk.js",
-    "main.js.map": "/refden-addin/static/js/main.fe327b93.chunk.js.map",
+    "main.js": "/refden-addin/static/js/main.886825a8.chunk.js",
+    "main.js.map": "/refden-addin/static/js/main.886825a8.chunk.js.map",
     "runtime-main.js": "/refden-addin/static/js/runtime-main.ab9b00fa.js",
     "runtime-main.js.map": "/refden-addin/static/js/runtime-main.ab9b00fa.js.map",
     "static/css/2.9250752b.chunk.css": "/refden-addin/static/css/2.9250752b.chunk.css",
     "static/js/2.c390b2de.chunk.js": "/refden-addin/static/js/2.c390b2de.chunk.js",
     "static/js/2.c390b2de.chunk.js.map": "/refden-addin/static/js/2.c390b2de.chunk.js.map",
     "index.html": "/refden-addin/index.html",
-    "precache-manifest.a6afd0c63dff7aa5d9831e1b13747701.js": "/refden-addin/precache-manifest.a6afd0c63dff7aa5d9831e1b13747701.js",
+    "precache-manifest.658a1b3a74cb62a720feb3771c374cc6.js": "/refden-addin/precache-manifest.658a1b3a74cb62a720feb3771c374cc6.js",
     "service-worker.js": "/refden-addin/service-worker.js",
     "static/css/2.9250752b.chunk.css.map": "/refden-addin/static/css/2.9250752b.chunk.css.map",
     "static/css/main.6ba42753.chunk.css.map": "/refden-addin/static/css/main.6ba42753.chunk.css.map"
