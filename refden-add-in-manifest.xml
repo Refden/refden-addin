@@ -18,7 +18,6 @@
   <SupportUrl DefaultValue="https://www.refden.com" />
 
   <AppDomains>
-    <AppDomain>https://www.refden.co</AppDomain>
     <AppDomain>https://www.refden.com</AppDomain>
     <AppDomain>https://www.youtube.com</AppDomain>
   </AppDomains>
