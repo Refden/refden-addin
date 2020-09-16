@@ -67,7 +67,7 @@
           <!-- PrimaryCommandSurface is the main Office Ribbon. -->
           <ExtensionPoint xsi:type="PrimaryCommandSurface">
             <!-- Use OfficeTab to extend an existing Tab. Use CustomTab to create a new tab. -->
-            <OfficeTab id="TabHome">
+            <OfficeTab id="TabReferences">
               <!-- Ensure you provide a unique id for the group. Recommendation for any IDs is to namespace using your company name. -->
               <Group id="Contoso.Group1">
                 <!-- Label for your group. resid must point to a ShortString resource. -->
@@ -140,7 +140,7 @@
         <bt:String id="Contoso.TaskpaneButton.Tooltip"
                    DefaultValue="Click to Show Refden Taskpane" />
         <bt:String id="Contoso.GetStarted.Description"
-                   DefaultValue="Your Refden add-in loaded successfully. Go to the HOME tab and click the 'Refden' button to get started."
+                   DefaultValue="Your Refden add-in loaded successfully. Go to the REFERENCES tab and click the 'Refden' button to get started."
         />
       </bt:LongStrings>
     </Resources>
