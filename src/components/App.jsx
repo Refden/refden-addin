@@ -26,9 +26,22 @@ const axiosOnResponseError = (logout) => (error) => {
   return Promise.reject(error);
 };
 
+const headers = () => JSON.parse(localStorage.getItem('headers'));
+
 class App extends Component {
   constructor(props) {
     super(props);
+
+    axios.interceptors.request.use(
+      (config) => {
+        config.headers = headers();
+        return config;
+      },
+      (error) => {
+        return Promise.reject(error);
+      },
+    );
+
     axios.interceptors.response.use(axiosOnResponseOk, axiosOnResponseError(this.logout));
 
     this.state = {

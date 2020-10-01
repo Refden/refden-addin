@@ -6,11 +6,9 @@ const BASE_URL = 'https://www.refden.com/api/';
 
 const buildUrl = (path) => `${BASE_URL}${path}`;
 
-const headers = () => JSON.parse(localStorage.getItem('headers'));
+export const getLists = () => axios.get(buildUrl('lists'));
 
-export const getLists = () => axios.get(buildUrl('lists'), { headers: headers() });
-
-export const getReferences = (list) => axios.get(buildUrl(`lists/${list.id}/references`), { headers: headers() });
+export const getReferences = (list) => axios.get(buildUrl(`lists/${list.id}/references`));
 
 export const getReference = (reference, page) => axios.get(buildUrl(`references/${reference.id}`), {
   params: {
@@ -18,7 +16,6 @@ export const getReference = (reference, page) => axios.get(buildUrl(`references/
     style: localStorage.getItem(LOCAL_STORAGE__STYLE),
     locale: localStorage.getItem(LOCAL_STORAGE__LOCALE),
   },
-  headers: headers(),
 });
 
 export const getReferenceWithIds = (referenceId, otherIds) => axios.get(buildUrl(`references/${referenceId}`), {
@@ -27,7 +24,6 @@ export const getReferenceWithIds = (referenceId, otherIds) => axios.get(buildUrl
     style: localStorage.getItem(LOCAL_STORAGE__STYLE),
     locale: localStorage.getItem(LOCAL_STORAGE__LOCALE),
   },
-  headers: headers(),
 });
 
 export const getReferencesFromIds = (ids) => axios.get(buildUrl('references_exporter'), {
@@ -36,7 +32,6 @@ export const getReferencesFromIds = (ids) => axios.get(buildUrl('references_expo
     style: localStorage.getItem(LOCAL_STORAGE__STYLE),
     locale: localStorage.getItem(LOCAL_STORAGE__LOCALE),
   },
-  headers: headers(),
 });
 
 export const login = (email, password) => axios.post(buildUrl('auth/sign_in'), {
