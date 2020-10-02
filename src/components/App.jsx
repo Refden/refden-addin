@@ -1,48 +1,35 @@
 import React, { Component } from 'react';
 import toastr from 'toastr';
-import axios from 'axios';
+import _ from 'lodash/fp';
 
 import * as refden from '../api/refden';
+import axiosInit from '../api/axios';
+import { authHeaders, removeAuthHeaders, setAuthHeaders } from '../lib/storage';
 
 import Lists from './Lists';
 import Login from './Login';
 
 import './App.css';
 
+const extractAuthHeaders = _.flow(
+  _.get('headers'),
+  _.pick(['access-token', 'client', 'expiry', 'token-type', 'uid']),
+);
+
 const isLogged = () => {
-  const headers = JSON.parse(localStorage.getItem('headers'));
+  const headers = authHeaders();
   if (headers === null) return false;
 
   const expiryInMs = parseInt(headers.expiry, 10) * 1000;
   return expiryInMs && expiryInMs > Date.now();
 };
 
-const axiosOnResponseOk = (response) => response;
-const axiosOnResponseError = (logout) => (error) => {
-  if (error.response && error.response.status === 401) {
-    logout();
-  }
-
-  return Promise.reject(error);
-};
-
-const headers = () => JSON.parse(localStorage.getItem('headers'));
 
 class App extends Component {
   constructor(props) {
     super(props);
 
-    axios.interceptors.request.use(
-      (config) => {
-        config.headers = headers();
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      },
-    );
-
-    axios.interceptors.response.use(axiosOnResponseOk, axiosOnResponseError(this.logout));
+    axiosInit(this.logout);
 
     this.state = {
       isLogged: isLogged(),
@@ -52,7 +39,9 @@ class App extends Component {
   handleLogin = (email, password) => {
     refden.login(email, password)
       .then((response) => {
-        localStorage.setItem('headers', JSON.stringify(response.headers));
+        const headers = extractAuthHeaders(response);
+        setAuthHeaders(headers);
+
         window.Rollbar.configure({
           payload: {
             person: {
@@ -61,6 +50,7 @@ class App extends Component {
             },
           },
         });
+
         this.setState({ isLogged: true });
       })
       .catch((error) => {
@@ -70,7 +60,7 @@ class App extends Component {
   };
 
   logout = () => {
-    localStorage.removeItem('headers');
+    removeAuthHeaders();
     this.setState({ isLogged: false });
   };
 
