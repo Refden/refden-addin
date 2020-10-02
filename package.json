@@ -2,7 +2,7 @@
   "name": "refden-addin",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://refden.github.io/refden-addin",
+  "homepage": "https://refden-word.herokuapp.com/",
   "scripts": {
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
