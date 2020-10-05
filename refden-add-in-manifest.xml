@@ -13,8 +13,8 @@
     We'll take care of inserting both the citation and the reference. If you don't have an account you'll need to create one first."
   />
 
-  <IconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
-  <HighResolutionIconUrl DefaultValue="https://refden.github.io/refden-addin/assets/icon-64.png" />
+  <IconUrl DefaultValue="https://refden-word.herokuapp.com/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://refden-word.herokuapp.com/assets/icon-64.png" />
   <SupportUrl DefaultValue="https://www.refden.com" />
 
   <AppDomains>
@@ -33,7 +33,7 @@
   </Requirements>
 
   <DefaultSettings>
-    <SourceLocation DefaultValue="https://refden.github.io/refden-addin/index.html" />
+    <SourceLocation DefaultValue="https://refden-word.herokuapp.com/index.html" />
     <!--INFO: Uncomment this line below for trying changes on local-->
     <!--<SourceLocation DefaultValue="https://localhost:3000/index.html" />-->
   </DefaultSettings>
@@ -113,19 +113,19 @@
     <Resources>
       <bt:Images>
         <bt:Image id="Contoso.tpicon_16x16"
-                  DefaultValue="https://refden.github.io/refden-addin/assets/icon-16.png" />
+                  DefaultValue="https://refden-word.herokuapp.com/assets/icon-16.png" />
         <bt:Image id="Contoso.tpicon_32x32"
-                  DefaultValue="https://refden.github.io/refden-addin/assets/icon-32.png" />
+                  DefaultValue="https://refden-word.herokuapp.com/assets/icon-32.png" />
         <bt:Image id="Contoso.tpicon_80x80"
-                  DefaultValue="https://refden.github.io/refden-addin/assets/icon-80.png" />
+                  DefaultValue="https://refden-word.herokuapp.com/assets/icon-80.png" />
       </bt:Images>
       <bt:Urls>
         <bt:Url id="Contoso.Taskpane.Url"
-                DefaultValue="https://refden.github.io/refden-addin/index.html" />
+                DefaultValue="https://refden-word.herokuapp.com/index.html" />
         <bt:Url id="Contoso.GetStarted.LearnMoreUrl"
                 DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
         <bt:Url id="Contoso.DesktopFunctionFile.Url"
-                DefaultValue="https://refden.github.io/refden-addin/function-file/function-file.html" />
+                DefaultValue="https://refden-word.herokuapp.com/function-file/function-file.html" />
       </bt:Urls>
       <!-- ShortStrings max characters==125. -->
       <bt:ShortStrings>
