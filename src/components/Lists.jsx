@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { MessageBar } from 'office-ui-fabric-react/lib/MessageBar';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
 import * as refden from '../api/refden';
-import { REFDEN_URL } from '../constants';
 
 import List from './List';
 import Settings from './Settings/Settings';
 
 import './Lists.css';
+import { ALL_REFERENCES_LIST } from '../constants';
 
 class Lists extends Component {
   constructor(props) {
@@ -47,26 +46,29 @@ class Lists extends Component {
 
   renderLists = () => {
     if (this.state.loading) return <Spinner size={SpinnerSize.large} />;
-    if (this.state.lists.length === 0) {
-      return (
-        <MessageBar>
-          You need to create a list first at
-          <Link href={REFDEN_URL} target="_blank">our website.</Link>
-        </MessageBar>
-      );
-    }
 
     return (
-      this.state.lists.map((list) => (
-        // eslint-disable-next-line jsx-a11y/anchor-is-valid
+      <>
         <Link
-          key={list.id}
+          key={ALL_REFERENCES_LIST.id}
           className="pure-u-1 list"
-          onClick={this.handleListClick(list)}
+          onClick={this.handleListClick(ALL_REFERENCES_LIST)}
         >
-          {list.name}
+          {ALL_REFERENCES_LIST.name}
         </Link>
-      ))
+        {
+          this.state.lists.map((list) => (
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+            <Link
+              key={list.id}
+              className="pure-u-1 list"
+              onClick={this.handleListClick(list)}
+            >
+              {list.name}
+            </Link>
+          ))
+        }
+      </>
     );
   };
 
@@ -84,15 +86,14 @@ class Lists extends Component {
         this.state.selectedList === null ? this.renderListsContainer() : this.renderList()
       }
       {
-        this.state.selectedList !== null
-          && (
+        this.state.selectedList !== null && (
           <DefaultButton
             className="pure-u-1-3 mt-1 go-back"
             onClick={this.unSelectList}
           >
             Go back
           </DefaultButton>
-          )
+        )
       }
       {/* eslint-disable-next-line react/prop-types */}
       <DefaultButton className="pure-u-1-3 mt-1" onClick={this.props.logout}>Log out</DefaultButton>

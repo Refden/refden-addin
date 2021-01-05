@@ -5,6 +5,11 @@ export const REFDEN_URL = 'https://www.refden.com?utm_source=word';
 
 export const REFERENCE_TAG_PREFIX = 'refden-ref-';
 
+export const ALL_REFERENCES_LIST = {
+  id: 0,
+  name: 'All References',
+};
+
 export const STYLES = [
   { key: 'american-medical-association', text: 'American Medical Association' },
   { key: 'american-society-of-mechanical-engineers', text: 'ASME' },

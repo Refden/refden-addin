@@ -23,6 +23,7 @@ import './Lists.css';
 
 type ListProps = {
   list: {
+    id: number;
     name: string;
   };
 }
