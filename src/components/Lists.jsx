@@ -1,68 +1,61 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 
 import * as refden from '../api/refden';
+import { ALL_REFERENCES_LIST } from '../constants';
 
 import List from './List';
 import Settings from './Settings/Settings';
 
 import './Lists.css';
-import { ALL_REFERENCES_LIST } from '../constants';
 
-class Lists extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      lists: [],
-      loading: false,
-      selectedList: null,
-    };
-  }
+const Lists = (props) => {
+  const [lists, setLists] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [selectedList, setSelectedList] = useState(null);
 
-  componentDidMount = () => {
-    this.setState({ loading: true });
+  useEffect(() => {
+    setLoading(true);
     refden.getLists()
-      .then((response) => this.setState({ lists: response.data, loading: false }))
+      .then((response) => {
+        setLists(response.data);
+        setLoading(false);
+      })
       // eslint-disable-next-line no-console
       .catch(console.log);
-  };
+  }, []);
 
-  handleListClick = (list) => () => {
-    this.setState({ selectedList: list });
-  };
+  const handleListClick = (list) => () => setSelectedList(list);
+  const unSelectList = () => setSelectedList(null);
 
-  unSelectList = () => {
-    this.setState({ selectedList: null });
-  };
-
-  renderList = () => (
+  const renderList = () => (
     <List
-      key={this.state.selectedList.id}
-      list={this.state.selectedList}
+      key={selectedList.id}
+      list={selectedList}
     />
   );
 
-  renderLists = () => {
-    if (this.state.loading) return <Spinner size={SpinnerSize.large} />;
+  const renderLists = () => {
+    if (loading) return <Spinner size={SpinnerSize.large} />;
 
     return (
       <>
         <Link
           key={ALL_REFERENCES_LIST.id}
           className="pure-u-1 list"
-          onClick={this.handleListClick(ALL_REFERENCES_LIST)}
+          onClick={handleListClick(ALL_REFERENCES_LIST)}
         >
           {ALL_REFERENCES_LIST.name}
         </Link>
         {
-          this.state.lists.map((list) => (
+          lists.map((list) => (
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               key={list.id}
               className="pure-u-1 list"
-              onClick={this.handleListClick(list)}
+              onClick={handleListClick(list)}
             >
               {list.name}
             </Link>
@@ -72,33 +65,33 @@ class Lists extends Component {
     );
   };
 
-  renderListsContainer = () => (
+  const renderListsContainer = () => (
     <div className="pure-u-1">
       <h1 className="pure-u-1">Lists</h1>
-      {this.renderLists()}
+      {renderLists()}
     </div>
   );
 
-  render = () => (
+  return (
     <div className="pure-g lists-container">
       <Settings />
       {
-        this.state.selectedList === null ? this.renderListsContainer() : this.renderList()
+        selectedList === null ? renderListsContainer() : renderList()
       }
       {
-        this.state.selectedList !== null && (
+        selectedList !== null && (
           <DefaultButton
             className="pure-u-1-3 mt-1 go-back"
-            onClick={this.unSelectList}
+            onClick={unSelectList}
           >
             Go back
           </DefaultButton>
         )
       }
       {/* eslint-disable-next-line react/prop-types */}
-      <DefaultButton className="pure-u-1-3 mt-1" onClick={this.props.logout}>Log out</DefaultButton>
+      <DefaultButton className="pure-u-1-3 mt-1" onClick={props.logout}>Log out</DefaultButton>
     </div>
   )
-}
+};
 
 export default Lists;
