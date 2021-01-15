@@ -22,10 +22,7 @@ import Reference from './Reference/Reference';
 import './Lists.css';
 
 type ListProps = {
-  list: {
-    id: number;
-    name: string;
-  };
+  list: ListType;
 }
 
 type ListState = {

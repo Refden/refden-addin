@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import _ from 'lodash/fp';
 
 import * as refden from '../api/refden';
 import { ALL_REFERENCES_LIST } from '../constants';
@@ -11,10 +12,14 @@ import Settings from './Settings/Settings';
 
 import './Lists.css';
 
-const Lists = (props) => {
-  const [lists, setLists] = useState([]);
+type Props = {
+  logout: () => void;
+}
+
+const Lists = (props: Props) => {
+  const [lists, setLists] = useState<ListType[]>([]);
   const [loading, setLoading] = useState(false);
-  const [selectedList, setSelectedList] = useState(null);
+  const [selectedList, setSelectedList] = useState<ListType | null>(null);
 
   useEffect(() => {
     setLoading(true);
@@ -27,15 +32,21 @@ const Lists = (props) => {
       .catch(console.log);
   }, []);
 
-  const handleListClick = (list) => () => setSelectedList(list);
+  const handleListClick = (list: ListType) => () => setSelectedList(list);
   const unSelectList = () => setSelectedList(null);
 
-  const renderList = () => (
-    <List
-      key={selectedList.id}
-      list={selectedList}
-    />
-  );
+  const renderList = () => {
+    if (_.isNull(selectedList)) {
+      return <></>;
+    }
+
+    return (
+      <List
+        key={selectedList.id}
+        list={selectedList}
+      />
+    );
+  };
 
   const renderLists = () => {
     if (loading) return <Spinner size={SpinnerSize.large} />;
@@ -75,10 +86,10 @@ const Lists = (props) => {
     <div className="pure-g lists-container">
       <Settings />
       {
-        selectedList === null ? renderListsContainer() : renderList()
+        _.isNull(selectedList) ? renderListsContainer() : renderList()
       }
       {
-        selectedList !== null && (
+        !_.isNull(selectedList) && (
           <DefaultButton
             className="pure-u-1-3 mt-1 go-back"
             onClick={unSelectList}
@@ -87,7 +98,6 @@ const Lists = (props) => {
           </DefaultButton>
         )
       }
-      {/* eslint-disable-next-line react/prop-types */}
       <DefaultButton className="pure-u-1-3 mt-1" onClick={props.logout}>Log out</DefaultButton>
     </div>
   );
