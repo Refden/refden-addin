@@ -51,7 +51,6 @@ const Lists = (props) => {
         </Link>
         {
           lists.map((list) => (
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
             <Link
               key={list.id}
               className="pure-u-1 list"
@@ -91,7 +90,7 @@ const Lists = (props) => {
       {/* eslint-disable-next-line react/prop-types */}
       <DefaultButton className="pure-u-1-3 mt-1" onClick={props.logout}>Log out</DefaultButton>
     </div>
-  )
+  );
 };
 
 export default Lists;
