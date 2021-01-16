@@ -44,6 +44,7 @@ const Lists = (props: Props) => {
       <List
         key={selectedList.id}
         list={selectedList}
+        unSelectList={unSelectList}
       />
     );
   };
@@ -87,16 +88,6 @@ const Lists = (props: Props) => {
       <Settings />
       {
         _.isNull(selectedList) ? renderListsContainer() : renderList()
-      }
-      {
-        !_.isNull(selectedList) && (
-          <DefaultButton
-            className="pure-u-1-3 mt-1 go-back"
-            onClick={unSelectList}
-          >
-            Go back
-          </DefaultButton>
-        )
       }
       <DefaultButton className="pure-u-1-3 mt-1" onClick={props.logout}>Log out</DefaultButton>
     </div>

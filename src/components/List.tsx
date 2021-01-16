@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { MessageBar } from 'office-ui-fabric-react/lib/MessageBar';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
+import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { SearchBox } from 'office-ui-fabric-react/lib/SearchBox';
 import _ from 'lodash/fp';
 
@@ -23,6 +24,7 @@ import './Lists.css';
 
 type ListProps = {
   list: ListType;
+  unSelectList: () => void;
 }
 
 type ListState = {
@@ -168,7 +170,19 @@ class List extends Component<ListProps, ListState> {
 
   render = () => (
     <div className="pure-u-1">
-      <h1 className="pure-u-1">{this.props.list.name}</h1>
+      <div style={{ display: 'flex' }}>
+        <h2 style={{ flexGrow: 1 }}>
+          {this.props.list.name}
+        </h2>
+        <Link onClick={this.props.unSelectList}>
+          <Icon
+            iconName="Back"
+            title="Go back"
+            ariaLabel="Go back"
+            style={{ color: 'black', fontSize: 'large' }}
+          />
+        </Link>
+      </div>
       <SearchBox
         placeholder={'Search for "title" or "author"'}
         onChange={this.debouncedSearch}
