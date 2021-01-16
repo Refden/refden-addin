@@ -27,6 +27,7 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     'import/extensions': 'off',
     'import/order': ['error', { 'newlines-between': 'always' }],
+    'jsx-a11y/anchor-is-valid': 'off',
     'no-param-reassign': ['error', { props: false }],
     'object-curly-spacing': [2, 'always'],
     'quotes': [2, 'single'],

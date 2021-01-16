@@ -7,11 +7,10 @@
     "start": "HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "lint": "node_modules/eslint/bin/eslint.js src --ext .js --ext .ts --ext .jsx --ext .tsx",
+    "lint:fix": "yarn lint --fix",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "yarn run build",
-    "deploy": "gh-pages -d build",
     "validate:manifest": "validate-office-addin refden-add-in-manifest.xml",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -s public"
@@ -47,7 +46,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.3.0",
-    "gh-pages": "2.1.1",
     "rosie": "^2.0.1",
     "storybook-host": "^5.0.3",
     "typescript": "^3.6.4"
