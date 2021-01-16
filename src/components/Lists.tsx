@@ -21,7 +21,7 @@ const Lists = (props: Props) => {
   const [loading, setLoading] = useState(false);
   const [selectedList, setSelectedList] = useState<ListType | null>(null);
 
-  useEffect(() => {
+  const loadLists = () => {
     setLoading(true);
     refden.getLists()
       .then((response) => {
@@ -30,10 +30,15 @@ const Lists = (props: Props) => {
       })
       // eslint-disable-next-line no-console
       .catch(console.log);
-  }, []);
+  };
+
+  useEffect(loadLists, []);
 
   const handleListClick = (list: ListType) => () => setSelectedList(list);
-  const unSelectList = () => setSelectedList(null);
+  const unSelectList = () => {
+    setSelectedList(null);
+    loadLists();
+  };
 
   const renderList = () => {
     if (_.isNull(selectedList)) {
