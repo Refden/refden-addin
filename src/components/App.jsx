@@ -24,7 +24,6 @@ const isLogged = () => {
   return expiryInMs && expiryInMs > Date.now();
 };
 
-
 class App extends Component {
   constructor(props) {
     super(props);

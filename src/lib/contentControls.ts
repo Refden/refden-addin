@@ -1,6 +1,7 @@
 import _ from 'lodash/fp';
 
 import { REFERENCE_TAG_PREFIX, STYLES_WITH_BRACKETS } from '../constants';
+import { ReferenceType } from '../types';
 
 import { getReferencesControlItems } from './wordContentControls';
 import getRestReferenceIdsFromControlItem

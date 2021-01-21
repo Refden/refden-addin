@@ -6,6 +6,7 @@ import _ from 'lodash/fp';
 
 import * as refden from '../api/refden';
 import { ALL_REFERENCES_LIST } from '../constants';
+import { ListType } from '../types';
 
 import List from './List';
 import Settings from './Settings/Settings';

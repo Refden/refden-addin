@@ -17,6 +17,7 @@ import {
 }
   from '../lib/wordContentControls/getReferenceIdFromControlItem';
 import { buildTag, buildTitle } from '../lib/contentControls';
+import { ListType, ReferenceType } from '../types';
 
 import Reference from './Reference/Reference';
 
