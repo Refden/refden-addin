@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import toastr from 'toastr';
 import _ from 'lodash/fp';
+import LogRocket from 'logrocket';
 
 import * as refden from '../api/refden';
 import axiosInit from '../api/axios';
@@ -41,12 +42,15 @@ class App extends Component {
         const headers = extractAuthHeaders(response);
         setAuthHeaders(headers);
 
+        const { id } = response.data.data;
+
+        if (process.env.NODE_ENV !== 'development') {
+          LogRocket.identify(id, { email });
+        }
+
         window.Rollbar.configure({
           payload: {
-            person: {
-              id: response.data.data.id,
-              email: response.data.data.email,
-            },
+            person: { id, email },
           },
         });
 
