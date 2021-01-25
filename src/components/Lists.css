@@ -1,8 +1,38 @@
 .lists-container {
-  justify-content: flex-end;
+  height: 90vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow-x: auto;
   padding: 0 1em 1em;
 }
 
 .list {
   padding: 0.25em 0 !important;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+
+  box-shadow: 0 -4px 7px 0 rgba(129,137,169,.2);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+.settingsButton {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.settingsButton:hover {
+  background-color: lightgrey;
 }

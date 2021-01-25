@@ -21,7 +21,7 @@
     "logrocket": "^1.0.14",
     "office-ui-fabric-react": "^6.165.1",
     "prop-types": "^15.7.2",
-    "purecss": "^1.0.0",
+    "purecss": "^2.0.5",
     "react": "^16.8.6",
     "react-app-polyfill": "^1.0.3",
     "react-dom": "^16.8.6",

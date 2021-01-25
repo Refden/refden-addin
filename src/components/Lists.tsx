@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
+import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import _ from 'lodash/fp';
 
@@ -56,7 +57,7 @@ const Lists = (props: Props) => {
   };
 
   const renderLists = () => {
-    if (loading) return <Spinner size={SpinnerSize.large} />;
+    if (loading) return <Spinner size={SpinnerSize.large} />; // TODO: fix here
 
     return (
       <>
@@ -90,12 +91,25 @@ const Lists = (props: Props) => {
   );
 
   return (
-    <div className="pure-g lists-container">
+    <div className="lists-container">
       <Settings />
       {
         _.isNull(selectedList) ? renderListsContainer() : renderList()
       }
-      <DefaultButton className="pure-u-1-3 mt-1" onClick={props.logout}>Log out</DefaultButton>
+      <DefaultButton onClick={props.logout}>Log out</DefaultButton>
+      <div className="footer">
+        <div className="settingsButton">
+          <Icon
+            iconName="Settings"
+            title="Settings"
+            style={{ fontSize: 'large' }}
+          />
+          <Icon
+            iconName="ChevronUp"
+            style={{ fontSize: 'xx-small', marginLeft: '3px' }}
+          />
+        </div>
+      </div>
     </div>
   );
 };
