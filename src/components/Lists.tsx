@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import _ from 'lodash/fp';
@@ -9,9 +8,8 @@ import { ALL_REFERENCES_LIST } from '../constants';
 import { ListType } from '../types';
 
 import List from './List';
-import Settings from './Settings/Settings';
-
 import './Lists.css';
+import Footer from './Footer/Footer';
 
 type Props = {
   logout: () => void;
@@ -90,12 +88,11 @@ const Lists = (props: Props) => {
   );
 
   return (
-    <div className="pure-g lists-container">
-      <Settings />
+    <div className="lists-container">
       {
         _.isNull(selectedList) ? renderListsContainer() : renderList()
       }
-      <DefaultButton className="pure-u-1-3 mt-1" onClick={props.logout}>Log out</DefaultButton>
+      <Footer logout={props.logout} />
     </div>
   );
 };

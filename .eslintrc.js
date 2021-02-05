@@ -33,6 +33,7 @@ module.exports = {
     'import/extensions': 'off',
     'import/order': ['error', { 'newlines-between': 'always' }],
     'jsx-a11y/anchor-is-valid': 'off',
+    'jsx-a11y/click-events-have-key-events': 'off',
     'no-param-reassign': ['error', { props: false }],
     'no-use-before-define': 'off',
     'object-curly-spacing': [2, 'always'],

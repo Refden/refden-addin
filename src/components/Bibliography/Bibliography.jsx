@@ -6,7 +6,7 @@ import generateBibliography from '../../lib/bibliography';
 import './Bibliography.css';
 
 const Bibliography = () => (
-  <div className="pure-u-1">
+  <div className="pure-u-1 mt-1">
     <DefaultButton
       primary
       className="pure-u-1 bibliography-btn"

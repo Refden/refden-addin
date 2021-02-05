@@ -1,5 +1,9 @@
 .lists-container {
-  justify-content: flex-end;
+  height: 90vh;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  overflow-x: auto;
   padding: 0 1em 1em;
 }
 
