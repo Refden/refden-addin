@@ -16,6 +16,7 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
+    "@uifabric/react-hooks": "^7.13.9",
     "axios": "^0.21.1",
     "lodash": "^4.17.10",
     "logrocket": "^1.0.14",

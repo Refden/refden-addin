@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import _ from 'lodash/fp';
 
@@ -11,8 +9,8 @@ import { ListType } from '../types';
 
 import List from './List';
 import Settings from './Settings/Settings';
-
 import './Lists.css';
+import Footer from './Footer/Footer';
 
 type Props = {
   logout: () => void;
@@ -96,20 +94,7 @@ const Lists = (props: Props) => {
       {
         _.isNull(selectedList) ? renderListsContainer() : renderList()
       }
-      <DefaultButton onClick={props.logout}>Log out</DefaultButton>
-      <div className="footer">
-        <div className="settingsButton">
-          <Icon
-            iconName="Settings"
-            title="Settings"
-            style={{ fontSize: 'large' }}
-          />
-          <Icon
-            iconName="ChevronUp"
-            style={{ fontSize: 'xx-small', marginLeft: '3px' }}
-          />
-        </div>
-      </div>
+      <Footer logout={props.logout} />
     </div>
   );
 };
