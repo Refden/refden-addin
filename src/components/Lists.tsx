@@ -8,7 +8,6 @@ import { ALL_REFERENCES_LIST } from '../constants';
 import { ListType } from '../types';
 
 import List from './List';
-import Settings from './Settings/Settings';
 import './Lists.css';
 import Footer from './Footer/Footer';
 
@@ -55,7 +54,7 @@ const Lists = (props: Props) => {
   };
 
   const renderLists = () => {
-    if (loading) return <Spinner size={SpinnerSize.large} />; // TODO: fix here
+    if (loading) return <Spinner size={SpinnerSize.large} />;
 
     return (
       <>
@@ -90,7 +89,6 @@ const Lists = (props: Props) => {
 
   return (
     <div className="lists-container">
-      <Settings />
       {
         _.isNull(selectedList) ? renderListsContainer() : renderList()
       }

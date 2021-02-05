@@ -10,6 +10,8 @@ import {
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 
+import Settings from '../Settings/Settings';
+
 import './Footer.css';
 
 type Props = {
@@ -68,12 +70,11 @@ const Footer = (props: Props) => {
           />
         </div>
         <div style={{ padding: '12px' }}>
-          <Link
-            onClick={props.logout}
-          >
+          <Link onClick={props.logout}>
             Log out
           </Link>
           <hr />
+          <Settings />
         </div>
       </Modal>
 

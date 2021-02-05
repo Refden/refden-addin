@@ -47,7 +47,6 @@ class Settings extends Component {
 
   render = () => (
     [
-      <Bibliography key="bibliography" />,
       <div key="styles" className="pure-u-1">
         <Dropdown
           label="Style:"
@@ -66,6 +65,7 @@ class Settings extends Component {
           options={LOCALES}
         />
       </div>,
+      <Bibliography key="bibliography" />,
     ]
   );
 }
