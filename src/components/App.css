@@ -3,16 +3,16 @@
 }
 
 .my-1 {
-  margin-bottom: 1em;
   margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .development-badge {
+  position: absolute;
+  top: 0;
+  left: 10px;
+  padding: 1px;
+  font-size: 11px;
   background-color: yellow;
   border: 1px solid black;
-  padding: 1px;
-  position: absolute;
-  left: 10px;
-  top: 0;
-  font-size: 11px;
 }

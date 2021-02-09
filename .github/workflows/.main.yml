@@ -11,6 +11,14 @@ jobs:
       - run: yarn install
       - run: yarn lint
 
+  stylelint:
+    name: stylelint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: yarn install
+      - run: yarn stylelint
+
   jest:
     name: jest
     runs-on: ubuntu-latest

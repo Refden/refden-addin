@@ -8,6 +8,8 @@
     "build": "react-scripts build",
     "lint": "node_modules/eslint/bin/eslint.js src --ext .js --ext .ts --ext .jsx --ext .tsx",
     "lint:fix": "yarn lint --fix",
+    "stylelint": "stylelint \"src/**/*.css\"",
+    "stylelint:fix": "yarn stylelint --fix",
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
@@ -49,6 +51,10 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "rosie": "^2.0.1",
     "storybook-host": "^5.0.3",
+    "stylelint": "^13.9.0",
+    "stylelint-config-rational-order": "^0.1.2",
+    "stylelint-config-standard": "^20.0.0",
+    "stylelint-order": "^4.1.0",
     "typescript": "^3.6.4"
   },
   "browserslist": [

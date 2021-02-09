@@ -1,10 +1,10 @@
 .lists-container {
-  height: 100vh;
   display: flex;
-  justify-content: space-between;
   flex-direction: column;
-  overflow-x: auto;
+  justify-content: space-between;
+  height: 100vh;
   padding: 0 1em 55px 1em;
+  overflow-x: auto;
 }
 
 .list {
