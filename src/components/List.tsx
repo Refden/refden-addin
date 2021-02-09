@@ -109,7 +109,9 @@ const generateCitation = async (
 class List extends Component<ListProps, ListState> {
   debouncedSearch = _.debounce(
     150,
-    (searchText) => this.setState({ searchText: searchText.toLowerCase() }),
+    (_event, searchText) => (
+      this.setState({ searchText: searchText.toLowerCase() })
+    ),
   );
 
   constructor(props: ListProps) {
