@@ -12,6 +12,7 @@ https://appsource.microsoft.com/en-us/product/office/WA104381598
 - In Word online go to: 
      - Insert > Office Add-ins > Manage My Add-ins > Upload My Add-in
      - Choose: `refden-add-in-manifest.dev.xml`
+- In Word for Mac: https://docs.microsoft.com/en-us/office/dev/add-ins/testing/sideload-an-office-add-in-on-ipad-and-mac#sideload-an-add-in-in-office-on-mac 
      
 ### CI
 
