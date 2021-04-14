@@ -40,8 +40,14 @@ const authorIncludesText = (text: string) => _.flow(
   _.includes(text),
 );
 
+const titleIncludesText = (text: string) => _.flow(
+  _.get('title'),
+  _.lowerCase,
+  _.includes(text),
+);
+
 const referenceIncludesText = (text: string) => (reference: ReferenceType) => (
-  (reference.title && reference.title.toLowerCase().includes(text))
+  titleIncludesText(text)(reference)
   || (_.some(authorIncludesText(text), reference.authors))
 );
 
