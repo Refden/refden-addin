@@ -130,11 +130,15 @@ class List extends Component<ListProps, ListState> {
   }
 
   componentDidMount = () => {
+    this.loadReferences();
+  };
+
+  loadReferences = () => {
     this.setState({ loading: true });
     refden.getReferences(this.props.list)
       .then((response) => this.setState({ loading: false, references: response.data }))
       .catch(console.log); // eslint-disable-line no-console
-  };
+  }
 
   insertCitation = (reference: ReferenceType) => (opts: { page: string } = { page: '' }) => {
     refden.getReference(reference, opts.page)
@@ -183,6 +187,14 @@ class List extends Component<ListProps, ListState> {
         <h2 style={{ flexGrow: 1 }}>
           {this.props.list.name}
         </h2>
+        <Link onClick={this.loadReferences}>
+          <Icon
+            iconName="Refresh"
+            title="Refresh"
+            ariaLabel="Refresh"
+            style={{ color: 'black', fontSize: 'large', marginRight: '0.8rem' }}
+          />
+        </Link>
         <Link onClick={this.props.unSelectList}>
           <Icon
             iconName="Back"
