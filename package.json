@@ -20,15 +20,15 @@
   "dependencies": {
     "@uifabric/react-hooks": "^7.13.9",
     "axios": "^0.21.1",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.21",
     "logrocket": "^1.0.14",
     "office-ui-fabric-react": "^7.158.2",
     "prop-types": "^15.7.2",
-    "purecss": "^2.0.5",
+    "purecss": "^2.0.6",
     "react": "^16.8.6",
     "react-app-polyfill": "^2.0.0",
     "react-dom": "^16.8.6",
-    "react-scripts": "^4.0.2",
+    "react-scripts": "^4.0.3",
     "toastr": "^2.1.4"
   },
   "devDependencies": {
