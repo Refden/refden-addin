@@ -6,6 +6,7 @@ const BASE_URL = 'https://www.refden.com/api/';
 
 const buildUrl = (path) => `${BASE_URL}${path}`;
 
+export const getStyles = () => axios.get(buildUrl('styles'));
 export const getLists = () => axios.get(buildUrl('lists'));
 
 export const getReferences = (list) => {

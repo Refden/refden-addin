@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import _ from 'lodash/fp';
 import { Dropdown, DropdownMenuItemType } from 'office-ui-fabric-react/lib/Dropdown';
 
+import * as refden from '../../api/refden';
 import Bibliography from '../Bibliography/Bibliography';
 import {
   LOCAL_STORAGE__STYLE, LOCAL_STORAGE__LOCALE, STYLES, LOCALES,
@@ -10,13 +11,6 @@ import { updateBibliography } from '../../lib/bibliography/index';
 
 const DEFAULT_STYLE = 'apa';
 const DEFAULT_LOCALE = 'en-US';
-
-const dropDownStyles = [
-  { key: 'Header', text: 'Popular styles', itemType: DropdownMenuItemType.Header },
-  ...STYLES,
-  { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
-  { key: 'Header2', text: 'Other styles', itemType: DropdownMenuItemType.Header },
-];
 
 const initializeLocalStorage = () => {
   if (_.isEmpty(localStorage.getItem(LOCAL_STORAGE__STYLE))) {
@@ -29,6 +23,7 @@ const initializeLocalStorage = () => {
 };
 
 const Settings = () => {
+  const [styles, setStyles] = useState([]);
   const [style, setStyle] = useState('');
   const [locale, setLocale] = useState('');
 
@@ -39,10 +34,25 @@ const Settings = () => {
     setLocale(localStorage.getItem(LOCAL_STORAGE__LOCALE));
   }, []);
 
+  useEffect(() => {
+    refden.getStyles()
+      .then((response) => {
+        setStyles(response.data);
+      });
+  }, []);
+
+  const dropDownStyles = [
+    { key: 'Header', text: 'Popular styles', itemType: DropdownMenuItemType.Header },
+    ...STYLES,
+    { key: 'divider_1', text: '-', itemType: DropdownMenuItemType.Divider },
+    { key: 'Header2', text: 'Other styles', itemType: DropdownMenuItemType.Header },
+    ...styles,
+  ];
+
   const changeStyle = (_event, item) => {
     localStorage.setItem(LOCAL_STORAGE__STYLE, item.key);
     setStyle(item.key);
-    updateBibliography(); // TODO useEffect?
+    updateBibliography();
   };
 
   const changeLocale = (_event, item) => {
