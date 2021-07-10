@@ -15,6 +15,19 @@ describe('getReferenceIdFromControlItem()', () => {
     expect(actual).toEqual(expected);
   });
 
+  describe('when tag is not from refden', () => {
+    it('returns ""', () => {
+      const item = {
+        tag: 'other-tag',
+      };
+
+      const actual = getReferenceIdFromControlItem(item);
+      const expected = '';
+
+      expect(actual).toEqual(expected);
+    });
+  });
+
   describe('when the tag has multiple ids', () => {
     it('gets the first id', () => {
       const item = {
