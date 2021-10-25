@@ -18,7 +18,7 @@ const extractAuthHeaders = _.flow(
 );
 
 const isLogged = () => {
-  const headers = Promise.resolve(authHeaders);
+  const headers = authHeaders;
   console.log(headers);
   if (headers === null) return false;
 
@@ -40,30 +40,25 @@ class App extends Component {
   }
 
   handleLogin = (email, password) => {
-    console.log('0');
-    console.log(email);
-    console.log(password);
     refden.login(email, password)
       .then((response) => {
-        console.log('1');
         const headers = extractAuthHeaders(response);
-        console.log('2');
+        console.log(headers);
         setAuthHeaders(headers);
-        console.log('3');
+        console.log(response);
         const { id } = response.data.data;
-        console.log('4');
+
         if (process.env.NODE_ENV !== 'development') {
           LogRocket.identify(id, { email });
         }
-        console.log('5');
+
         window.Rollbar.configure({
           payload: {
             person: { id, email },
           },
         });
-        console.log('6');
+
         this.setState({ isLogged: true });
-        console.log('7');
       })
       .catch((error) => {
         // const errorMsg = error.response.data.errors[0];

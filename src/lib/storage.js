@@ -1,10 +1,10 @@
 import localForage from 'localforage';
-// import sp from 'synchronized-promise';
 
-// export const authHeaders = () => JSON.parse(localStorage.getItem('auth-headers'));
-export async function authHeaders() {
-  return localForage.getItem('auth-headers');
-}
+export const authHeaders = () => {
+  const promise = localForage.getItem('auth-headers');
+
+  return Promise.resolve(promise).then((result) => JSON.parse(result));
+};
 
 export const setAuthHeaders = (headers) => {
   localForage.setItem('auth-headers', JSON.stringify(headers));
