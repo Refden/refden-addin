@@ -20,6 +20,7 @@
   "dependencies": {
     "@uifabric/react-hooks": "^7.13.9",
     "axios": "^0.21.1",
+    "localforage": "^1.10.0",
     "lodash": "^4.17.21",
     "logrocket": "^1.0.14",
     "office-ui-fabric-react": "^7.158.2",
@@ -29,6 +30,8 @@
     "react-app-polyfill": "^2.0.0",
     "react-dom": "^17.0.2",
     "react-scripts": "^4.0.3",
+    "synchronized-promise": "^0.3.1",
+    "synchronous-promise": "^2.0.15",
     "toastr": "^2.1.4"
   },
   "devDependencies": {

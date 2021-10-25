@@ -13,13 +13,11 @@ const axiosOnResponseError = (logout) => (error) => {
 };
 
 const axiosInit = (logout) => {
-  axios.interceptors.request.use(
-    (config) => {
-      config.headers = authHeaders();
-      return config;
-    },
-    (error) => Promise.reject(error),
-  );
+  axios.interceptors.request.use(async (config) => {
+    config.headers = await authHeaders();
+    return config;
+  },
+  (error) => Promise.reject(error));
 
   axios.interceptors.response.use(axiosOnResponseOk, axiosOnResponseError(logout));
 };

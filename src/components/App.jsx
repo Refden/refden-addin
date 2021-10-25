@@ -18,7 +18,8 @@ const extractAuthHeaders = _.flow(
 );
 
 const isLogged = () => {
-  const headers = authHeaders();
+  const headers = Promise.resolve(authHeaders);
+  console.log(headers);
   if (headers === null) return false;
 
   const expiryInMs = parseInt(headers.expiry, 10) * 1000;
@@ -31,34 +32,44 @@ class App extends Component {
 
     axiosInit(this.logout);
 
+    console.log(isLogged());
+
     this.state = {
       isLogged: isLogged(),
     };
   }
 
   handleLogin = (email, password) => {
+    console.log('0');
+    console.log(email);
+    console.log(password);
     refden.login(email, password)
       .then((response) => {
+        console.log('1');
         const headers = extractAuthHeaders(response);
+        console.log('2');
         setAuthHeaders(headers);
-
+        console.log('3');
         const { id } = response.data.data;
-
+        console.log('4');
         if (process.env.NODE_ENV !== 'development') {
           LogRocket.identify(id, { email });
         }
-
+        console.log('5');
         window.Rollbar.configure({
           payload: {
             person: { id, email },
           },
         });
-
+        console.log('6');
         this.setState({ isLogged: true });
+        console.log('7');
       })
       .catch((error) => {
-        const errorMsg = error.response.data.errors[0];
-        toastr.error(errorMsg);
+        // const errorMsg = error.response.data.errors[0];
+        console.log('error');
+        console.log(error);
+        toastr.error(error);
       });
   };
 
