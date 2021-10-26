@@ -19,11 +19,9 @@ const extractAuthHeaders = _.flow(
 
 const isLogged = () => {
   const data = authHeaders();
-
   if (!data || !data.headers) return false;
 
   const expiryInMs = parseInt(data.headers.expiry, 10) * 1000;
-
   return expiryInMs && (expiryInMs > Date.now());
 };
 
@@ -42,7 +40,6 @@ class App extends Component {
     refden.login(email, password)
       .then(async (response) => {
         const headers = extractAuthHeaders(response);
-
         await setAuthHeaders(headers);
 
         const { id } = response.data.data;
