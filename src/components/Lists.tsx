@@ -16,14 +16,17 @@ type Props = {
 }
 
 const Lists = (props: Props) => {
+  console.log('Lists');
   const [lists, setLists] = useState<ListType[]>([]);
   const [loading, setLoading] = useState(false);
   const [selectedList, setSelectedList] = useState<ListType | null>(null);
 
   const loadLists = () => {
+    console.log('loadLists');
     setLoading(true);
     refden.getLists()
       .then((response) => {
+        console.log(response);
         setLists(response.data);
         setLoading(false);
       })

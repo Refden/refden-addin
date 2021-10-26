@@ -18,12 +18,13 @@ const extractAuthHeaders = _.flow(
 );
 
 const isLogged = () => {
-  const headers = authHeaders;
-  console.log(headers);
-  if (headers === null) return false;
+  const data = authHeaders();
 
-  const expiryInMs = parseInt(headers.expiry, 10) * 1000;
-  return expiryInMs && expiryInMs > Date.now();
+  if (!data || !data.headers) return false;
+
+  const expiryInMs = parseInt(data.headers.expiry, 10) * 1000;
+
+  return expiryInMs && (expiryInMs > Date.now());
 };
 
 class App extends Component {
@@ -32,8 +33,6 @@ class App extends Component {
 
     axiosInit(this.logout);
 
-    console.log(isLogged());
-
     this.state = {
       isLogged: isLogged(),
     };
@@ -41,11 +40,11 @@ class App extends Component {
 
   handleLogin = (email, password) => {
     refden.login(email, password)
-      .then((response) => {
+      .then(async (response) => {
         const headers = extractAuthHeaders(response);
-        console.log(headers);
-        setAuthHeaders(headers);
-        console.log(response);
+
+        await setAuthHeaders(headers);
+
         const { id } = response.data.data;
 
         if (process.env.NODE_ENV !== 'development') {
@@ -61,10 +60,8 @@ class App extends Component {
         this.setState({ isLogged: true });
       })
       .catch((error) => {
-        // const errorMsg = error.response.data.errors[0];
-        console.log('error');
-        console.log(error);
-        toastr.error(error);
+        const errorMsg = error.response.data.errors[0];
+        toastr.error(errorMsg);
       });
   };
 
