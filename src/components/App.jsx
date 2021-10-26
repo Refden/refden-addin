@@ -18,10 +18,10 @@ const extractAuthHeaders = _.flow(
 );
 
 const isLogged = async () => {
-  const data = await authHeaders();
-  if (!data) return false;
+  const headers = await authHeaders();
+  if (!headers) return false;
 
-  const expiryInMs = parseInt(data.expiry, 10) * 1000;
+  const expiryInMs = parseInt(headers.expiry, 10) * 1000;
   return expiryInMs && (expiryInMs > Date.now());
 };
 
