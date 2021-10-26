@@ -17,11 +17,11 @@ const extractAuthHeaders = _.flow(
   _.pick(['access-token', 'client', 'expiry', 'token-type', 'uid']),
 );
 
-const isLogged = () => {
-  const data = authHeaders();
-  if (!data || !data.headers) return false;
+const isLogged = async () => {
+  const data = await authHeaders();
+  if (!data) return false;
 
-  const expiryInMs = parseInt(data.headers.expiry, 10) * 1000;
+  const expiryInMs = parseInt(data.expiry, 10) * 1000;
   return expiryInMs && (expiryInMs > Date.now());
 };
 

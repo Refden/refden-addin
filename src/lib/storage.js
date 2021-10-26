@@ -6,14 +6,8 @@ export const authHeaders = () => {
   return Promise.resolve(promise).then((result) => JSON.parse(result));
 };
 
-export const setAuthHeaders = async (headers) => {
-  const p2 = localForage.setItem('auth-headers', JSON.stringify(headers));
-
-  return Promise.resolve(p2).then((result) => {
-    console.log('Guardado de auth');
-    console.log(result);
-    return result;
-  });
+export const setAuthHeaders = (headers) => {
+  localForage.setItem('auth-headers', JSON.stringify(headers));
 };
 
 export const removeAuthHeaders = () => {
