@@ -17,12 +17,12 @@ const extractAuthHeaders = _.flow(
   _.pick(['access-token', 'client', 'expiry', 'token-type', 'uid']),
 );
 
-const isLogged = () => {
-  const headers = authHeaders();
-  if (headers === null) return false;
+const isLogged = async () => {
+  const headers = await authHeaders();
+  if (!headers) return false;
 
   const expiryInMs = parseInt(headers.expiry, 10) * 1000;
-  return expiryInMs && expiryInMs > Date.now();
+  return expiryInMs && (expiryInMs > Date.now());
 };
 
 class App extends Component {
@@ -38,9 +38,9 @@ class App extends Component {
 
   handleLogin = (email, password) => {
     refden.login(email, password)
-      .then((response) => {
+      .then(async (response) => {
         const headers = extractAuthHeaders(response);
-        setAuthHeaders(headers);
+        await setAuthHeaders(headers);
 
         const { id } = response.data.data;
 

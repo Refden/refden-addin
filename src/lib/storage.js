@@ -1,7 +1,14 @@
-export const authHeaders = () => JSON.parse(localStorage.getItem('auth-headers'));
+import localForage from 'localforage';
 
-export const setAuthHeaders = (headers) => (
-  localStorage.setItem('auth-headers', JSON.stringify(headers))
-);
+export const authHeaders = () => {
+  const promise = localForage.getItem('auth-headers');
+  return Promise.resolve(promise).then((result) => result);
+};
 
-export const removeAuthHeaders = () => localStorage.removeItem('auth-headers');
+export const setAuthHeaders = (headers) => {
+  localForage.setItem('auth-headers', headers);
+};
+
+export const removeAuthHeaders = () => {
+  localForage.removeItem('auth-headers');
+};

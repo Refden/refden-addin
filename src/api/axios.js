@@ -14,8 +14,8 @@ const axiosOnResponseError = (logout) => (error) => {
 
 const axiosInit = (logout) => {
   axios.interceptors.request.use(
-    (config) => {
-      config.headers = authHeaders();
+    async (config) => {
+      config.headers = await authHeaders();
       return config;
     },
     (error) => Promise.reject(error),
