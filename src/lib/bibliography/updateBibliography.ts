@@ -13,6 +13,27 @@ import getCitationText from './getCitationText';
 
 import generateBibliography, { PARAMS_TO_LOAD } from './index';
 
+export async function fillContentControl(
+  id: any,
+  otherIds: any[],
+  contentControl: Word.ContentControl,
+) {
+  const response = await refden.getReferenceWithIds(id, otherIds);
+
+  const references = [response.data.reference];
+  _.forEach(
+    (reference: any) => references.push(reference.reference),
+    response.data.references,
+  );
+
+  contentControl.tag = buildTag(response.data);
+  contentControl.title = buildTitle(references);
+
+  // TODO: pass opts? Somehow we need to store the opts in the ContentControl object
+  const citation = getCitationText(response.data, {});
+  insertCitationText(contentControl, citation);
+}
+
 export const updateReferencesInDocument = (context: Word.RequestContext) => async () => {
   const referenceItems = getReferencesControlItems(context.document.contentControls);
   if (_.isEmpty(referenceItems)) return;
@@ -22,20 +43,7 @@ export const updateReferencesInDocument = (context: Word.RequestContext) => asyn
     const id = getReferenceIdFromControlItem(contentControl);
     const otherIds = getRestReferenceIdsFromControlItem(contentControl);
     // eslint-disable-next-line no-await-in-loop
-    const response = await refden.getReferenceWithIds(id, otherIds);
-
-    const references = [response.data.reference];
-    _.forEach(
-      (reference: any) => references.push(reference.reference),
-      response.data.references,
-    );
-
-    contentControl.tag = buildTag(response.data);
-    contentControl.title = buildTitle(references);
-
-    // TODO: pass opts? Somehow we need to store the opts in the ContentControl object
-    const citation = getCitationText(response.data, {});
-    insertCitationText(contentControl, citation);
+    await fillContentControl(id, otherIds, contentControl);
   }
 
   context.sync().then(generateBibliography);

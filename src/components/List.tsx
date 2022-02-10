@@ -18,6 +18,7 @@ import {
   from '../lib/wordContentControls/getReferenceIdFromControlItem';
 import { buildTag, buildTitle } from '../lib/contentControls';
 import { ListType, ReferenceType } from '../types';
+import { fillContentControl } from '../lib/bibliography/updateBibliography';
 
 import Reference from './Reference/Reference';
 
@@ -60,19 +61,7 @@ const generateMultipleCitation = async (
   const otherIds = getRestReferenceIdsFromControlItem(contentControl);
   otherIds.push(data.id);
 
-  const response = await refden.getReferenceWithIds(id, otherIds);
-
-  const references = [response.data.reference];
-  response.data.references.forEach((reference: any) => {
-    references.push(reference.reference);
-  });
-
-  contentControl.tag = buildTag(response.data);
-  contentControl.title = buildTitle(references);
-
-  const citation = getCitationText(response.data, {});
-  insertCitationText(contentControl, citation);
-
+  await fillContentControl(id, otherIds, contentControl);
   await context.sync();
 };
 
