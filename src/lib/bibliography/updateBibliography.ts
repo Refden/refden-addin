@@ -18,20 +18,24 @@ export async function fillContentControl(
   otherIds: any[],
   contentControl: Word.ContentControl,
 ) {
-  const response = await refden.getReferenceWithIds(id, otherIds);
+  try {
+    const response = await refden.getReferenceWithIds(id, otherIds);
 
-  const references = [response.data.reference];
-  _.forEach(
-    (reference: any) => references.push(reference.reference),
-    response.data.references,
-  );
+    const references = [response.data.reference];
+    _.forEach(
+      (reference: any) => references.push(reference.reference),
+      response.data.references,
+    );
 
-  contentControl.tag = buildTag(response.data);
-  contentControl.title = buildTitle(references);
+    contentControl.tag = buildTag(response.data);
+    contentControl.title = buildTitle(references);
 
-  // TODO: pass opts? Somehow we need to store the opts in the ContentControl object
-  const citation = getCitationText(response.data, {});
-  insertCitationText(contentControl, citation);
+    // TODO: pass opts? Somehow we need to store the opts in the ContentControl object
+    const citation = getCitationText(response.data, {});
+    insertCitationText(contentControl, citation);
+  } catch (error) {
+    window.Rollbar.warning('Connection error from Refden API', error);
+  }
 }
 
 export const updateReferencesInDocument = (context: Word.RequestContext) => async () => {

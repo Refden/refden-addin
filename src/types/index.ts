@@ -1,3 +1,7 @@
+declare global {
+  interface Window { Rollbar: any; }
+}
+
 export type ReferenceType = {
   id: number;
   title: string | null;
