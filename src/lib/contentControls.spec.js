@@ -220,6 +220,36 @@ describe('updateIndexes()', () => {
         `${'3'.sup()}, ${'2'.sup()}`, 'end',
       );
     });
+
+    it('reuses citation index in multiple citation if previously present', () => {
+      mockWord();
+      const firstItem = {
+        tag: 'refden-ref-1',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+      const secondItem = {
+        tag: 'refden-ref-1-2',
+        clear: jest.fn(),
+        insertHtml: jest.fn(),
+      };
+
+      const contentControls = {
+        items: [
+          firstItem,
+          secondItem,
+        ],
+      };
+
+      updateIndexes(contentControls, 'vancouver');
+
+      expect(firstItem.insertHtml).toHaveBeenCalledWith(
+        `${'1'.sup()}`, 'end',
+      );
+      expect(secondItem.insertHtml).toHaveBeenCalledWith(
+        `${'1'.sup()}, ${'2'.sup()}`, 'end',
+      );
+    });
   });
 
   describe('IEEE', () => {
