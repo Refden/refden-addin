@@ -4,8 +4,10 @@ import { REFERENCE_TAG_PREFIX, STYLES_WITH_BRACKETS } from '../constants';
 import { ReferenceType } from '../types';
 
 import { getReferencesControlItems } from './wordContentControls';
-import getRestReferenceIdsFromControlItem
-  from './wordContentControls/getRestReferenceIdsFromControlItem';
+import {
+  getReferenceIdFromControlItem,
+  getRestReferenceIdsFromControlItem,
+} from './wordContentControls/getReferenceIdFromControlItem';
 
 const buildCitationIndex = (index: number, cslStyle: string) => {
   const referenceIndex = (index + 1).toString();
@@ -21,6 +23,8 @@ const updateIndex = (item: Word.ContentControl, referenceIndex: string) => {
   item.insertHtml(referenceIndex, window.Word.InsertLocation.end);
 };
 
+const getTagFromId = (id: string | undefined) => `${REFERENCE_TAG_PREFIX}${id}`;
+
 export const updateIndexes = (contentControls: Word.ContentControl[], cslStyle: string) => {
   const referenceTagIndexes: any = {};
 
@@ -33,8 +37,13 @@ export const updateIndexes = (contentControls: Word.ContentControl[], cslStyle: 
       return;
     }
 
-    referenceTagIndexes[item.tag] = buildCitationIndex(index, cslStyle);
-    index += 1;
+    const firstId = getReferenceIdFromControlItem(item);
+    if (_.has(getTagFromId(firstId), referenceTagIndexes)) {
+      referenceTagIndexes[item.tag] = referenceTagIndexes[getTagFromId(firstId)];
+    } else {
+      referenceTagIndexes[item.tag] = buildCitationIndex(index, cslStyle);
+      index += 1;
+    }
 
     const otherIds = getRestReferenceIdsFromControlItem(item);
     _.forEach((id) => {
