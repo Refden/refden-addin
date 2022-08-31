@@ -11,7 +11,7 @@ import {
 import getReferenceIndex from './getReferenceIndex';
 import isCitationFormatWithNumbers from './isCitationFormatWithNumbers';
 
-const HANGING_INDENT = -35;
+const HANGING_INDENT = 0; // TODO: put back to -35 and fix indent of all the references
 const NONE_INDENT = 0;
 
 export const REFERENCE_TEXT = 'title';
@@ -89,7 +89,8 @@ const generateBibliography = () => {
           const referenceIndex = getReferenceIndex(index, cslStyle);
           contentControl.insertText(referenceIndex, Word.InsertLocation.end);
           contentControl.insertHtml(reference, Word.InsertLocation.end);
-          contentControl.insertText('\n', Word.InsertLocation.end);
+          contentControl.insertBreak(Word.BreakType.line, Word.InsertLocation.end);
+          contentControl.insertBreak(Word.BreakType.line, Word.InsertLocation.end);
         });
 
         await setLineIndents(context, contentControl, NONE_INDENT);
@@ -99,7 +100,8 @@ const generateBibliography = () => {
 
       references.forEach((reference) => {
         contentControl.insertHtml(reference, Word.InsertLocation.end);
-        contentControl.insertText('\n', Word.InsertLocation.end);
+        contentControl.insertBreak(Word.BreakType.line, Word.InsertLocation.end);
+        contentControl.insertBreak(Word.BreakType.line, Word.InsertLocation.end);
       });
 
       await setLineIndents(context, contentControl, HANGING_INDENT);
