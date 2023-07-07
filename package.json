@@ -51,7 +51,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "rosie": "^2.0.1",
     "storybook-host": "^5.0.3",
-    "stylelint": "^13.9.0",
+    "stylelint": "^15.10.1",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-order": "^4.1.0",
