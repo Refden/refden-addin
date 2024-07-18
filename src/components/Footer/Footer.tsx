@@ -79,7 +79,6 @@ const Footer = (props: Props) => {
       </Modal>
 
       <div className="footer">
-        {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
         <div
           className="settingsButton"
           onClick={showModal}
