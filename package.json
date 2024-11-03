@@ -13,9 +13,7 @@
     "test": "react-scripts test",
     "test:ci": "CI=true react-scripts test",
     "eject": "react-scripts eject",
-    "validate:manifest": "validate-office-addin refden-add-in-manifest.xml",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "validate:manifest": "validate-office-addin refden-add-in-manifest.xml"
   },
   "dependencies": {
     "@uifabric/react-hooks": "^7.13.9",
@@ -33,10 +31,6 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@storybook/addon-actions": "^5.0.10",
-    "@storybook/addon-links": "^5.0.10",
-    "@storybook/addons": "^5.0.10",
-    "@storybook/react": "^5.0.10",
     "@types/jest": "^24.0.23",
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.12.16",
@@ -51,7 +45,6 @@
     "eslint-plugin-react": "^7.22.0",
     "eslint-plugin-react-hooks": "^4.2.0",
     "rosie": "^2.0.1",
-    "storybook-host": "^5.0.3",
     "stylelint": "^13.9.0",
     "stylelint-config-rational-order": "^0.1.2",
     "stylelint-config-standard": "^20.0.0",
